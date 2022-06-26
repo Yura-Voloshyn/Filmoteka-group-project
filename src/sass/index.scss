@@ -3,13 +3,15 @@
 @import './base/base';
 @import './base/normalize';
 @import './base/reset';
+@import './utils/mixins';
+@import './utils/variables';
 
 // components
-
+@import './components/container';
 
 
 // layouts
-
+@import './layouts/header';
 
 
 // utils
