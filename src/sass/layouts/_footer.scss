@@ -1,0 +1,35 @@
+.footer {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: $cl-foot-bg;
+}
+
+.footer-text {
+    
+    color: $cl-foot-text;
+    font-size: 14px;
+    line-height: 1.17;
+    text-align: center;
+    
+    @media screen and (max-width: 767px) {
+            max-width: 236px;
+        };
+}
+
+.footer-text__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.link-dec {
+    text-decoration: underline;
+}
+.footer-link {
+    color: $cl-foot-text;
+    
+}
+
+.favorite {
+    margin-left: 5px;
+    margin-right: 5px;
+}

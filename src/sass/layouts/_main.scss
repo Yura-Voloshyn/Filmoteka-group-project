@@ -1,0 +1,6 @@
+.main-section {
+    margin-bottom: 40px;
+    @include tab {
+        margin-bottom: 60px;
+    }
+}

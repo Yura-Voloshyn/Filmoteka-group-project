@@ -1,0 +1,10 @@
+body {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+
+    &.slider-open {
+        overflow: hidden;
+    }
+}
