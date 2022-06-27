@@ -3,7 +3,7 @@
 //     @content;
 //   }
 // }
-@mixin tel {
+@mixin mob {
   @media screen and (min-width: 320px) {
     @content;
   }
