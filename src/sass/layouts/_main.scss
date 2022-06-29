@@ -17,12 +17,20 @@
     display: flex;
     flex-wrap: wrap;
     // max-width: 1140px;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: flex-start;
     padding: 0;
     list-style: none;
     margin-left: auto;
     margin-right: auto;
     padding-top: 50px;
+    font-size: 12px;
+    line-height: 1.3;
+
+    @include desc {
+            font-size: 20px;
+            line-height: 1.2;
+        }
 
 }
 
@@ -31,13 +39,13 @@
 //     transform: scale(1.03);
 // }
 
-.card-image {
+.poster-image {
     box-sizing: border-box;
     height: 438px;
     width: 100%;
     object-fit: cover;
     transition: transform var(--animation-duration) var(--timing-function);
-    border-radius: 4px 4px 0px 0px;
+    border-radius: 4;
     @include tab {
         height: 495px;
     }
@@ -46,43 +54,73 @@
         }
 }
 
-.photo-card {
+.movie-card {
     display: block;
     // object-fit: contain;
     border-radius: 4px;
     text-decoration: none;
-    min-width: 300px;
+    // height: 438px;
+    min-width: 280px;
     flex-basis: 20%;
-    // height: 400px;
-    // width: calc((100% - 4 * 30px) / 4);
-    margin: 12px;
+    // margin: 12px;
     position: relative;
-    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-        0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    margin-bottom: 20px;
+    // box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    //     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
     transition: transform var(--animation-duration) var(--timing-function);
+    @include tab {
+        margin-bottom: 32px;
+            // height: 495px;
+            min-width: 336px;
+        }
+    
+        @include desc {
+            // height: 634px;
+            min-width: 395px;
+        }
 }
 
-.photo-card:hover {
+.movie-card:hover {
     cursor: zoom-in;
     transform: scale(1.03);
 }
 
+.card-title {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.3;
+    margin-top: 10px;
+
+        @include desc {
+            font-size: 20px;
+            line-height: 1.2;
+        }
+}
+
 .info {
     display: flex;
-    text-align: center;
-    margin: 10px 5px;
-
+    align-items: center;
 }
 
 .info-item {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 12px;
+    color: $cl-accent;
 }
-
+.info-item__date {
+    margin-left: 2px;
+}
+.info-item__vote {
+    display: inline-block;
+    margin-left: 4px;
+    padding: 1px 10px;
+    background-color: $cl-accent;
+    color: $cl-white-primary;
+    border-radius: 4px;
+    @include desc {
+            padding: 3px 12px;
+        }
+}
 .card-link {
     display: block;
     text-decoration: none;
