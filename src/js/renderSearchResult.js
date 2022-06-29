@@ -14,13 +14,27 @@ export async function onFormSubmit(e) {
   movieApiService.resetPage();
   loadAnimationAction.classList.remove('is-hiden');
   const searchData = await movieApiService.getMoviesBySearchQuery();
+  console.log(movieApiService.query);
   //   console.log(searchData);
   const searchMarkup = searchData.results
     .map(item => itemMarkupBySearch(item))
     .join('');
   //   console.log(searchMarkup);
   loadAnimationAction.classList.add('is-hiden');
-  refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
+  console.log(searchData.total_results);
+  if (searchData.total_results === 0) {
+    return alert(
+      'Sorry, there are no images matching your search query. Please try again.'
+    );
+  }
+  if (
+    movieApiService.query === '' ||
+    event.target.firstElementChild.value === ' '
+  ) {
+    return alert('input field cannot be empty.');
+  } else {
+    return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
+  }
 }
 
 export function clearMarkup() {
