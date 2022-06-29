@@ -22,7 +22,7 @@
     border-radius: 50%;
     float: left;
     transform: scale(0);
-    animation: hollow-dots 1000ms ease infinite 0ms;
+    animation: hollow-dots 900ms ease infinite 0ms;
 }
 .hollow-dots-spinner .dot:nth-child(1) {
     animation-delay: calc(300ms * 1);

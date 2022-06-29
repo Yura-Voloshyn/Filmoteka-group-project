@@ -1,4 +1,5 @@
 export const refs = {
   mainMarkup: document.querySelector('.main-render'),
-  submitBtn: document.querySelector('.submit-btn'),
+  form: document.querySelector('.search-form'),
+  btn: document.querySelector('.submit-btn'),
 };
