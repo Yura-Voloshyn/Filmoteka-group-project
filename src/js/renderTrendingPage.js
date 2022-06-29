@@ -1,6 +1,6 @@
 import MovieApiService from './MovieApiService';
 import { refs } from './refs';
-
+let singleGenre = [];
 export const movieApiService = new MovieApiService();
 
 async function renderMainPage() {
