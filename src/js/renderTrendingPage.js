@@ -3,10 +3,17 @@ import { refs } from './refs';
 let singleGenre = [];
 export const movieApiService = new MovieApiService();
 
+export const loadAnimationAction = document.querySelector(
+  '.hollow-dots-spinner'
+);
+console.log(loadAnimationAction);
+
 async function renderMainPage() {
+  loadAnimationAction.classList.remove('is-hiden');
   const data = await movieApiService.fetchMovies();
   //   getGenreName(genre_ids);
   const markup = data.results.map(item => itemMarkup(item)).join('');
+  //   loadAnimationAction.classList.add('is-hiden');
   //   console.log(markup);
   console.log(data.results);
   refs.mainMarkup.insertAdjacentHTML('beforeend', markup);
