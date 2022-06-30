@@ -3,3 +3,4 @@
 import renderTrendingPage from './js/renderTrendingPage';
 import { itemMarkup } from './js/renderTrendingPage';
 import { onFormSubmit } from './js/renderSearchResult';
+import { getCheckboxStatus } from './js/themeSwitchByCheckbox';
