@@ -27,10 +27,7 @@ export async function onFormSubmit(e) {
       'Sorry, there are no images matching your search query. Please try again.'
     );
   }
-  if (
-    movieApiService.query === '' ||
-    event.target.firstElementChild.value === ' '
-  ) {
+  if (movieApiService.query === '') {
     return alert('input field cannot be empty.');
   } else {
     return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
