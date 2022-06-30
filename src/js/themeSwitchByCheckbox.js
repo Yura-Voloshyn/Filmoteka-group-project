@@ -11,8 +11,10 @@ export function getCheckboxStatus() {
 
   if ((chbox.checked ^= 1)) {
     document.querySelector('body').style.backgroundColor = 'black';
+    document.querySelector('.footer').style.backgroundColor = 'black';
   } else {
-    document.querySelector('body').style.backgroundColor = 'white';
+    document.querySelector('body').style.backgroundColor = '';
+    document.querySelector('.footer').style.backgroundColor = '';
   }
   //   console.log(chbox.checked, 'done');
 }
