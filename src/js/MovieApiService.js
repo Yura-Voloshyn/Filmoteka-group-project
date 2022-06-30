@@ -15,10 +15,6 @@ export default class MovieApiService {
   }
 
   async fetchMovies() {
-    // const options = {
-    //   key: 'b28dcafbfbdc99f3059a27aaeb93fed6',
-    //   page: this.page,
-    // };
     const url = `${BASE_URL}/trending/movie/day?api_key=${this.options.key}&page=${this.page}&language=${this.language}`;
 
     return await axios
@@ -30,18 +26,39 @@ export default class MovieApiService {
       .catch(error => console.log(error));
   }
 
+  async getMoviesBySearchQuery() {
+    const url = `${BASE_URL}/search/movie?api_key=${this.options.key}&query=${this.searchQuery}&page=${this.currentPage}&include_adult=false&language=${this.language}`;
+    return await axios
+      .get(url, this.options)
+      .then(resp => {
+        this.page += 1;
+        return resp.data;
+      })
+      .catch(error => console.log(error));
+  }
+  getMovieById(movieId) {
+    return axios
+      .get(
+        `${BASE_URL}/movie/${movieId}?api_key=${this.options.key}&language=${this.language}`
+      )
+      .then(resp => {
+        this.page += 1;
+        return resp.data;
+      })
+      .catch(error => console.log(error));
+  }
   getGenres() {
     return axios.get(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=b28dcafbfbdc99f3059a27aaeb93fed6&language=${this.language}`
+      `${BASE_URL}/genre/movie/list?api_key=${this.options.key}&language=${this.language}`
     );
   }
 
   async getAllGenres() {
     const genres = await axios.get(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=b28dcafbfbdc99f3059a27aaeb93fed6&language=${this.language}`
+      `${BASE_URL}/genre/movie/list?api_key=${this.options.key}&language=${this.language}`
     );
     this.allGenres.push(...genres.data.genres);
-    console.log(this.allGenres[10].name);
+    // console.log(this.allGenres[10].name);
   }
   resetPage() {
     this.page = 1;
