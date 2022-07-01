@@ -19,11 +19,11 @@ import "simplelightbox/dist/simple-lightbox.min.css";
  const closeModalBtn = document.getElementById('closeModalStBtn')
 
 // const studentItems = studentsData.map(studentsTemplate).join(' ');
-const studentItems = studentsData.map(({foto_url, name, githab}) => {
+const studentItems = studentsData.map(({photo_url, name, githab}) => {
     return `
   <li class='team'>
   <div class='card__tumb team__tumb'>
-    <img class='card__image team__image' src='${foto_url}' alt='${name}' />
+    <img class='card__image team__image' src='${photo_url}' alt='${name}' />
   </div>
   <a href='${githab}' class='ref'>
     <span class='ref__icon'></span>
