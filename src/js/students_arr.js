@@ -1,9 +1,9 @@
 
   export const studentsData = 
  [ {
-    "name": "1",
+    "name": "Yura Voloshyn",
     "foto_url": "",
-    "githab": "https://github.com/OlenaLotos",
+    "githab": "https://github.com/Yura-Voloshyn",
   },
   {
     "name": "2",
@@ -11,7 +11,7 @@
     "githab": "https://github.com/OlenaLotos",
   },
   {
-    "name": "3",
+    "name": "Olena Lotos",
     "foto_url": "",
     "githab": "https://github.com/OlenaLotos",
   },
