@@ -1,4 +1,5 @@
 .footer {
+    transition: all 0.3s ease 0s;
     padding-top: 30px;
     padding-bottom: 30px;
     background-color: $cl-foot-bg;
@@ -15,6 +16,7 @@
             max-width: 236px;
         };
 }
+
 
 .footer-text__wrapper {
     display: flex;
