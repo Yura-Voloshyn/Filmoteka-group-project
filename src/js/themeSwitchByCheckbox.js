@@ -26,12 +26,12 @@ export function windowLoad() {
   //       });
   //   }
   //
-  const asd = (chbox.checked ^= 1);
-  if (asd) {
-    chbox.addEventListener('click', function (e) {
-      changeTheme(true);
-    });
-  }
+  //   const asd = (chbox.checked ^= 1);
+  //   if (asd) {
+  //     chbox.addEventListener('click', function (e) {
+  //       changeTheme(true);
+  //     });
+  //   }
   //   const asd = (chbox.checked ^= 1);
   //   console.log(asd);
   // if ((chbox.checked ^= 1)) {
