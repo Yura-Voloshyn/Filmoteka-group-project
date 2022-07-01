@@ -1,7 +1,4 @@
 .library__header {
-    margin-bottom: 20px;
-    padding-top: 40px;
-    padding-bottom: 92px;
     background-image: linear-gradient(90deg, rgba(0, 0, 0, .56), rgba(0, 0, 0, .56)), url(/src/images/mob/header-mob-lib@1x.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -39,4 +36,34 @@
                 url(/src/images/desc/header-desc-lib@2x.jpg);
         }
     }
+}
+.library__btn--wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.library__header--btn {
+    width: 148px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: calc(16 / 12);
+    
+    color: $cl-white-primary;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px solid $cl-white-primary;
+
+    &:first-child {
+        margin-right: 16px;
+    }
+
+    &.selected {
+        background-color: $cl-accent;
+        border-color: $cl-accent;
+    }
+
 }
