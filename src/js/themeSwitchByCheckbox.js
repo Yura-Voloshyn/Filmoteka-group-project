@@ -4,7 +4,7 @@ window.addEventListener('load', windowLoad);
 
 export function windowLoad() {
   const toggler = document.querySelector('.toggler');
-  const chbox = document.querySelector('.theme-btn');
+  const themeBtn = document.querySelector('.theme-btn');
   const htmlBlock = document.documentElement;
   const saveUserTheme = localStorage.getItem('user-theme');
   //   console.log(htmlBlock);
@@ -26,12 +26,12 @@ export function windowLoad() {
   //       });
   //   }
   //
-  //   const asd = (chbox.checked ^= 1);
-  //   if (asd) {
-  //     chbox.addEventListener('click', function (e) {
-  //       changeTheme(true);
-  //     });
-  //   }
+
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function (e) {
+      changeTheme(true);
+    });
+  }
   //   const asd = (chbox.checked ^= 1);
   //   console.log(asd);
   // if ((chbox.checked ^= 1)) {
