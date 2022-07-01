@@ -1,0 +1,275 @@
+
+.backdrop--students {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+    opacity: 1;
+    transition: opacity .25s cubic-bezier(.4, 0, .2, 1);
+
+// @media screen and (max-width: 767px) {
+//         overflow-y: scroll;
+//     }
+@include tab {
+overflow-y: scroll;
+}
+
+    &.is-hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    &.is-hidden .modal--students {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+.modal--students {
+
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 20px 20px 10px 20px;
+    text-align: center;
+    border-radius: 5px;
+
+    background-color: $cl-white-primary;
+
+    transform: translate(-50%, -50%),
+    scale(1);
+    transition: transform .25s cubic-bezier(.4, 0, .2, 1);
+
+    &.dark-theme {
+        background-color: $cl-primary;
+        color: $cl-primary;
+    }
+
+    & .button-modal {
+        padding: 8px 10px;
+        min-width: 180px;
+    }
+
+                @include mob {
+                    width: 320px;
+                    height: 958px;
+                }
+
+                @include tab {
+                    width: 708px;
+                    // height: 700px;
+                    height: 100%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                }
+                @include desc {
+                     // height: 790px;
+                     height: 100%;
+                     top: 50%;
+                     transform: translate(-50%, -50%);
+}
+             
+}
+
+.team-items {
+    color: inherit;
+    list-style: none;
+    max-width: fit-content;
+
+    @include tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-bottom: -14px;
+        }
+}
+
+.team {
+    width: 100%;
+    height: min-content;
+    text-align: center;
+    margin-bottom: 20px;
+    color: inherit;
+
+    @include tab {
+        width: 140px;
+        }
+}
+
+.team__tumb {
+    max-width: 302px;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 1px rgb(0 0 0 / 14%), 0 5px 10px 2px rgb(0 0 0 / 20%), 0 2px 1px rgb(0 0 0 / 20%);
+    border-radius: 5px;
+
+    &:hover,
+    &:focus {
+         box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;   
+        }
+    @include tab {
+            height: 170px;
+        }
+}
+
+
+
+.ref {
+    display: flex;
+    height: 46px;
+    justify-content: start;
+    align-items: center;
+    padding-top: 5px;
+    color: inherit;
+    transition: all .25s cubic-bezier(.4, 0, .2, 1);
+
+    &:hover,
+    :active,
+    :focus {
+        color: $cl-accent;
+        outline: none;
+        cursor: pointer;
+
+        & .ref__icon {
+            box-shadow: 0 1px 3px rgb(0 0 0 / 12%),
+                0 1px 1px rgb(0 0 0 / 14%),
+                0 5px 10px 2px rgb(0 0 0 / 20%),
+                0 2px 1px rgb(0 0 0 / 20%);
+        }
+
+        & .ref__title {
+            font-weight: 500;
+        }
+    }
+
+    &__icon {
+        transition: box-shadow .25s cubic-bezier(.4, 0, .2, 1)33;
+        display: inline-block;
+        height: 27px;
+        width: 27px;
+        background-color: $cl-white-primary;
+        background-repeat: no-repeat;
+        background-size: 24px;
+        background-position: center;
+        border-radius: 50%;
+        background-image: url('https://raw.githubusercontent.com/Keyamoon/IcoMoon-Free/master/PNG/32px/433-github.png');
+    }
+
+    &__title {
+        font-size: 16px;
+        font-weight: 400;
+        display: inline-block;
+        padding: 5px 0 5px 5px;
+        text-align: start;
+
+    @include tab {
+            line-height: 1.33;
+            font-size: 12px;
+        }
+    }
+}
+
+
+.card__tumb {
+    height: 398px;
+    overflow: hidden;
+}
+
+.card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+
+
+.button-modal {
+    margin: 10px;
+    padding-top: 14px;
+    padding-bottom: 12px;
+    border-radius: 4px;
+    min-width: 112px;
+    min-height: 44px;
+
+    border: 1px solid #000000;
+    border-radius: 5px;
+
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 1.33;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    transition: background-color .25s cubic-bezier(.4, 0, .2, 1);
+
+@include tab {
+            min-width: 125px;
+                font-size: 12px;
+        }
+  
+ @include desc {
+     min-width: 136px;
+     font-size: 12px;
+ }
+  
+    &:hover,
+    &:focus {
+        background-color: #dfdcdc;
+        color: $cl-white-primary;
+        border: none;
+    }
+}
+
+.button-modal--orange {
+    background: $cl-accent;
+    border: none;
+    color: $cl-white-primary;
+
+    transition: background-color .25s cubic-bezier(.4, 0, .2, 1);
+
+    &:hover,
+    &:focus {
+        background-color: inherit;
+        border: 1px solid #000000;
+        color: #000000;
+        box-shadow: $cl-accent 0px 20px 30px -10px
+    }
+}
+
+.button-modal--close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+// .close__svg {
+//     fill: currentColor;
+
+//     transition: fill .25s cubic-bezier(.4, 0, .2, 1);
+
+//     &:hover,
+//     &:focus {
+//         fill: #dfdcdc;
+//     }
+// }
+
+// .close__svg.dark-theme {
+//     fill: $cl-white-primary;
+
+//     &:hover,
+//     &:focus {
+//         fill: #dfdcdc;
+//     }
+// }
