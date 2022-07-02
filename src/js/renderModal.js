@@ -42,7 +42,7 @@ export function itemMarkup({
     <a class="card-link" href="#"
       ><img
         class="poster-image"
-        src="https://image.tmdb.org/t/p/original/${poster_path}"
+        src="https://image.tmdb.org/t/p/w500/${poster_path}"
         alt="${title}"
         loading="lazy"
     /></a>
