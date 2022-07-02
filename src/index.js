@@ -5,7 +5,7 @@ import renderTrendingPage from './js/renderTrendingPage';
 import { itemMarkup } from './js/renderTrendingPage';
 import { onFormSubmit } from './js/renderSearchResult';
 import { getCheckboxStatus } from './js/themeSwitchByCheckbox';
-import "./js/library";
+import './js/library';
 
-
+import { onMovieCardClick } from './js/renderModal';
 // import { getCheckboxStatus } from './js/themeSwitchByCheckbox';
