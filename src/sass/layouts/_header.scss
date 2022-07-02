@@ -344,6 +344,53 @@ line-height: 1.17;
         opacity: 1;
     }
 }
+.nav-btn {
+    position: relative;
+}
+.nav-btn:hover {
+    color: $cl-accent;
+    transition: 1s ease;
+}
+.nav-btn::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    background: transparent;
+    height: 50%;
+    width: 100%;
+    transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+    filter: blur(8px);
+    transition: 1s ease;
+}
+.nav-btn:hover::before {
+    background: $cl-white-primary;
+    top: 17px;
+}
+
+.logo-link {
+    position: relative;
+}
+.logo-link:hover {
+    color: $cl-accent;
+    transition: 1s ease;
+}
+.logo-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 20px;
+    background: transparent;
+    height: 50%;
+    width: 100%;
+    transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+    filter: blur(8px);
+    transition: 1s ease;
+}
+.logo-link:hover::before {
+    background: $cl-white-primary;
+    top: 30px;
+}
 // .bounce-in-right {
 //     -webkit-animation: bounce-in-right 1.1s 1.2s both;
 //     animation: bounce-in-right 1.1s 1.2s both;
