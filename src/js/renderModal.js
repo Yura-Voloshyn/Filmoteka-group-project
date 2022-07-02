@@ -1,6 +1,7 @@
 import MovieApiService from './MovieApiService';
 import { loadAnimationAction } from './renderTrendingPage';
 import { refs } from './refs';
+import * as basicLightbox from 'basiclightbox';
 
 const movieApiService = new MovieApiService();
 
@@ -8,16 +9,18 @@ refs.mainMarkup.addEventListener('click', onMovieCardClick);
 
 export async function onMovieCardClick(e) {
   e.preventDefault();
-  const movieId = e.path.find(el => el.className === 'movie-card').id;
-  loadAnimationAction.classList.remove('is-hiden');
-  const movieData = await movieApiService.getMovieById(movieId);
-  const modalMarkup = itemMarkup(movieData);
-  refs.modal.insertAdjacentHTML('beforeend', modalMarkup);
-  loadAnimationAction.classList.add('is-hiden');
-  refs.modal.classList.remove('is-hidden');
-  document
-    .querySelector('.close-modal')
-    .addEventListener('click', onCloseModalClick);
+  const movieId = e.path.find(el => el.className === 'movie-card').id; //get movie ID
+  loadAnimationAction.classList.remove('is-hiden'); //loader animation switched-on
+  const movieData = await movieApiService.getMovieById(movieId); //get from srver movie info
+  const modalMarkup = itemMarkup(movieData); // create markup
+  //create modal window//
+  const modal = basicLightbox.create(modalMarkup, {
+    onShow: instance => {
+      instance.element().querySelector('.close-modal').onclick = instance.close;
+    },
+  });
+  modal.show(); //show modal window
+  loadAnimationAction.classList.add('is-hiden'); //loader animation switched-off
 }
 
 export function itemMarkup({
@@ -32,6 +35,7 @@ export function itemMarkup({
   overview,
 }) {
   return `
+  <div class='modal'>
   <button class="close-modal"></button>
   <section class="modal-rendered">
     <!-- a tag for teaser player feature -->
@@ -71,10 +75,5 @@ export function itemMarkup({
         <button class="button-queue" data-queue-id='${id}'>Add to queue</button>
       </div>
     </div>
-  </section>`;
-}
-
-function onCloseModalClick() {
-  refs.modal.classList.add('is-hidden');
-  refs.modal.innerHTML = '';
+  </section></div>`;
 }
