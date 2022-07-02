@@ -1,11 +1,16 @@
-<header class="header">
+<header class="header homeimg">
+  <!-- .libimg клас який потрібно додавати до хедера при натисканні на кнопку lib а .homeimg відповідно забирати-->
   <div class="container">
     <div class="wrapper">
       <a href="#" class="logo-link">
-        <svg class="subscribe-form__icon" width="24" height="24">
+        <svg
+          class="subscribe-form__icon rotate-vert-center"
+          width="24"
+          height="24"
+        >
           <use href="./images/sprite.svg#icon-logo"></use>
         </svg>
-        <span class="logo-text">Filmoteka</span></a
+        <span class="logo-text tracking-in-expand">Filmoteka</span></a
       >
       <nav class="navigation">
         <ul class="nav-list">
@@ -20,7 +25,9 @@
           </li>
         </ul>
       </nav>
-      <label for="checkbox" class="toggler">
+
+      <button class="theme-btn toggler text-focus-in"></button>
+      <!-- <label for="checkbox" class="toggler bounce-in-right">
         <input type="checkbox" id="checkbox" class="visually-hidden" />
         <span class="ball"></span>
         <i class="iconify-inline ri-sun-line sun" data-icon="ri:sun-line"></i>
@@ -28,7 +35,7 @@
           class="iconify-inline ri-moon-line moon"
           data-icon="ri:moon-line"
         ></i>
-      </label>
+      </label> -->
     </div>
     <form class="search-form">
       <input class="input-form" type="text" placeholder="Movie search" />
