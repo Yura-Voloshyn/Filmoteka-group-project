@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Filmoteka</title>
-    <link rel="icon" href="./images/favicon.ico" />
+    <link rel="icon" href="./images/logo_film.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,14 +12,19 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./sass/index.scss" />
+
     <script type="module" src="./index.js"></script>
   </head>
   <body>
+    <!-- ресурс для іконок (наприклад як у чекбоксі зміни теми) - http://icon-sets.iconify.design/ri/moon-line/ скрипт вже підключений (опис в доках на сайті) -->
     <!-- header -->
     <include src="./partials/header.html"></include>
     <!-- main -->
+    <include src="./partials/load-animation.html"></include>
     <include src="./partials/main.html"></include>
     <!-- footer -->
     <include src="./partials/footer.html"></include>
+    <!-- modal -->
+    <include src="./partials/modal.html"></include>
   </body>
 </html>
