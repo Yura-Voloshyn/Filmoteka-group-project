@@ -17,6 +17,7 @@ export async function onMovieCardClick(e) {
 }
 
 export function itemMarkup({
+  id,
   poster_path,
   title,
   vote_average,
@@ -62,8 +63,8 @@ export function itemMarkup({
       <p class="info-about">About</p>
       <p class="info-overview">${overview}</p>
       <div class="buttons">
-        <button class="button-watched">Add to watched</button>
-        <button class="button-queue">Add to queue</button>
+        <button class="button-watched" data-watched-id='${id}'>Add to watched</button>
+        <button class="button-queue" data-queue-id='${id}'>Add to queue</button>
       </div>
     </div>
   </section>`;
