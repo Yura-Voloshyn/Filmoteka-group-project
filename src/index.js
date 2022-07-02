@@ -4,4 +4,6 @@ import { windowLoad } from './js/themeSwitchByCheckbox';
 import renderTrendingPage from './js/renderTrendingPage';
 import { itemMarkup } from './js/renderTrendingPage';
 import { onFormSubmit } from './js/renderSearchResult';
+import { getCheckboxStatus } from './js/themeSwitchByCheckbox';
+import { onMovieCardClick } from './js/renderModal';
 // import { getCheckboxStatus } from './js/themeSwitchByCheckbox';
