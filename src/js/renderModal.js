@@ -1,5 +1,5 @@
 import MovieApiService from './MovieApiService';
-// import { loadAnimationAction } from './renderTrendingPage';
+import { loadAnimationAction } from './renderTrendingPage';
 import { refs } from './refs';
 
 const movieApiService = new MovieApiService();
@@ -7,9 +7,13 @@ const movieApiService = new MovieApiService();
 refs.mainMarkup.addEventListener('click', onMovieCardClick);
 
 export async function onMovieCardClick(e) {
-  const movieData = await movieApiService.getMovieById(453395);
+  e.preventDefault();
+  const movieId = e.path.find(el => el.className === 'movie-card').id;
+  loadAnimationAction.classList.remove('is-hiden');
+  const movieData = await movieApiService.getMovieById(movieId);
   const modalMarkup = itemMarkup(movieData);
   refs.modal.insertAdjacentHTML('beforeend', modalMarkup);
+  loadAnimationAction.classList.add('is-hiden');
   refs.modal.classList.remove('is-hidden');
   document
     .querySelector('.close-modal')
