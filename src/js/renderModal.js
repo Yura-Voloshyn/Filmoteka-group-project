@@ -2,7 +2,6 @@ import MovieApiService from './MovieApiService';
 import { loadAnimationAction } from './renderTrendingPage';
 import { refs } from './refs';
 import * as basicLightbox from 'basiclightbox';
-import 'basicLightbox/dist/basicLightbox.min.css';
 
 const movieApiService = new MovieApiService();
 
