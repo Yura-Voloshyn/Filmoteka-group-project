@@ -28,7 +28,7 @@
   },
   {
     name: 'Hanna Shumakova',
-    photo_url: '',
+    photo_url: 'https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team-photo/Hanna.jpg?raw=true',
     githab: 'https://github.com/HannaMyrhorod',
   },
   {
@@ -39,7 +39,7 @@
   {
     name: 'Vasylenko Myroslava',
     photo_url:
-      'https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team-photo/IMG-f13c2fdadb3bba29f442c6e2b7402f2f-V.jpg?raw=true',
+      'https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team-photo/Mira.jpg?raw=true',
     githab: 'https://github.com/MiraVV',
   },
   {
