@@ -27,23 +27,24 @@
     "githab": "https://github.com/yuliapakhachuk",
   },
   {
-    "name": "Hanna Shumakova",
-    "photo_url": "",
-    "githab": "https://github.com/HannaMyrhorod",
+    name: 'Hanna Shumakova',
+    photo_url: '',
+    githab: 'https://github.com/HannaMyrhorod',
   },
   {
-    "name": "Olha Truba",
-    "photo_url": "",
-    "githab": "https://github.com/Lolichka-Olha",
+    name: 'Olha Truba',
+    photo_url: '',
+    githab: 'https://github.com/Lolichka-Olha',
   },
   {
-    "name": "Vasylenko Myroslava",
-    "photo_url": "https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team-photo/IMG-f13c2fdadb3bba29f442c6e2b7402f2f-V.jpg?raw=true",
-    "githab": "https://github.com/MiraVV",
+    name: 'Vasylenko Myroslava',
+    photo_url:
+      'https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team-photo/IMG-f13c2fdadb3bba29f442c6e2b7402f2f-V.jpg?raw=true',
+    githab: 'https://github.com/MiraVV',
   },
   {
     "name": "Andrew Timoshkin",
     "photo_url": "https://raw.githubusercontent.com/Yura-Voloshyn/Filmoteka-group-project/1a42259e5af394e60dded1d6df3502a528cf336f/src/images/team-photo/Andrew.jpg",
     "githab": "https://github.com/andrewtimoshkin",
   },
-  ]
+];

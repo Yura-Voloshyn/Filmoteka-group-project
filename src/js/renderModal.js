@@ -2,8 +2,20 @@ import MovieApiService from './MovieApiService';
 import { loadAnimationAction } from './renderTrendingPage';
 import { refs } from './refs';
 import * as basicLightbox from 'basiclightbox';
+import 'basicLightbox/dist/basicLightbox.min.css';
 
 const movieApiService = new MovieApiService();
+
+const lightBoxOptions = {
+  onShow: function (instance) {
+    instance.element().querySelector('.close-modal').onclick = instance.close;
+  },
+  onClose: () => {
+    window.removeEventListener('keydown', keydownHandler);
+  },
+};
+
+let modal; //собственно будущая модалка
 
 refs.mainMarkup.addEventListener('click', onMovieCardClick);
 
@@ -13,14 +25,21 @@ export async function onMovieCardClick(e) {
   loadAnimationAction.classList.remove('is-hiden'); //loader animation switched-on
   const movieData = await movieApiService.getMovieById(movieId); //get from srver movie info
   const modalMarkup = itemMarkup(movieData); // create markup
-  //create modal window//
-  const modal = basicLightbox.create(modalMarkup, {
-    onShow: instance => {
-      instance.element().querySelector('.close-modal').onclick = instance.close;
-    },
-  });
-  modal.show(); //show modal window
+  modal = basicLightbox.create(modalMarkup, lightBoxOptions); //create modal window//
+  modalShow();
+  handleButtons();
   loadAnimationAction.classList.add('is-hiden'); //loader animation switched-off
+}
+
+function modalShow() {
+  modal.show(); //show modal window
+  window.addEventListener('keydown', keydownHandler);
+}
+
+function keydownHandler(e) {
+  if (e.code === 'Escape') {
+    modal.close();
+  }
 }
 
 export function itemMarkup({
@@ -71,9 +90,42 @@ export function itemMarkup({
       <p class="info-about">About</p>
       <p class="info-overview">${overview}</p>
       <div class="buttons">
-        <button class="button-watched" data-watched-id='${id}'>Add to watched</button>
-        <button class="button-queue" data-queue-id='${id}'>Add to queue</button>
+        <button class="button-watched" data-movieId='${id}'>Add to watched</button>
+        <button class="button-queue" data-movieId='${id}'>Add to queue</button>
       </div>
     </div>
   </section></div>`;
+}
+
+function handleButtons() {
+  document
+    .querySelector('.button-watched')
+    .addEventListener('click', addToWatched);
+  document.querySelector('.button-queue').addEventListener('click', addToQueue);
+}
+
+function addToWatched(e) {
+  let arr =
+    localStorage.getItem('watched') !== null
+      ? JSON.parse(localStorage.getItem('watched'))
+      : [];
+  if (arr.includes(e.target.dataset.movieid)) {
+    throw new Error('already added');
+  } else {
+    arr.push(e.target.dataset.movieid);
+    localStorage.setItem('watched', JSON.stringify(arr));
+  }
+}
+
+function addToQueue(e) {
+  let arr =
+    localStorage.getItem('queue') !== null
+      ? JSON.parse(localStorage.getItem('queue'))
+      : [];
+  if (arr.includes(e.target.dataset.movieid)) {
+    throw new Error('already added');
+  } else {
+    arr.push(e.target.dataset.movieid);
+    localStorage.setItem('queue', JSON.stringify(arr));
+  }
 }
