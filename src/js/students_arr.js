@@ -2,7 +2,7 @@
   export const studentsData = 
  [ {
     "name": "Yura Voloshyn",
-    "photo_url": "",
+    "photo_url": "https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/main/src/images/team-photo/123.jpg?raw=true",
     "githab": "https://github.com/Yura-Voloshyn",
   },
   {
@@ -37,7 +37,7 @@
   },
   {
     "name": "Vasylenko Myroslava",
-    "photo_url": "https://drive.google.com/file/d/1L64HjCqgkYtP3oCgox5fa-lnImfzR-fp/view?usp=sharing",
+    "photo_url": "https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team-photo/IMG-f13c2fdadb3bba29f442c6e2b7402f2f-V.jpg?raw=true",
     "githab": "https://github.com/MiraVV",
   },
   {
