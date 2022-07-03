@@ -21,28 +21,28 @@
     "githab": "https://github.com/IrynaShashko",
   },
   {
-    "name": "5",
+    "name": "Yulia Pakhachuk",
     "photo_url": "",
-    "githab": "https://github.com/OlenaLotos",
+    "githab": "https://github.com/yuliapakhachuk",
   },
   {
-    "name": "6",
+    "name": "Hanna Shumakova",
     "photo_url": "",
-    "githab": "https://github.com/OlenaLotos",
+    "githab": "https://github.com/HannaMyrhorod",
   },
   {
-    "name": "7",
+    "name": "Olha Truba",
     "photo_url": "",
-    "githab": "https://github.com/OlenaLotos",
+    "githab": "https://github.com/Lolichka-Olha",
   },
   {
-    "name": "8",
+    "name": "Vasylenko Myroslava",
     "photo_url": "",
-    "githab": "https://github.com/OlenaLotos",
+    "githab": "https://github.com/MiraVV",
   },
   {
-    "name": "9",
+    "name": "Andrew Timoshkin",
     "photo_url": "",
-    "githab": "https://github.com/OlenaLotos",
+    "githab": "https://github.com/andrewtimoshkin",
   },
   ]
