@@ -1,0 +1,85 @@
+.library__header {
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, .56), rgba(0, 0, 0, .56)), url(/src/images/mob/header-mob-lib@1x.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    @media (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+        background-image: linear-gradient(90deg, rgba(0, 0, 0, .56), rgba(0, 0, 0, .56)),
+            url(/src/images/mob/header-mob-lib@2x.jpg);
+    }
+
+    @include tab {
+        padding-bottom: 81px;
+        margin-bottom: 60px;
+        background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, .56)), url(/src/images/tab/header-tab-lib@1x.jpg);
+
+        @media (min-device-pixel-ratio: 2),
+        (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+            background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, .56)),
+                url(/src/images/tab/header-tab-lib@2x.jpg);
+        }
+    }
+
+    @include desc {
+        background-image: linear-gradient(90deg, rgba(0, 0, 0, .56), rgba(0, 0, 0, .56)), url(/src/images/desc/header-desc-lib@1x.jpg);
+
+        @media (min-device-pixel-ratio: 2),
+        (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+            background-image: linear-gradient(90deg, rgba(0, 0, 0, .56), rgba(0, 0, 0, .56)),
+                url(/src/images/desc/header-desc-lib@2x.jpg);
+        }
+    }
+}
+.library__btn--wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.library__header--btn {
+    // width: 148px;
+    width: 130px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: calc(16 / 12);
+    
+    color: $cl-white-primary;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px solid $cl-white-primary;
+    
+    @include tab {
+        width: 148px;
+    }
+
+    &:first-child {
+        margin-right: 20px;
+
+        @include tab {
+            margin-right: 32px;
+        }
+
+        @include desc {
+            margin-right: 16px;
+        }
+    }
+
+    &.selected {
+        background-color: $cl-accent;
+        border-color: $cl-accent;
+    }
+}
+
+.active__page {
+    border-bottom: 2px solid #FF001B;
+}
