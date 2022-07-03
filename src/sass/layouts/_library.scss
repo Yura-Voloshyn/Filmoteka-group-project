@@ -43,7 +43,8 @@
 }
 
 .library__header--btn {
-    width: 148px;
+    // width: 148px;
+    width: 130px;
     padding-top: 12px;
     padding-bottom: 12px;
 
@@ -56,14 +57,29 @@
     background-color: transparent;
     border-radius: 5px;
     border: 1px solid $cl-white-primary;
+    
+    @include tab {
+        width: 148px;
+    }
 
     &:first-child {
-        margin-right: 16px;
+        margin-right: 20px;
+
+        @include tab {
+            margin-right: 32px;
+        }
+
+        @include desc {
+            margin-right: 16px;
+        }
     }
 
     &.selected {
         background-color: $cl-accent;
         border-color: $cl-accent;
     }
+}
 
+.active__page {
+    border-bottom: 2px solid #FF001B;
 }
