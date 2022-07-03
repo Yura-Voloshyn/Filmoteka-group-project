@@ -1,7 +1,9 @@
 import { studentsData } from './students_arr';
 
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
+
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
+
 // import studentsTemplate from '../templates/modal_students.hbs';
 // import refs from './variables';
 // const {
@@ -34,8 +36,9 @@ const studentItems = studentsData
   })
   .join('');
 
-new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: 'alt' });
+//   new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: "alt"});
 // console.log(studentItems);
+
 
 listStudents.insertAdjacentHTML('afterbegin', studentItems);
 
@@ -64,3 +67,5 @@ function onBackdropClick(event) {
     closeModalStud();
   }
 }
+
+

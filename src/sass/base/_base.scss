@@ -44,3 +44,12 @@ html.light .theme-btn {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+html.light .modal--students {
+    background-color: $cl-white-primary;
+   }
+
+html.dark .modal--students {
+        background-color: $cl-foot-text;
+        color: $cl-white-primary;
+}
