@@ -7,12 +7,12 @@
   },
   {
     "name": "Sergiy Smaga",
-    "photo_url": "https://drive.google.com/file/d/1mk4zJuO8H_6XZSvO5aJ1CBB6DuynZQ7V/view?usp=sharing",
+    "photo_url": "https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team-photo/photo_2022-02-14_22-01-40.jpg?raw=true",
     "githab": "https://github.com/sergiy-smaga",
   },
   {
     "name": "Olena Lotos",
-    "photo_url": "https://drive.google.com/file/d/1S2RXKiW5nlxootMZsJ_-7DdoIDJhdvBr/view?usp=sharing",
+    "photo_url": "https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team_photo/528907B8-FFD1-4151-9110-579BE1568507.JPG?raw=true",
     "githab": "https://github.com/OlenaLotos",
   },
   {
