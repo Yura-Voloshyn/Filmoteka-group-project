@@ -347,7 +347,7 @@ line-height: 1.17;
 .nav-btn {
     position: relative;
 }
-.nav-btn:hover {
+.nav-btn:hover, .nav-btn:focus {
     color: $cl-accent;
     transition: 1s ease;
 }
@@ -363,7 +363,7 @@ line-height: 1.17;
     filter: blur(8px);
     transition: 1s ease;
 }
-.nav-btn:hover::before {
+.nav-btn:hover::before, .nav-btn:focus::before {
     background: $cl-white-primary;
     top: 17px;
 }
@@ -371,9 +371,10 @@ line-height: 1.17;
 .logo-link {
     position: relative;
 }
-.logo-link:hover {
+.logo-link:hover, .logo-link:focus {
     color: $cl-accent;
     transition: 1s ease;
+    outline: none;
 }
 .logo-link::before {
     content: '';
@@ -387,9 +388,10 @@ line-height: 1.17;
     filter: blur(8px);
     transition: 1s ease;
 }
-.logo-link:hover::before {
+.logo-link:hover::before, .logo-link:focus::before {
     background: $cl-white-primary;
     top: 30px;
+
 }
 // .bounce-in-right {
 //     -webkit-animation: bounce-in-right 1.1s 1.2s both;
