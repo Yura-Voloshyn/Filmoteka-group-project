@@ -227,7 +227,7 @@ line-height: 1.17;
 .theme-btn:after {
     pointer-events: none;
     position: absolute;
-    left: 0px;
+    left: -1px;
     bottom: -2px;
     width: 110%;
     height: 110%;
@@ -252,10 +252,10 @@ line-height: 1.17;
     display: inline-block;
     text-align: center;
     box-shadow: 1px 1px $cl-accent;
-    -webkit-transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    transform: rotate(-90deg);
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    transform: rotate(-180deg);
     -webkit-transition: opacity 0.2s;
     -moz-transition: opacity 0.2s;
     transition: opacity 0.2s, transform 0.2s;
@@ -265,10 +265,10 @@ line-height: 1.17;
     opacity: 1;
     display: inline-block;
     text-align: center;
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    transform: rotate(0deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 
 .hi-icon-effect .theme-btn::before {
