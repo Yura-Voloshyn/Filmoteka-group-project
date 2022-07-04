@@ -9,9 +9,6 @@
     opacity: 1;
     transition: opacity .25s cubic-bezier(.4, 0, .2, 1);
 
-// @media screen and (max-width: 767px) {
-//         overflow-y: scroll;
-//     }
 @include tab {
 overflow-y: scroll;
 }
@@ -38,17 +35,11 @@ overflow-y: scroll;
     text-align: center;
     border-radius: 5px;
 
-
-    // background-color: $cl-white-primary;
-
     transform: translate(-50%, -50%),
     scale(1);
     transition: transform .25s cubic-bezier(.4, 0, .2, 1);
 
-    // & .html.dark {
-    //     background-color: $cl-foot-text;
-    //     color: $cl-white-primary;
-    // }
+    z-index: 200;
 
     & .button-modal {
         padding: 8px 10px;
@@ -72,8 +63,7 @@ overflow-y: scroll;
                      height: 100%;
                      top: 50%;
                      transform: translate(-50%, -50%);
-}
-             
+}     
 }
 
 .team-items {
@@ -116,8 +106,6 @@ overflow-y: scroll;
         }
 }
 
-
-
 .ref {
     display: flex;
     height: 46px;
@@ -159,9 +147,6 @@ overflow-y: scroll;
         background-image: url('https://raw.githubusercontent.com/Keyamoon/IcoMoon-Free/master/PNG/32px/433-github.png');
     }
 
-        // &__icon.dark {
-        // background-color: $cl-modal-text;
-        // }
 
     &__title {
         font-size: 16px;
@@ -190,8 +175,6 @@ overflow-y: scroll;
     border-radius: 5px;
 }
 
-
-
 .button-modal {
     margin: 10px;
     padding-top: 14px;
@@ -200,7 +183,7 @@ overflow-y: scroll;
     min-width: 112px;
     min-height: 44px;
 
-    border: 1px solid #000000;
+    border: 1px solid $cl-primary;
     border-radius: 5px;
 
     font-family: inherit;
@@ -241,8 +224,8 @@ overflow-y: scroll;
     &:hover,
     &:focus {
         background-color: inherit;
-        border: 1px solid #000000;
-        color: #000000;
+        border: 1px solid $cl-primary;
+        color: $cl-primary;
         box-shadow: $cl-accent 0px 20px 30px -10px
     }
 }
