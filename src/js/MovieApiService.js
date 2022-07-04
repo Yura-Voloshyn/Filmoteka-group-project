@@ -71,4 +71,15 @@ export default class MovieApiService {
   set query(newQuery) {
     this.searchQuery = newQuery;
   }
+  getMovieByIdvideos(movieId) {
+    return axios
+      .get(
+        `${BASE_URL}/movie/${movieId}/videos?api_key=${this.options.key}&language=${this.language}`
+      )
+      .then(resp => {
+        this.page += 1;
+        return resp.data;
+      })
+      .catch(error => console.log(error));
+  }
 }

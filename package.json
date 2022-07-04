@@ -22,6 +22,7 @@
     "basiclightbox": "^5.0.4",
     "hbs": "^4.2.0",
     "modern-normalize": "^1.1.0",
+    "notiflix": "^3.2.5",
     "simplelightbox": "^2.10.3"
   },
   "devDependencies": {
