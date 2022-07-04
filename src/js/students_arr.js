@@ -2,8 +2,7 @@
   export const studentsData = 
  [ {
     "name": "Yura Voloshyn",
-  //  "photo_url": "https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/main/src/images/team-photo/123.jpg?raw=true",
-    "photo_url": "https://raw.githubusercontent.com/Yura-Voloshyn/Filmoteka-group-project/5c0317fef85e905cab08ae5a3dc1429212b3c00a/src/images/team-photo/123.jpg",
+    "photo_url": "https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team-photo/Yura.jpg?raw=true",
     "githab": "https://github.com/Yura-Voloshyn",
   },
   {
@@ -33,7 +32,7 @@
   },
   {
     name: 'Olha Truba',
-    photo_url: '',
+    photo_url: 'https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team-photo/Olya.jpg?raw=true',
     githab: 'https://github.com/Lolichka-Olha',
   },
   {
