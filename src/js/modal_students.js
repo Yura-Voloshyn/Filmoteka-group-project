@@ -31,9 +31,11 @@ const studentItems = studentsData
   <div class='ref__cover'>
   <span class='ref__icon'></span>
   <h3 class='ref__title'>${name}</h3>
+  
    </div>
+
   </a>
-   <p class='ref__pos'>${possition}</p>
+<p class='ref__pos'>${possition}</p>
 </li>
 `;
   })
@@ -72,3 +74,4 @@ function onBackdropClick(event) {
 }
 
 
+      // <p class='ref__pos'>${possition}</p>

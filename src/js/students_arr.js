@@ -21,7 +21,7 @@
   {
     "name": "Iryna Shashko",
     "possition": "Developer",
-      "photo_url": "https://raw.githubusercontent.com/Yura-Voloshyn/Filmoteka-group-project/1a42259e5af394e60dded1d6df3502a528cf336f/src/images/team-photo/Ira.jpg",
+    "photo_url": "https://raw.githubusercontent.com/Yura-Voloshyn/Filmoteka-group-project/1a42259e5af394e60dded1d6df3502a528cf336f/src/images/team-photo/Ira.jpg",
     "githab": "https://github.com/IrynaShashko",
   },
   {
