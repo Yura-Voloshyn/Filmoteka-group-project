@@ -1,9 +1,12 @@
 
 .header {
-    margin-bottom: 20px;
     padding-top: 40px;
     padding-bottom: 92px;
-        
+    height: 230px;
+
+    @include tab {
+        height: 216px;
+    }
 }
 .homeimg {
     background-image: linear-gradient(90deg, rgba(0, 0, 0, .56), rgba(0, 0, 0, .56)), url(/src/images/mob/header-mob@1x.jpg);
@@ -20,7 +23,6 @@
     
         @include tab {
             padding-bottom: 81px;
-            margin-bottom: 60px;
             background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, .56)), url(/src/images/tab/header-tab@1x.jpg);
     
             @media (min-device-pixel-ratio: 2),
