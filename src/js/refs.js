@@ -3,4 +3,6 @@ export const refs = {
   form: document.querySelector('.search-form'),
   btn: document.querySelector('.submit-btn'),
   modal: document.querySelector('.modal'),
+  backToTopBtn: document.querySelector('.back-to-top-btn'),
+  pageProgressBar: document.querySelector('.progress-bar'),
 };
