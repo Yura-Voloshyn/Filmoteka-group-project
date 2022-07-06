@@ -21,6 +21,7 @@
     "axios": "^0.27.2",
     "basiclightbox": "^5.0.4",
     "canvas-confetti": "^1.5.1",
+    "confetti-js": "0.0.18",
     "hbs": "^4.2.0",
     "modern-normalize": "^1.1.0",
     "notiflix": "^3.2.5",

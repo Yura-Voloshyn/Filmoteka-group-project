@@ -53,6 +53,7 @@ const openLink = () => {
   window.addEventListener('keydown', onKeyPress);
   backdropStEl.classList.remove('is-hidden');
   showConfetti();
+
 };
 
 const closeModalStud = () => {
@@ -76,7 +77,7 @@ function onBackdropClick(event) {
   }
 }
 
-export default function showConfetti() {
+ function showConfetti() {
   confetti.create(document.getElementById('canvas'), {
     resize: true,
     useWorker: true,
