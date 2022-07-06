@@ -2,34 +2,15 @@
   width: 806px;
   padding: 40px 12px;
   background-color: #fff;
+  border-radius: 5px;
 
-  .modal-rendered {
-    display: flex;
-  }
-  .card-link {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+
+  p,
+  h2 {
     display: block;
-    width: 375px;
-    flex-shrink: 0;
-    position: relative;
-
-    &::before {
-      content: '';
-      background-image: url('../images/player-icon.png');
-      background-size: contain;
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-  }
-
-  .poster-image {
-    width: 100%;
-    object-fit: cover;
   }
 }
 
@@ -43,9 +24,11 @@
   background-color: #fff;
   border: none;
   cursor: pointer;
+  transition: 250ms ease-in;
 
   &:hover {
     opacity: 1;
+    transform: scale(1.1);
   }
   &::before,
   &::after {
@@ -63,5 +46,104 @@
   }
   &::after {
     transform: rotate(-45deg);
+  }
+}
+
+.modal-rendered {
+  display: flex;
+
+  .card-div {
+    width: 375px;
+    height: 478px;
+    flex-shrink: 0;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      background-image: url('../images/player-icon.png');
+      background-size: contain;
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      opacity: 0.5;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .movie-poster {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .info-modal {
+    margin-left: 16px;
+
+    .card-title {
+      margin-bottom: 20px;
+      margin-top: 0;
+      font-size: 30px;
+      line-height: 35px;
+    }
+  }
+}
+
+.info-block {
+  border-spacing: 0;
+
+  tr {
+    display: block;
+    margin-bottom: 8px;
+
+    &:last-child {
+      margin-bottom: 20px;
+    }
+  }
+  .list-keys {
+    width: 152px;
+    color: #8c8c8c;
+  }
+}
+
+.vote-span {
+  color: #fff;
+  padding: 1px 10px;
+  background: #ff6b01;
+  border-radius: 5px;
+}
+
+.info-about {
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.info-overview {
+  line-height: 20px;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+
+  button {
+    width: 136px;
+    height: 44px;
+    text-transform: uppercase;
+    // padding: 12px 10px 14px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 250ms ease-in;
+
+    &:hover {
+      background: #ff6b01;
+      border-color: #ff6b01;
+      color: #fff;
+    }
   }
 }
