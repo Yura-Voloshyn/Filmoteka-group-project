@@ -1,5 +1,6 @@
 import MovieApiService from './MovieApiService';
 import { refs } from './refs';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { movieApiService } from './renderTrendingPage';
 let singleGenre = [];
 const movieApiService = new MovieApiService();
@@ -8,9 +9,13 @@ refs.form.addEventListener('submit', onFormSubmit);
 import { loadAnimationAction } from './renderTrendingPage';
 export async function onFormSubmit(e) {
   e.preventDefault();
-  clearMarkup();
   //   console.log(e.currentTarget.elements[0].value);
   movieApiService.query = e.currentTarget.elements[0].value;
+  if (movieApiService.query === '') {
+    Notify.failure('input field cannot be empty.');
+    return;
+  }
+  clearMarkup();
   movieApiService.resetPage();
   loadAnimationAction.classList.remove('is-hiden');
   const searchData = await movieApiService.getMoviesBySearchQuery();
@@ -23,15 +28,12 @@ export async function onFormSubmit(e) {
   loadAnimationAction.classList.add('is-hiden');
   //   console.log(searchData.total_results);
   if (searchData.total_results === 0) {
-    return alert(
-      'Sorry, there are no images matching your search query. Please try again.'
+    Notify.failure(
+      'Sorry, there are no movies matching your search query. Please try again.'
     );
+    return;
   }
-  if (movieApiService.query === '') {
-    return alert('input field cannot be empty.');
-  } else {
-    return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
-  }
+  return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
 }
 
 export function clearMarkup() {
