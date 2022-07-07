@@ -12,8 +12,6 @@ import { onMovieCardClick } from './js/renderModal';
 import { onBtnClick } from './js/renderWatchedLib';
 // import { getCheckboxStatus } from './js/themeSwitchByCheckbox';
 
-<<<<<<< HEAD
 
-=======
 import { backToTopBtn } from './js/backToTopBtn'
->>>>>>> dev
+
