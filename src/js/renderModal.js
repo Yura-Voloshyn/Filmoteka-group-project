@@ -2,6 +2,7 @@ import MovieApiService from './MovieApiService';
 import { loadAnimationAction } from './renderTrendingPage';
 import { refs } from './refs';
 import * as basicLightbox from 'basiclightbox';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const movieApiService = new MovieApiService();
 
@@ -23,7 +24,11 @@ export async function onMovieCardClick(e) {
   const movieId = e.path.find(el => el.className === 'movie-card').id; //get movie ID
   loadAnimationAction.classList.remove('is-hiden'); //loader animation switched-on
   const movieData = await movieApiService.getMovieById(movieId); //get from srver movie info
-  const modalMarkup = itemMarkup(movieData); // create markup
+  const movieDatavideo = await movieApiService.getMovieByIdvideos(movieId);
+  const videoId = movieDatavideo.results.find(el =>
+    el.name.includes('Trailer')
+  ).key;
+  const modalMarkup = itemMarkup(movieData, videoId); // create markup
   modal = basicLightbox.create(modalMarkup, lightBoxOptions); //create modal window//
   modalShow();
   handleButtons();
@@ -41,51 +46,69 @@ function keydownHandler(e) {
   }
 }
 
-export function itemMarkup({
-  id,
-  poster_path,
-  title,
-  vote_average,
-  vote_count,
-  popularity,
-  original_title,
-  genres,
-  overview,
-}) {
+function genresToString(genres) {
+  let arr = [];
+  genres.forEach(el => {
+    arr.push(el.name);
+  });
+  return arr.join(', ');
+}
+
+export function itemMarkup(
+  {
+    id,
+    poster_path,
+    title,
+    vote_average,
+    vote_count,
+    popularity,
+    original_title,
+    genres,
+    overview,
+  },
+  videoId
+) {
   return `
   <div class='modal'>
   <button class="close-modal"></button>
   <section class="modal-rendered">
-    <!-- a tag for teaser player feature -->
-    <a class="card-link" href="#"
+    <div class="card-div"
       ><img
-        class="poster-image"
+        class="movie-poster"
         src="https://image.tmdb.org/t/p/w500/${poster_path}"
         alt="${title}"
         loading="lazy"
-    /></a>
+        data-video='${videoId}'
+    /></div>
 
     <div class="info-modal">
       <h2 class="card-title">${title.toUpperCase()}</h2>
-      <div class="info-keys">
-        <ul>
-          <li>Vote / Votes</li>
-          <li>Popularity</li>
-          <li>Original Title</li>
-          <li>Genre</li>
-        </ul>
-      </div>
-      <div class="info-values">
-        <ul>
-          <li>
-            <span class="vote-span">${vote_average.toFixed(1)}</span>
-            /${vote_count}
-          </li>
-          <li>${popularity}</li>
-          <li>${original_title}</li>
-          <li>${genres[0].name}</li>
-        </ul>
-      </div>
+      
+      <table class="info-block">
+        <tbody>
+          <tr>
+            <td class="list-keys">Vote / Votes</td>
+            <td class="list-values">
+              <span class="vote-span">${vote_average.toFixed(
+                1
+              )}</span> / ${vote_count}
+            </td>
+          </tr>
+          <tr>
+            <td class="list-keys">Popularity</td>
+            <td class="list-values">${popularity.toFixed(1)}</td>
+          </tr>
+          <tr>
+            <td class="list-keys">Original Title</td>
+            <td class="list-values">${original_title.toUpperCase()}</td>
+          </tr>
+          <tr>
+            <td class="list-keys">Genres</td>
+            <td class="list-values">${genresToString(genres)}</td>
+          </tr>
+        </tbody>
+      </table>
+
       <p class="info-about">About</p>
       <p class="info-overview">${overview}</p>
       <div class="buttons">
@@ -93,7 +116,8 @@ export function itemMarkup({
         <button class="button-queue" data-movieId='${id}'>Add to queue</button>
       </div>
     </div>
-  </section></div>`;
+  </section>
+  </div>`;
 }
 
 function handleButtons() {
@@ -101,30 +125,37 @@ function handleButtons() {
     .querySelector('.button-watched')
     .addEventListener('click', addToWatched);
   document.querySelector('.button-queue').addEventListener('click', addToQueue);
+  document
+    .querySelector('.movie-poster')
+    .addEventListener('click', onPosterClick);
+}
+
+function onPosterClick(e) {
+  e.preventDefault();
+  const player = basicLightbox.create(`
+    <iframe src="https://www.youtube.com/embed/${e.target.dataset.video}" width="80%" height="70%" frameborder="0"></iframe>
+`);
+  player.show();
 }
 
 function addToWatched(e) {
-  let arr =
-    localStorage.getItem('watched') !== null
-      ? JSON.parse(localStorage.getItem('watched'))
-      : [];
-  if (arr.includes(e.target.dataset.movieid)) {
-    throw new Error('already added');
-  } else {
-    arr.push(e.target.dataset.movieid);
-    localStorage.setItem('watched', JSON.stringify(arr));
-  }
+  addToStorage(e, 'watched');
 }
 
 function addToQueue(e) {
+  addToStorage(e, 'queue');
+}
+
+function addToStorage(event, key) {
   let arr =
-    localStorage.getItem('queue') !== null
-      ? JSON.parse(localStorage.getItem('queue'))
+    localStorage.getItem(key) !== null
+      ? JSON.parse(localStorage.getItem(key))
       : [];
-  if (arr.includes(e.target.dataset.movieid)) {
-    throw new Error('already added');
+  if (arr.includes(event.target.dataset.movieid)) {
+    Notify.failure('The movie has been already added');
   } else {
-    arr.push(e.target.dataset.movieid);
-    localStorage.setItem('queue', JSON.stringify(arr));
+    arr.push(event.target.dataset.movieid);
+    localStorage.setItem(key, JSON.stringify(arr));
+    Notify.success(`The movie successfully has been added to ${key}`);
   }
 }
