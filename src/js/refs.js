@@ -5,4 +5,5 @@ export const refs = {
   modal: document.querySelector('.modal'),
   backToTopBtn: document.querySelector('.back-to-top-btn'),
   pageProgressBar: document.querySelector('.progress-bar'),
+  watchedBtn: document.querySelector('.wached'),
 };
