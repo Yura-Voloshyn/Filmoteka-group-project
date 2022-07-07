@@ -3,4 +3,5 @@ export const refs = {
   form: document.querySelector('.search-form'),
   btn: document.querySelector('.submit-btn'),
   modal: document.querySelector('.modal'),
+  watchedBtn: document.querySelector('.wached')
 };
