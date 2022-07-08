@@ -1,4 +1,6 @@
 import MovieApiService from './MovieApiService';
+import { renderPaginationBtn } from './pagination';
+import { onPaginateBtnClick } from './pagination';
 import { refs } from './refs';
 let singleGenre = [];
 export const movieApiService = new MovieApiService();
@@ -8,14 +10,24 @@ export const loadAnimationAction = document.querySelector(
 );
 
 async function renderMainPage() {
+  refs.pagination.innerHTML = '';
+  refs.mainMarkup.innerHTML = '';
   loadAnimationAction.classList.remove('is-hiden');
-  const data = await movieApiService.fetchMovies();
+  const data = await movieApiService.fetchArticles(1);
   const markup = data.results.map(item => itemMarkup(item)).join('');
   loadAnimationAction.classList.add('is-hiden');
+  const max_page = data.total_pages; 
+
+  renderPaginationBtn(max_page);
+  refs.pagination.addEventListener('click', onPaginateBtnClick);
   //   console.log(markup);
   //   console.log(data.results);
   refs.mainMarkup.insertAdjacentHTML('beforeend', markup);
 }
+
+refs.homeBtn.addEventListener('click', renderMainPage);
+refs.logoBtn.addEventListener('click', renderMainPage);
+
 export default renderMainPage();
 
 movieApiService
