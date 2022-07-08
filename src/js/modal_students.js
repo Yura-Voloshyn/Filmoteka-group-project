@@ -37,7 +37,6 @@ const studentItems = studentsData
 //   new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: "alt"});
 // console.log(studentItems);
 const lnk = document.querySelector('.footer-link');
-lnk.addEventListener('click', onLinkClick);
 
 const openLink = () => {
   listStudents.insertAdjacentHTML('afterbegin', studentItems);
