@@ -1,10 +1,8 @@
 import { studentsData } from './students_arr';
 
-
-import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 import confetti from 'canvas-confetti';
-
 
 // import studentsTemplate from '../templates/modal_students.hbs';
 // import refs from './variables';
@@ -45,15 +43,17 @@ const studentItems = studentsData
 
 //   new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: "alt"});
 // console.log(studentItems);
+const lnk = document.querySelector('.footer-link');
+lnk.addEventListener('click', onLinkClick);
 
-
-listStudents.insertAdjacentHTML('afterbegin', studentItems);
+function onLinkClick() {
+  listStudents.insertAdjacentHTML('afterbegin', studentItems);
+}
 
 const openLink = () => {
   window.addEventListener('keydown', onKeyPress);
   backdropStEl.classList.remove('is-hidden');
   showConfetti();
-
 };
 
 const closeModalStud = () => {
@@ -77,11 +77,9 @@ function onBackdropClick(event) {
   }
 }
 
- function showConfetti() {
+function showConfetti() {
   confetti.create(document.getElementById('canvas'), {
     resize: true,
     useWorker: true,
   })({ particleCount: 100, spread: 160, zIndex: 2021 });
 }
-
-
