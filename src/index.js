@@ -14,5 +14,5 @@ import { onBtnClick } from './js/renderWatchedLib';
 // import { getCheckboxStatus } from './js/themeSwitchByCheckbox';
 
 
-import { backToTopBtn } from './js/backToTopBtn'
-
+import { backToTopBtn } from './js/backToTopBtn';
+import './js/modal_students';
