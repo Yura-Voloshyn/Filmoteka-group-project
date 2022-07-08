@@ -14,7 +14,7 @@ export function renderPaginationBtn(e) {
 function appendBtn(i, ellipsis) {
     const activeBtn = current_page === i;
     const button = document.createElement('button');
-  button.classList.add('btn');
+  button.classList.add('btn-pagination');
   if (ellipsis === true) {
     button.innerHTML = '...';
     button.disabled = true;
@@ -22,7 +22,7 @@ function appendBtn(i, ellipsis) {
     return false;
   }
   if (activeBtn) {
-    button.classList.add('active');
+    button.classList.add('active-btn-pagination');
   }
   button.disabled = activeBtn;
   button.innerHTML = i;
