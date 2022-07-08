@@ -150,12 +150,15 @@
     background-color: #FF6B08;
     color: #fff;
 }
-.btn {
+.btn-pagination {
     min-width: 40px;
     min-height: 40px;
     border-radius: 5px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
     background-color: transparent;
-    color: #0c0b0b;
+    color: #000000;
     border: transparent;
     cursor: pointer;
 
@@ -165,7 +168,7 @@
     }
 }
 
-.active {
+.active-btn-pagination {
     background-color: #FF6B08;
     color: #fff;
 }
