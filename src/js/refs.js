@@ -6,4 +6,5 @@ export const refs = {
   backToTopBtn: document.querySelector('.back-to-top-btn'),
   pageProgressBar: document.querySelector('.progress-bar'),
   watchedBtn: document.querySelector('.wached'),
+  queueBtn: document.querySelector('.queue')
 };
