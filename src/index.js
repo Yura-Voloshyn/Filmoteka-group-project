@@ -12,5 +12,14 @@ import './js/renderModal';
 
 import './js/renderWatchedLib';
 // import { getCheckboxStatus } from './js/themeSwitchByCheckbox';
-import './js/modal_students';
+
 import './js/backToTopBtn';
+
+// import { getCheckboxStatus } from './js/themeSwitchByCheckbox';
+
+import './js/modal_students';
+// pagination
+// import './js/renderMoviesCard';
+import './js/pagination';
+// import './js/onHomeBtnClick';
+// pagination
