@@ -8,6 +8,8 @@ import { getCheckboxStatus } from './js/themeSwitchByCheckbox';
 import './js/library';
 
 import { onMovieCardClick } from './js/renderModal';
+
+import { onBtnClick } from './js/renderWatchedLib';
 // import { getCheckboxStatus } from './js/themeSwitchByCheckbox';
 
 import { backToTopBtn } from './js/backToTopBtn';

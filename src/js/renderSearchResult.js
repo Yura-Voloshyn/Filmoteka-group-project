@@ -2,6 +2,7 @@ import MovieApiService from './MovieApiService';
 import { refs } from './refs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { movieApiService } from './renderTrendingPage';
+
 let singleGenre = [];
 const movieApiService = new MovieApiService();
 refs.form.addEventListener('submit', onFormSubmit);
@@ -39,22 +40,28 @@ export async function onFormSubmit(e) {
 export function clearMarkup() {
   refs.mainMarkup.innerHTML = '';
 }
-export const getGenreName = function (ids) {
+// export const getGenreName = function (ids) {
+//   singleGenre = [];
+//   ids.forEach(id => {
+//     singleGenre.push(localStorage.getItem(id));
+//   });
+// };
+
+const getGenreName = function (ids) {
+  const parsedGenres = JSON.parse(localStorage.getItem('genres'));
   singleGenre = [];
   ids.forEach(id => {
-    singleGenre.push(localStorage.getItem(id));
+    singleGenre.push(parsedGenres.find(gnr => gnr.id === id));
   });
 };
 
 export function genreEditForRender(arr, maxLength) {
   let result;
-  // Change code below this line
   if (arr.length <= maxLength) {
     result = arr;
   } else {
     result = arr.slice(0, maxLength).join(', ') + ', other';
   }
-  /// Change code above this line
   return result;
 }
 
@@ -79,7 +86,10 @@ export function itemMarkupBySearch({
     </h2>
     <div class="info">
     <p class="info-item">
-      ${genreEditForRender(singleGenre, 2)} 
+      ${genreEditForRender(
+        singleGenre.map(genre => genre.name),
+        2
+      )} 
     </p>
     <p class="info-item info-item__date">| 
       ${release_date.slice(0, 4)}

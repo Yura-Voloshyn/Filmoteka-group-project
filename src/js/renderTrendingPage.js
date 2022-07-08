@@ -29,28 +29,32 @@ refs.homeBtn.addEventListener('click', renderMainPage);
 refs.logoBtn.addEventListener('click', renderMainPage);
 
 export default renderMainPage();
-
 movieApiService
   .getGenres()
-  .then(res =>
-    res.data.genres.forEach(genre => localStorage.setItem(genre.id, genre.name))
-  );
+  .then(res => localStorage.setItem('genres', JSON.stringify(res.data.genres)));
+// console.log(genresStorage);
+
+// movieApiService
+//   .getGenres()
+//   .then(res =>
+//     res.data.genres.forEach(genre => localStorage.setItem(genre.id, genre.name))
+//   );
+
 export const getGenreName = function (ids) {
+  const parsedGenres = JSON.parse(localStorage.getItem('genres'));
   singleGenre = [];
   ids.forEach(id => {
-    singleGenre.push(localStorage.getItem(id));
+    singleGenre.push(parsedGenres.find(gnr => gnr.id === id));
   });
 };
 
 export function formatArr(arr, maxLength) {
   let result;
-  // Change code below this line
   if (arr.length <= maxLength) {
     result = arr;
   } else {
     result = arr.slice(0, maxLength).join(', ') + ', other';
   }
-  /// Change code above this line
   return result;
 }
 export function itemMarkup({
@@ -71,7 +75,10 @@ export function itemMarkup({
     </h2>
     <div class="info">
     <p class="info-item">
-      ${formatArr(singleGenre, 2)} 
+      ${formatArr(
+        singleGenre.map(genre => genre.name),
+        2
+      )} 
     </p>
     <p class="info-item info-item__date">| 
       ${release_date.slice(0, 4)}

@@ -9,4 +9,5 @@ export const refs = {
   pagination: document.querySelector('#gallery-pagination'),
   homeBtn: document.querySelector('.home__btn'),
   logoBtn: document.querySelector('.logo-link'),
+  watchedBtn: document.querySelector('.wached'),
 };
