@@ -10,8 +10,10 @@ export const loadAnimationAction = document.querySelector(
 );
 refs.pagination.addEventListener('click', onPaginateBtnClick);
 async function renderMainPage() {
+  refs.paginationSearch.innerHTML = '';
   refs.pagination.innerHTML = '';
   refs.mainMarkup.innerHTML = '';
+  refs.input.value = '';
   loadAnimationAction.classList.remove('is-hiden');
   const data = await movieApiService.fetchArticles(1);
   const markup = data.results.map(item => itemMarkup(item)).join('');

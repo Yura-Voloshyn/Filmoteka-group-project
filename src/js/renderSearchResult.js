@@ -11,6 +11,7 @@ refs.form.addEventListener('submit', onFormSubmit);
 import { loadAnimationAction } from './renderTrendingPage';
 export async function onFormSubmit(e) {
   e.preventDefault();
+  refs.homeBtn.disabled = false;
   refs.pagination.innerHTML = '';
   refs.paginationSearch.innerHTML = '';
   refs.mainMarkup.innerHTML = '';
@@ -87,10 +88,11 @@ export function itemMarkupBySearch({
   vote_average,
 }) {
   if (poster_path === null) {
+    console.log('poster_path is null', poster_path);
     return;
-  }
-  getGenreName(genre_ids);
-  return `
+  } else {
+    getGenreName(genre_ids);
+    return `
         <li class="movie-card" id="${id}">
   <a class="card-link" href="#"><img class="poster-image" src="https://image.tmdb.org/t/p/w342/${poster_path}" alt="${title}" loading="lazy" /></a>
   
@@ -100,9 +102,9 @@ export function itemMarkupBySearch({
     <div class="info">
     <p class="info-item">
       ${genreEditForRender(
-        singleGenre.map(genre => genre.name),
-        2
-      )} 
+      singleGenre.map(genre => genre.name),
+      2
+    )} 
     </p>
     <p class="info-item info-item__date">| 
       ${release_date.slice(0, 4)}
@@ -115,5 +117,6 @@ export function itemMarkupBySearch({
   </div>
 </li>
       `;
+  }
 }
 refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
