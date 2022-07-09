@@ -79,7 +79,6 @@ export function itemMarkupBySearch({
   title,
   genre_ids,
   release_date,
-  vote_average,
 }) {
   if (poster_path === null) {
     console.log('poster_path is null', poster_path);

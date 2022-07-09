@@ -55,7 +55,6 @@ export function itemMarkup({
   title,
   genre_ids,
   release_date,
-  vote_average,
 }) {
   getGenreName(genre_ids);
   return `
