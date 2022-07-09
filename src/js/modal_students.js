@@ -34,13 +34,14 @@ const studentItems = studentsData
   })
   .join('');
 
-  //   new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: "alt"});
+//   new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: "alt"});
 // console.log(studentItems);
 
 const lnk = document.querySelector('.footer-link');
+const renderModal = document.querySelector('.team-items');
 
 const openLink = () => {
-
+  renderModal.innerHTML = '';
   listStudents.insertAdjacentHTML('afterbegin', studentItems);
   window.addEventListener('keydown', onKeyPress);
   backdropStEl.classList.remove('is-hidden');
@@ -48,11 +49,10 @@ const openLink = () => {
 };
 
 const closeModalStud = () => {
-    // listStudents.resetpage();
-    // listStudents.refresh();
+  // listStudents.resetpage();
+  // listStudents.refresh();
   backdropStEl.classList.add('is-hidden');
   window.removeEventListener('keydown', onKeyPress);
-  
 };
 
 linkToDev.addEventListener('click', openLink);
