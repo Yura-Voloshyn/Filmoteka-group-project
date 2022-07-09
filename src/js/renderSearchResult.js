@@ -85,7 +85,6 @@ export function itemMarkupBySearch({
   title,
   genre_ids,
   release_date,
-  vote_average,
 }) {
   if (poster_path === null) {
     console.log('poster_path is null', poster_path);
@@ -109,11 +108,6 @@ export function itemMarkupBySearch({
     <p class="info-item info-item__date">| 
       ${release_date.slice(0, 4)}
     </p>
-    <p class="info-item info-item__vote">
-      ${vote_average.toFixed(1)}
-    </p>
-    
-    
   </div>
 </li>
       `;

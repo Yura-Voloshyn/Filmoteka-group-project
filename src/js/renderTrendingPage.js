@@ -59,7 +59,6 @@ export function itemMarkup({
   title,
   genre_ids,
   release_date,
-  vote_average,
 }) {
   getGenreName(genre_ids);
   return `
@@ -79,11 +78,6 @@ export function itemMarkup({
     <p class="info-item info-item__date">| 
       ${release_date.slice(0, 4)}
     </p>
-    <p class="info-item info-item__vote">
-      ${vote_average.toFixed(1)}
-    </p>
-    
-    
   </div>
 </li>
       `;
