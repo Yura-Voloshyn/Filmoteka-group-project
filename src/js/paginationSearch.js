@@ -10,7 +10,6 @@ const movieApiService = new MovieApiService();
 export function renderPaginationSearchBtn(e) {
     const per_page_max = e;
     let current_page = 1;
-    // const btns = document.querySelector('.pagination-section');
 
 function appendBtn(i, ellipsis) {
     const activeBtn = current_page === i;
@@ -39,17 +38,11 @@ function logic() {
     appendBtn(1);
     if (per_page_max < 7) { 
       for (let i = 2; i <= per_page_max; i ++) {
-        // let total = i + 1;
-        // console.log("total", total);
-        console.log("per_page_max", per_page_max);
-        console.log("i", i);
         appendBtn(i);
-        
       }
       return;
     }
   // left
- 
   // left
   // center
     if (current_page < 6) {

@@ -150,6 +150,7 @@
     background-color: #FF6B08;
     color: #fff;
 }
+
 .btn-pagination {
     min-width: 40px;
     min-height: 40px;
@@ -164,7 +165,7 @@
 
     &:hover {
         background-color: #FF6B08;
-        color: #fff;
+        color: #000000;
     }
 }
 
@@ -173,29 +174,7 @@
     color: #fff;
 }
 
-.pagination-item {
-    display: flex;
-    color: #fff;
-    background-color: transparent;
-    color: #000000;
-    margin-left: 4px;
-    border-radius: 4px;
-    min-width: 40px;
-    min-height: 40px;
-    padding: 1px 10px;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-
-    &:hover,
-    &:focus {
-        background-color: #ff6b08;
-        color: #fff;
-    }
-}
-
 .pagination-section {
-
     display: flex;
     justify-content: center;
     margin: 0 auto;
