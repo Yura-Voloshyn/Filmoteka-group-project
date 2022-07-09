@@ -23,6 +23,7 @@
     "canvas-confetti": "^1.5.1",
     "confetti-js": "0.0.18",
     "hbs": "^4.2.0",
+    "lodash.debounce": "^4.0.8",
     "modern-normalize": "^1.1.0",
     "notiflix": "^3.2.5",
     "party-js": "^2.1.3",

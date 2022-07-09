@@ -21,13 +21,9 @@ async function renderMainPage() {
   const max_page = data.total_pages;
 
   renderPaginationBtn(max_page);
-
-  //   console.log(markup);
-  //   console.log(data.results);
   refs.mainMarkup.insertAdjacentHTML('beforeend', markup);
 }
 
-// refs.homeBtn.addEventListener('click', renderMainPage);
 refs.logoBtn.addEventListener('click', renderMainPage);
 refs.homeBtn.addEventListener('click', renderMainPage);
 export default renderMainPage();
@@ -77,6 +73,9 @@ export function itemMarkup({
     </p>
     <p class="info-item info-item__date">| 
       ${release_date.slice(0, 4)}
+    </p>
+    <p class="info-item info-item__vote">
+      ${vote_average.toFixed(1)}
     </p>
   </div>
 </li>
