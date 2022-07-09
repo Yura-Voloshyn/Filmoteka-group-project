@@ -20,12 +20,16 @@
     justify-content: space-around;
     align-items: flex-start;
     padding: 0;
+    padding-top: 20px;
     list-style: none;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 50px;
     font-size: 12px;
     line-height: 1.3;
+
+    @include tab {
+        padding-top: 60px;
+    }
 
     @include desc {
             font-size: 20px;
@@ -125,3 +129,79 @@
     display: block;
     text-decoration: none;
 }
+
+// pagination
+.btn {
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #0c0b0b;
+    border: transparent;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #FF6B08;
+        color: #fff;
+    }
+}
+
+.active {
+    background-color: #FF6B08;
+    color: #fff;
+}
+.btn-pagination {
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+    background-color: transparent;
+    color: #000000;
+    border: transparent;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #FF6B08;
+        color: #fff;
+    }
+}
+
+.active-btn-pagination {
+    background-color: #FF6B08;
+    color: #fff;
+}
+
+.pagination-item {
+    display: flex;
+    color: #fff;
+    background-color: transparent;
+    color: #000000;
+    margin-left: 4px;
+    border-radius: 4px;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 1px 10px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        background-color: #ff6b08;
+        color: #fff;
+    }
+}
+
+.pagination-section {
+
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.home {
+    cursor: pointer;
+}
+// pagination

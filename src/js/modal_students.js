@@ -2,15 +2,10 @@ import { studentsData } from './students_arr';
 
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+import confetti from 'canvas-confetti';
+
 // import studentsTemplate from '../templates/modal_students.hbs';
-// import refs from './variables';
-// const {
-//   backdropStEl,
-//   listStudents,
-//   linkToDev,
-//   closeModalBtn,
-//   ...rest
-// } = refs;
+// import { refs } from './refs';
 
 const backdropStEl = document.querySelector('.backdrop--students');
 const listStudents = document.querySelector('.team-items');
@@ -19,29 +14,35 @@ const closeModalBtn = document.getElementById('closeModalStBtn');
 
 // const studentItems = studentsData.map(studentsTemplate).join(' ');
 const studentItems = studentsData
-  .map(({ photo_url, name, githab }) => {
+  .map(({ photo_url, name, githab, possition }) => {
     return `
   <li class='team'>
   <div class='card__tumb team__tumb'>
     <img class='card__image team__image' src='${photo_url}' alt='${name}' />
   </div>
   <a href='${githab}' class='ref'>
-    <span class='ref__icon'></span>
-    <h3 class='ref__title'>${name}</h3>
+  <div class='ref__cover'>
+  <span class='ref__icon'></span>
+  <h3 class='ref__title'>${name}</h3>
+  
+   </div>
+
   </a>
+<p class='ref__pos'>${possition}</p>
 </li>
 `;
   })
   .join('');
 
-new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: 'alt' });
+//   new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: "alt"});
 // console.log(studentItems);
-
-listStudents.insertAdjacentHTML('afterbegin', studentItems);
+const lnk = document.querySelector('.footer-link');
 
 const openLink = () => {
+  listStudents.insertAdjacentHTML('afterbegin', studentItems);
   window.addEventListener('keydown', onKeyPress);
   backdropStEl.classList.remove('is-hidden');
+  showConfetti();
 };
 
 const closeModalStud = () => {
@@ -63,4 +64,11 @@ function onBackdropClick(event) {
   if (event.target === event.currentTarget) {
     closeModalStud();
   }
+}
+
+function showConfetti() {
+  confetti.create(document.getElementById('canvas'), {
+    resize: true,
+    useWorker: true,
+  })({ particleCount: 100, spread: 160, zIndex: 2021 });
 }

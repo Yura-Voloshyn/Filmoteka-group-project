@@ -8,10 +8,8 @@
     background-color: rgba(0, 0, 0, 0.25);
     opacity: 1;
     transition: opacity .25s cubic-bezier(.4, 0, .2, 1);
+    z-index: 250;
 
-// @media screen and (max-width: 767px) {
-//         overflow-y: scroll;
-//     }
 @include tab {
 overflow-y: scroll;
 }
@@ -26,9 +24,7 @@ overflow-y: scroll;
     }
 }
 
-.modal--students {
-
-
+.modal--students  {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -40,16 +36,11 @@ overflow-y: scroll;
     text-align: center;
     border-radius: 5px;
 
-    background-color: $cl-white-primary;
-
     transform: translate(-50%, -50%),
     scale(1);
     transition: transform .25s cubic-bezier(.4, 0, .2, 1);
 
-    &.dark-theme {
-        background-color: $cl-primary;
-        color: $cl-primary;
-    }
+    // z-index: 200;
 
     & .button-modal {
         padding: 8px 10px;
@@ -73,8 +64,14 @@ overflow-y: scroll;
                      height: 100%;
                      top: 50%;
                      transform: translate(-50%, -50%);
+}     
 }
-             
+
+.team-name--title {
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 35px;
 }
 
 .team-items {
@@ -98,7 +95,7 @@ overflow-y: scroll;
     color: inherit;
 
     @include tab {
-        width: 140px;
+        width: 200px;
         }
 }
 
@@ -109,14 +106,13 @@ overflow-y: scroll;
 
     &:hover,
     &:focus {
-         box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;   
-        }
+        //  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;   
+        box-shadow: $cl-accent 0px 20px 30px -10px;
+    }
     @include tab {
             height: 170px;
         }
 }
-
-
 
 .ref {
     display: flex;
@@ -141,9 +137,15 @@ overflow-y: scroll;
                 0 2px 1px rgb(0 0 0 / 20%);
         }
 
+                 & .ref__cover {
+                    display: flex;
+                    flex-direction: row;
+                 }
         & .ref__title {
             font-weight: 500;
         }
+
+              
     }
 
     &__icon {
@@ -159,6 +161,7 @@ overflow-y: scroll;
         background-image: url('https://raw.githubusercontent.com/Keyamoon/IcoMoon-Free/master/PNG/32px/433-github.png');
     }
 
+
     &__title {
         font-size: 16px;
         font-weight: 400;
@@ -171,8 +174,28 @@ overflow-y: scroll;
             font-size: 12px;
         }
     }
+
+        &__pos {
+            font-size: 16px;
+            font-weight: 400;
+            display: flex;
+            padding: 5px 0 5px 32px;
+            text-align: start;
+    
+            @include tab {
+                line-height: 1.33;
+                font-size: 12px;
+            }
+        }
+ &__cover {
+     display: flex;
+     flex-direction: row;
+ }
 }
 
+
+
+  
 
 .card__tumb {
     height: 398px;
@@ -186,8 +209,6 @@ overflow-y: scroll;
     border-radius: 5px;
 }
 
-
-
 .button-modal {
     margin: 10px;
     padding-top: 14px;
@@ -196,7 +217,7 @@ overflow-y: scroll;
     min-width: 112px;
     min-height: 44px;
 
-    border: 1px solid #000000;
+    border: 1px solid $cl-primary;
     border-radius: 5px;
 
     font-family: inherit;
@@ -237,8 +258,8 @@ overflow-y: scroll;
     &:hover,
     &:focus {
         background-color: inherit;
-        border: 1px solid #000000;
-        color: #000000;
+        border: 1px solid $cl-primary;
+        color: $cl-primary;
         box-shadow: $cl-accent 0px 20px 30px -10px
     }
 }
@@ -273,3 +294,12 @@ overflow-y: scroll;
 //         fill: #dfdcdc;
 //     }
 // }
+
+
+.footer__link {
+    &:hover,
+    &:focus {
+        color: $cl-accent;
+                // font-size: 16px;
+    } 
+}

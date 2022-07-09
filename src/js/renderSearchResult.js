@@ -1,6 +1,9 @@
 import MovieApiService from './MovieApiService';
 import { refs } from './refs';
-// import { movieApiService } from './renderTrendingPage';
+import { onPaginateSearchBtnClick } from './paginationSearch';
+import { renderPaginationSearchBtn } from './paginationSearch';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 let singleGenre = [];
 const movieApiService = new MovieApiService();
 refs.form.addEventListener('submit', onFormSubmit);
@@ -8,51 +11,71 @@ refs.form.addEventListener('submit', onFormSubmit);
 import { loadAnimationAction } from './renderTrendingPage';
 export async function onFormSubmit(e) {
   e.preventDefault();
-  clearMarkup();
-  //   console.log(e.currentTarget.elements[0].value);
+  refs.homeBtn.disabled = false;
+  refs.pagination.innerHTML = '';
+  refs.paginationSearch.innerHTML = '';
+  refs.mainMarkup.innerHTML = '';
   movieApiService.query = e.currentTarget.elements[0].value;
+  if (movieApiService.query === '') {
+    Notify.failure('input field cannot be empty.');
+    return;
+  }
+  clearMarkup();
   movieApiService.resetPage();
   loadAnimationAction.classList.remove('is-hiden');
-  const searchData = await movieApiService.getMoviesBySearchQuery();
-  //   console.log(movieApiService.query);
-  //   console.log(searchData);
+  const input = e.currentTarget.elements[0].value;
+  console.log("input", input);
+  movieApiService.query = input;
+  const searchData = await movieApiService.fetchArticlesSearch(1);
+
+    console.log("movieApiService.query", movieApiService.query);
+    console.log("searchData", searchData);
   const searchMarkup = searchData.results
     .map(item => itemMarkupBySearch(item))
     .join('');
+  const max_page = searchData.total_pages; 
+
+  renderPaginationSearchBtn(max_page);
+  
   //   console.log(searchMarkup);
   loadAnimationAction.classList.add('is-hiden');
   //   console.log(searchData.total_results);
   if (searchData.total_results === 0) {
-    return alert(
-      'Sorry, there are no images matching your search query. Please try again.'
+    Notify.failure(
+      'Sorry, there are no movies matching your search query. Please try again.'
     );
+    return;
   }
-  if (movieApiService.query === '') {
-    return alert('input field cannot be empty.');
-  } else {
-    return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
-  }
+  refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
+  return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
+  
 }
 
 export function clearMarkup() {
   refs.mainMarkup.innerHTML = '';
 }
-export const getGenreName = function (ids) {
+// export const getGenreName = function (ids) {
+//   singleGenre = [];
+//   ids.forEach(id => {
+//     singleGenre.push(localStorage.getItem(id));
+//   });
+// };
+
+const getGenreName = function (ids) {
+  const parsedGenres = JSON.parse(localStorage.getItem('genres'));
   singleGenre = [];
   ids.forEach(id => {
-    singleGenre.push(localStorage.getItem(id));
+    singleGenre.push(parsedGenres.find(gnr => gnr.id === id));
   });
 };
 
 export function genreEditForRender(arr, maxLength) {
   let result;
-  // Change code below this line
   if (arr.length <= maxLength) {
     result = arr;
   } else {
     result = arr.slice(0, maxLength).join(', ') + ', other';
   }
-  /// Change code above this line
   return result;
 }
 
@@ -65,19 +88,23 @@ export function itemMarkupBySearch({
   vote_average,
 }) {
   if (poster_path === null) {
+    console.log('poster_path is null', poster_path);
     return;
-  }
-  getGenreName(genre_ids);
-  return `
+  } else {
+    getGenreName(genre_ids);
+    return `
         <li class="movie-card" id="${id}">
-  <a class="card-link" href="#"><img class="poster-image" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" loading="lazy" /></a>
+  <a class="card-link" href="#"><img class="poster-image" src="https://image.tmdb.org/t/p/w342/${poster_path}" alt="${title}" loading="lazy" /></a>
   
     <h2 class="card-title">
       ${title}
     </h2>
     <div class="info">
     <p class="info-item">
-      ${genreEditForRender(singleGenre, 2)} 
+      ${genreEditForRender(
+      singleGenre.map(genre => genre.name),
+      2
+    )} 
     </p>
     <p class="info-item info-item__date">| 
       ${release_date.slice(0, 4)}
@@ -90,4 +117,6 @@ export function itemMarkupBySearch({
   </div>
 </li>
       `;
+  }
 }
+refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
