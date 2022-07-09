@@ -1,7 +1,8 @@
 import MovieApiService from './MovieApiService';
 import { refs } from './refs';
+import { onPaginateSearchBtnClick } from './paginationSearch';
+import { renderPaginationSearchBtn } from './paginationSearch';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import { movieApiService } from './renderTrendingPage';
 
 let singleGenre = [];
 const movieApiService = new MovieApiService();
@@ -10,7 +11,9 @@ refs.form.addEventListener('submit', onFormSubmit);
 import { loadAnimationAction } from './renderTrendingPage';
 export async function onFormSubmit(e) {
   e.preventDefault();
-  //   console.log(e.currentTarget.elements[0].value);
+  refs.pagination.innerHTML = '';
+  refs.paginationSearch.innerHTML = '';
+  refs.mainMarkup.innerHTML = '';
   movieApiService.query = e.currentTarget.elements[0].value;
   if (movieApiService.query === '') {
     Notify.failure('input field cannot be empty.');
@@ -19,12 +22,20 @@ export async function onFormSubmit(e) {
   clearMarkup();
   movieApiService.resetPage();
   loadAnimationAction.classList.remove('is-hiden');
-  const searchData = await movieApiService.getMoviesBySearchQuery();
-  //   console.log(movieApiService.query);
-  //   console.log(searchData);
+  const input = e.currentTarget.elements[0].value;
+  console.log("input", input);
+  movieApiService.query = input;
+  const searchData = await movieApiService.fetchArticlesSearch(1);
+
+    console.log("movieApiService.query", movieApiService.query);
+    console.log("searchData", searchData);
   const searchMarkup = searchData.results
     .map(item => itemMarkupBySearch(item))
     .join('');
+  const max_page = searchData.total_pages; 
+
+  renderPaginationSearchBtn(max_page);
+  
   //   console.log(searchMarkup);
   loadAnimationAction.classList.add('is-hiden');
   //   console.log(searchData.total_results);
@@ -34,7 +45,9 @@ export async function onFormSubmit(e) {
     );
     return;
   }
+  refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
   return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
+  
 }
 
 export function clearMarkup() {
@@ -103,3 +116,4 @@ export function itemMarkupBySearch({
 </li>
       `;
 }
+refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);

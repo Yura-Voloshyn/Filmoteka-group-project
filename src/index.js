@@ -19,7 +19,6 @@ import './js/backToTopBtn';
 
 import './js/modal_students';
 // pagination
-// import './js/renderMoviesCard';
+import './js/paginationSearch';
 import './js/pagination';
-// import './js/onHomeBtnClick';
 // pagination
