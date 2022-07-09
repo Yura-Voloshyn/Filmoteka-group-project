@@ -6,9 +6,10 @@ import {getGenreName} from './renderTrendingPage';
 
 const movieApiService = new MovieApiService();
 
-export function renderPaginationBtn(e) {
+export function renderPaginationSearchBtn(e) {
     const per_page_max = e;
     let current_page = 1;
+    // const btns = document.querySelector('.pagination-section');
 
 function appendBtn(i, ellipsis) {
     const activeBtn = current_page === i;
@@ -17,7 +18,7 @@ function appendBtn(i, ellipsis) {
   if (ellipsis === true) {
     button.innerHTML = '...';
     button.disabled = true;
-    refs.pagination.append(button);
+    refs.paginationSearch.append(button);
     return false;
   }
   if (activeBtn) {
@@ -27,10 +28,10 @@ function appendBtn(i, ellipsis) {
   button.innerHTML = i;
   button.addEventListener('click', () => {
     current_page = i;
-    refs.pagination.innerHTML = '';
+    refs.paginationSearch.innerHTML = '';
     logic();
   });
-  refs.pagination.append(button);
+  refs.paginationSearch.append(button);
 }
 logic();
 function logic() {
@@ -82,14 +83,15 @@ function logic() {
   }
 }
 
-export function onPaginateBtnClick(e) {
+export function onPaginateSearchBtnClick(e) {
   if (e.target.nodeName !== "BUTTON") {
       return;
   }
   refs.mainMarkup.innerHTML = '';
-  let pageNum = e.target.innerText;
-  console.log("pageNum", pageNum);
-  movieApiService.fetchArticles(pageNum).then(data => {
+  let page = e.target.innerText;
+  console.log("page", page);
+  
+  movieApiService.fetchArticlesSearchClick(page).then(data => {
       console.log("data.results on pag", data.results);
     const markupPagin = data.results.map(item => itemMarkup(item)).join('');
     refs.mainMarkup.insertAdjacentHTML('beforeend', markupPagin);

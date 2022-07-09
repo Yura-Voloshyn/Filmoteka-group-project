@@ -8,7 +8,7 @@ export const movieApiService = new MovieApiService();
 export const loadAnimationAction = document.querySelector(
   '.hollow-dots-spinner'
 );
-
+refs.pagination.addEventListener('click', onPaginateBtnClick);
 async function renderMainPage() {
   refs.pagination.innerHTML = '';
   refs.mainMarkup.innerHTML = '';
@@ -19,15 +19,15 @@ async function renderMainPage() {
   const max_page = data.total_pages; 
 
   renderPaginationBtn(max_page);
-  refs.pagination.addEventListener('click', onPaginateBtnClick);
+  
   //   console.log(markup);
   //   console.log(data.results);
   refs.mainMarkup.insertAdjacentHTML('beforeend', markup);
 }
 
-refs.homeBtn.addEventListener('click', renderMainPage);
+// refs.homeBtn.addEventListener('click', renderMainPage);
 refs.logoBtn.addEventListener('click', renderMainPage);
-
+refs.homeBtn.addEventListener('click', renderMainPage);
 export default renderMainPage();
 movieApiService
   .getGenres()

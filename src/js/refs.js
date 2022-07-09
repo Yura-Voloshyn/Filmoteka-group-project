@@ -7,7 +7,9 @@ export const refs = {
   pageProgressBar: document.querySelector('.progress-bar'),
   // pagination
   pagination: document.querySelector('#gallery-pagination'),
+  paginationSearch: document.querySelector('.pagination-search'),
   homeBtn: document.querySelector('.home__btn'),
   logoBtn: document.querySelector('.logo-link'),
   watchedBtn: document.querySelector('.wached'),
+  input: document.querySelector('.input-form'),
 };
