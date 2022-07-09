@@ -21,18 +21,20 @@ export default class MovieApiService {
       .get(url, this.options)
       .then(resp => {
         this.page += 1;
-        console.log("resp.data", resp.data);
+        console.log('resp.data', resp.data);
         return resp.data;
       })
       .catch(error => console.log(error));
   }
-// pagination
-      async fetchArticles(page) {
-        const BASE_URL = 'https://api.themoviedb.org/3';
-        const first = await axios.get(`${BASE_URL}/trending/movie/day?api_key=${this.options.key}&page=${page}&language=${this.language}`);
-        return first.data;
-    }
-// pagination
+  // pagination
+  async fetchArticles(page) {
+    const BASE_URL = 'https://api.themoviedb.org/3';
+    const first = await axios.get(
+      `${BASE_URL}/trending/movie/day?api_key=${this.options.key}&page=${page}&language=${this.language}`
+    );
+    return first.data;
+  }
+  // pagination
 
   async getMoviesBySearchQuery() {
     const url = `${BASE_URL}/search/movie?api_key=${this.options.key}&query=${this.searchQuery}&page=${this.currentPage}&include_adult=false&language=${this.language}`;

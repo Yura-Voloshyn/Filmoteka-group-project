@@ -12,7 +12,7 @@ import './js/renderModal';
 
 import './js/renderWatchedLib';
 // import { getCheckboxStatus } from './js/themeSwitchByCheckbox';
-
+import './js/renderQueue';
 import './js/backToTopBtn';
 
 // import { getCheckboxStatus } from './js/themeSwitchByCheckbox';

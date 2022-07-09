@@ -16,7 +16,7 @@ async function renderMainPage() {
   const data = await movieApiService.fetchArticles(1);
   const markup = data.results.map(item => itemMarkup(item)).join('');
   loadAnimationAction.classList.add('is-hiden');
-  const max_page = data.total_pages; 
+  const max_page = data.total_pages;
 
   renderPaginationBtn(max_page);
   refs.pagination.addEventListener('click', onPaginateBtnClick);
