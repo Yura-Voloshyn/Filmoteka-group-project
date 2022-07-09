@@ -19,7 +19,7 @@ async function renderMainPage() {
   const max_page = data.total_pages;
 
   renderPaginationBtn(max_page);
-  
+
   //   console.log(markup);
   //   console.log(data.results);
   refs.mainMarkup.insertAdjacentHTML('beforeend', markup);
@@ -29,16 +29,10 @@ async function renderMainPage() {
 refs.logoBtn.addEventListener('click', renderMainPage);
 refs.homeBtn.addEventListener('click', renderMainPage);
 export default renderMainPage();
+
 movieApiService
   .getGenres()
   .then(res => localStorage.setItem('genres', JSON.stringify(res.data.genres)));
-// console.log(genresStorage);
-
-// movieApiService
-//   .getGenres()
-//   .then(res =>
-//     res.data.genres.forEach(genre => localStorage.setItem(genre.id, genre.name))
-//   );
 
 export const getGenreName = function (ids) {
   const parsedGenres = JSON.parse(localStorage.getItem('genres'));
