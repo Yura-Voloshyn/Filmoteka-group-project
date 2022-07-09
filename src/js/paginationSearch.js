@@ -1,5 +1,6 @@
 import MovieApiService from './MovieApiService.js';
 import { refs } from './refs';
+import { itemMarkupBySearch } from './renderSearchResult.js';
 import { itemMarkup } from './renderTrendingPage';
 import { getGenres } from './renderTrendingPage';
 import {getGenreName} from './renderTrendingPage';
@@ -92,8 +93,9 @@ export function onPaginateSearchBtnClick(e) {
   console.log("page", page);
   
   movieApiService.fetchArticlesSearchClick(page).then(data => {
-      console.log("data.results on pag", data.results);
-    const markupPagin = data.results.map(item => itemMarkup(item)).join('');
+    console.log("data.results on pag", data.results);
+    
+    const markupPagin = data.results.map(item => itemMarkupBySearch(item)).join('');
     refs.mainMarkup.insertAdjacentHTML('beforeend', markupPagin);
   });
 }
