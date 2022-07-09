@@ -21,7 +21,7 @@ export default class MovieApiService {
       .get(url, this.options)
       .then(resp => {
         this.page += 1;
-        console.log("resp.data", resp.data);
+        console.log('resp.data', resp.data);
         return resp.data;
       })
       .catch(error => console.log(error));

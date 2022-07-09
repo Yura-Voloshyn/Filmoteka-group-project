@@ -11,5 +11,6 @@ export const refs = {
   homeBtn: document.querySelector('.home__btn'),
   logoBtn: document.querySelector('.logo-link'),
   watchedBtn: document.querySelector('.wached'),
+  queueBtn: document.querySelector('.queue'),
   input: document.querySelector('.input-form'),
 };

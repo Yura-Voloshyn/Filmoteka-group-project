@@ -1,64 +1,30 @@
-// import { refs } from './refs';
-// import MovieApiService from './MovieApiService';
-// import itemMarkup from './renderTrendingPage';
+import { refs } from './refs';
+import MovieApiService from './MovieApiService';
+import itemMarkup from './renderTrendingPage';
+import { loadAnimationAction } from './renderTrendingPage';
+// import './renderTrendingPage';
+import { clearMarkup } from './renderSearchResult';
+import { idItemMarkup } from './markup/markupById';
+import './renderQueue';
+import { onQueueBtnClick } from './renderQueue';
 
-// const movieApiService = new MovieApiService();
+const movieApiService = new MovieApiService();
 
-// refs.watchedBtn.addEventListener('click', async() =>{
-//     try{
-//         const movies = await fetchMovies();
-//         console.log(movies);
-//                 // renderUserListItems();
-//     } catch(error) {
-//         console.log(error.message);
-//     }
-// });
+refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
 
-// async function fetchMovies(){
-//     let getWatched = localStorage.getItem('watched');
-//     const parsedDataGetWatched = JSON.parse(getWatched);
+export async function onWatchedBtnClick() {
+  refs.queueBtn.classList.remove('selected');
+  refs.watchedBtn.classList.add('selected');
+  clearMarkup();
+  refs.watchedBtn.removeEventListener('click', onWatchedBtnClick);
+  refs.queueBtn.addEventListener('click', onQueueBtnClick);
 
-//     const arrayOfPromises = parsedDataGetWatched.map(async (movieId) =>{
-//         const response = await movieApiService.getMovieById(movieId);
-//         // console.log ('response', response);
-//       return response;
-//     });
-
-//     const movies = await Promise.all(arrayOfPromises);
-//     // const markup = movies.map(item => renderUserListItems(item)).join('');
-//     // console.log ('markup', markup);
-//     return movies;
-// }
-
-// export default fetchMovies();
-
-// function renderUserListItems({
-//         id,
-//         poster_path,
-//         title,
-//         genre_ids,
-//         release_date,
-//         vote_average,
-//       }) {
-//          return `
-//               <li class="movie-card" id="${id}">
-//         <a class="card-link" href="#"><img class="poster-image" src="https://image.tmdb.org/t/p/w342/${poster_path}" alt="${title}" loading="lazy" /></a>
-
-//           <h2 class="card-title">
-//             ${title}
-//           </h2>
-//           <div class="info">
-//           <p class="info-item">
-//             ${formatArr(singleGenre, 2)}
-//           </p>
-//           <p class="info-item info-item__date">|
-//             ${release_date.slice(0, 4)}
-//           </p>
-//           <p class="info-item info-item__vote">
-//             ${vote_average.toFixed(1)}
-//           </p>
-
-//         </div>
-//       </li>
-//             `;
-// }
+  const queueMovieId = JSON.parse(localStorage.getItem('watched')).map(id =>
+    Number(id)
+  );
+  queueMovieId.forEach(id => {
+    movieApiService.getMovieById(id).then(result => {
+      refs.mainMarkup.insertAdjacentHTML('beforeend', idItemMarkup(result));
+    });
+  });
+}
