@@ -6,7 +6,8 @@ let singleGenre = [];
 export const movieApiService = new MovieApiService();
 movieApiService
   .getGenres()
-  .then(res => localStorage.setItem('genres', JSON.stringify(res.data.genres)));
+  .then(res => localStorage.setItem('genres', JSON.stringify(res.data.genres)))
+  .catch(eror => console.log(eror));
 
 export const loadAnimationAction = document.querySelector(
   '.hollow-dots-spinner'
