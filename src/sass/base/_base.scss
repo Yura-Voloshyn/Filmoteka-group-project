@@ -10,20 +10,20 @@ body {
 }
 
 html.dark body {
-  background-color: #111416;
+background-image: url('../images/dark.png');
   color: #ffffff;
 }
 
 html.light body {
-  background-color: #ffffff;
+  background-color: #d1cfcf;
   color: #000000;
 }
 
 html.dark .footer {
-  background-color: #000000;
+  background-color: #1a1919c2;
 }
 html.light .footer {
-  background-color: $cl-foot-bg;
+  background-color: #ffffffa1;
 }
 
 html.dark .theme-btn {
