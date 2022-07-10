@@ -26,7 +26,6 @@ const studentItems = studentsData
   <h3 class='ref__title'>${name}</h3>
   
    </div>
-
   </a>
 <p class='ref__pos'>${possition}</p>
 </li>
@@ -34,13 +33,11 @@ const studentItems = studentsData
   })
   .join('');
 
-  //   new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: "alt"});
+//   new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: "alt"});
 // console.log(studentItems);
-
 const lnk = document.querySelector('.footer-link');
 
 const openLink = () => {
-
   listStudents.insertAdjacentHTML('afterbegin', studentItems);
   window.addEventListener('keydown', onKeyPress);
   backdropStEl.classList.remove('is-hidden');
@@ -48,11 +45,9 @@ const openLink = () => {
 };
 
 const closeModalStud = () => {
-    // listStudents.resetpage();
-    // listStudents.refresh();
   backdropStEl.classList.add('is-hidden');
   window.removeEventListener('keydown', onKeyPress);
-  
+
 };
 
 linkToDev.addEventListener('click', openLink);
@@ -62,16 +57,14 @@ backdropStEl.addEventListener('click', onBackdropClick);
 function onKeyPress(event) {
   if (event.code === 'Escape') {
     closeModalStud();
-    // listStudents.resetpage();
-    //  listStudents.refresh();
+ 
   }
 }
 
 function onBackdropClick(event) {
   if (event.target === event.currentTarget) {
     closeModalStud();
-    // listStudents.resetpage();
-    //  listStudents.refresh();
+
   }
 }
 
