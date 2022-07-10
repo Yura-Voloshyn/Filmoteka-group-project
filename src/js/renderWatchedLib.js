@@ -15,6 +15,9 @@ refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
 export async function onWatchedBtnClick() {
   refs.queueBtn.classList.remove('selected');
   refs.watchedBtn.classList.add('selected');
+  refs.paginationSearch.innerHTML = '';
+  refs.pagination.innerHTML = '';
+  
   clearMarkup();
   refs.watchedBtn.removeEventListener('click', onWatchedBtnClick);
   refs.queueBtn.addEventListener('click', onQueueBtnClick);
