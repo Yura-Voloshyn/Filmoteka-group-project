@@ -3,6 +3,7 @@ import { loadAnimationAction } from './renderTrendingPage';
 import { refs } from './refs';
 import * as basicLightbox from 'basiclightbox';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { itemMarkup } from './markup/markupModal';
 
 const movieApiService = new MovieApiService();
 
@@ -31,7 +32,7 @@ export async function onMovieCardClick(e) {
   const modalMarkup = itemMarkup(movieData, videoId); // create markup
   modal = basicLightbox.create(modalMarkup, lightBoxOptions); //create modal window//
   modalShow();
-  handleButtons();
+  handleButtons(movieId);
   loadAnimationAction.classList.add('is-hiden'); //loader animation switched-off
 }
 
@@ -46,90 +47,6 @@ function keydownHandler(e) {
   }
 }
 
-function genresToString(genres) {
-  let arr = [];
-  genres.forEach(el => {
-    arr.push(el.name);
-  });
-  return arr.join(', ');
-}
-
-export function itemMarkup(
-  {
-    id,
-    poster_path,
-    title,
-    vote_average,
-    vote_count,
-    popularity,
-    original_title,
-    genres,
-    overview,
-  },
-  videoId
-) {
-  return `
-  <div class='modal'>
-  <button class="close-modal"></button>
-  <section class="modal-rendered">
-    <div class="card-div"
-      ><img
-        class="movie-poster"
-        src="https://image.tmdb.org/t/p/w500/${poster_path}"
-        alt="${title}"
-        loading="lazy"
-        data-video='${videoId}'
-    /></div>
-
-    <div class="info-modal">
-      <h2 class="card-title">${title.toUpperCase()}</h2>
-      
-      <table class="info-block">
-        <tbody>
-          <tr>
-            <td class="list-keys">Vote / Votes</td>
-            <td class="list-values">
-              <span class="vote-span">${vote_average.toFixed(
-                1
-              )}</span> / ${vote_count}
-            </td>
-          </tr>
-          <tr>
-            <td class="list-keys">Popularity</td>
-            <td class="list-values">${popularity.toFixed(1)}</td>
-          </tr>
-          <tr>
-            <td class="list-keys">Original Title</td>
-            <td class="list-values">${original_title.toUpperCase()}</td>
-          </tr>
-          <tr>
-            <td class="list-keys">Genres</td>
-            <td class="list-values">${genresToString(genres)}</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p class="info-about">About</p>
-      <p class="info-overview">${overview}</p>
-      <div class="buttons">
-        <button class="button-watched" data-movieId='${id}'>Add to watched</button>
-        <button class="button-queue" data-movieId='${id}'>Add to queue</button>
-      </div>
-    </div>
-  </section>
-  </div>`;
-}
-
-function handleButtons() {
-  document
-    .querySelector('.button-watched')
-    .addEventListener('click', addToWatched);
-  document.querySelector('.button-queue').addEventListener('click', addToQueue);
-  document
-    .querySelector('.movie-poster')
-    .addEventListener('click', onPosterClick);
-}
-
 function onPosterClick(e) {
   e.preventDefault();
   const player = basicLightbox.create(`
@@ -138,24 +55,88 @@ function onPosterClick(e) {
   player.show();
 }
 
+let btnWatched;
+let btnQueue;
+
+function handleButtons(movieId) {
+  btnWatched = document.querySelector('.button-watched');
+  if (checkStorage('watched', movieId)) {
+    buttonChange('watched');
+    btnWatched.addEventListener('click', removeFromWatched);
+  } else {
+    btnWatched.addEventListener('click', addToWatched);
+  }
+
+  btnQueue = document.querySelector('.button-queue');
+  if (checkStorage('queue', movieId)) {
+    buttonChange('queue');
+    btnQueue.addEventListener('click', removeFromQueue);
+  } else {
+    btnQueue.addEventListener('click', addToQueue);
+  }
+
+  document
+    .querySelector('.movie-poster')
+    .addEventListener('click', onPosterClick);
+}
+
+function checkStorage(key, movieId) {
+  let arr = JSON.parse(localStorage.getItem(key));
+  if (arr !== null) {
+    return arr.includes(movieId);
+  } else {
+    return;
+  }
+}
+
+function removeFromWatched(e) {
+  removeFromStorage(e, 'watched');
+  btnWatched.removeEventListener('click', removeFromWatched);
+  btnWatched.addEventListener('click', addToWatched);
+}
+
+function removeFromQueue(e) {
+  removeFromStorage(e, 'queue');
+  btnQueue.removeEventListener('click', removeFromQueue);
+  btnQueue.addEventListener('click', addToQueue);
+}
+
+function removeFromStorage(e, key) {
+  let arr = JSON.parse(localStorage.getItem(key));
+  let index = arr.indexOf(e.target.dataset.movieid);
+  arr.splice(index, 1);
+  localStorage.setItem(key, JSON.stringify(arr));
+  buttonChange(key);
+  Notify.failure(`The movie successfully has been removed from ${key}`);
+}
+
 function addToWatched(e) {
   addToStorage(e, 'watched');
+  btnWatched.addEventListener('click', removeFromWatched);
+  btnWatched.removeEventListener('click', addToWatched);
 }
 
 function addToQueue(e) {
   addToStorage(e, 'queue');
+  btnQueue.addEventListener('click', removeFromQueue);
+  btnQueue.removeEventListener('click', addToQueue);
 }
 
 function addToStorage(event, key) {
+  buttonChange(key);
   let arr =
     localStorage.getItem(key) !== null
       ? JSON.parse(localStorage.getItem(key))
       : [];
-  if (arr.includes(event.target.dataset.movieid)) {
-    Notify.failure('The movie has been already added');
-  } else {
-    arr.push(event.target.dataset.movieid);
-    localStorage.setItem(key, JSON.stringify(arr));
-    Notify.success(`The movie successfully has been added to ${key}`);
-  }
+  arr.push(event.target.dataset.movieid);
+  localStorage.setItem(key, JSON.stringify(arr));
+  Notify.success(`The movie successfully has been added to ${key}`);
+}
+
+function buttonChange(key) {
+  let btn = document.querySelector(`.button-${key}`);
+  btn.classList.toggle('already-added');
+  btn.textContent === `Add to ${key}`
+    ? (btn.textContent = `Remove from ${key}`)
+    : (btn.textContent = `Add to ${key}`);
 }

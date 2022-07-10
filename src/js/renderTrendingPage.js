@@ -4,6 +4,10 @@ import { onPaginateBtnClick } from './pagination';
 import { refs } from './refs';
 let singleGenre = [];
 export const movieApiService = new MovieApiService();
+movieApiService
+  .getGenres()
+  .then(res => localStorage.setItem('genres', JSON.stringify(res.data.genres)))
+  .catch(eror => console.log(eror));
 
 export const loadAnimationAction = document.querySelector(
   '.hollow-dots-spinner'
@@ -27,10 +31,6 @@ async function renderMainPage() {
 refs.logoBtn.addEventListener('click', renderMainPage);
 refs.homeBtn.addEventListener('click', renderMainPage);
 export default renderMainPage();
-
-movieApiService
-  .getGenres()
-  .then(res => localStorage.setItem('genres', JSON.stringify(res.data.genres)));
 
 export const getGenreName = function (ids) {
   const parsedGenres = JSON.parse(localStorage.getItem('genres'));
