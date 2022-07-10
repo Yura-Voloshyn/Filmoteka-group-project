@@ -83,10 +83,8 @@ export function onPaginateSearchBtnClick(e) {
   }
   refs.mainMarkup.innerHTML = '';
   let page = e.target.innerText;
-  // console.log("page", page);
 
   movieApiService.fetchArticlesSearchClick(page).then(data => {
-    // console.log("data.results on pag", data.results);
 
     const markupPagin = data.results
       .map(item => itemMarkupBySearch(item))

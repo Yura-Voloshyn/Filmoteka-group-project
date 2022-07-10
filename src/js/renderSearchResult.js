@@ -26,26 +26,20 @@ export async function onFormSubmit(e) {
   movieApiService.resetPage();
   loadAnimationAction.classList.remove('is-hiden');
   const input = e.currentTarget.elements[0].value;
-  // console.log("input", input);
   movieApiService.query = input;
-  //  console.log("movieApiService.query", movieApiService.query);
   const searchData = await movieApiService.fetchArticlesSearch(1);
-
-  // console.log("movieApiService.query", movieApiService.query);
-  // console.log("searchData", searchData);
   const searchMarkup = searchData.results
     .map(item => itemMarkupBySearch(item))
     .join('');
   const max_page = searchData.total_pages;
-  if (movieApiService.query === '') {
-    Notify.failure('input field cannot be empty.');
+  if (movieApiService.query === '' || movieApiService.query === ' ' || searchData.total_results === 0) {
+    Notify.failure('Sorry, there are no movies matching your search query. Please try again.');
+    loadAnimationAction.classList.add('is-hiden');
     return;
   } else {
     renderPaginationSearchBtn(max_page);
   }
-  //   console.log(searchMarkup);
   loadAnimationAction.classList.add('is-hiden');
-  //   console.log(searchData.total_results);
   if (searchData.total_results === 0) {
     Notify.failure(
       'Sorry, there are no movies matching your search query. Please try again.'
@@ -127,10 +121,8 @@ export function itemMarkupBySearch({
   vote_average,
 }) {
   if (vote_average < 1) {
-    // console.log('vote_average', vote_average);
     return;
   } else if (poster_path === null) {
-    // console.log('poster_path is null', poster_path);
     return;
   } else {
     getGenreName(genre_ids);
