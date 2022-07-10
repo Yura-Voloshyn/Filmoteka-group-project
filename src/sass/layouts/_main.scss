@@ -3,6 +3,9 @@
     @include tab {
         margin-bottom: 60px;
     }
+        &>.container {
+            min-height: calc(100vh - 353px);
+        }
 }
 
 
@@ -29,6 +32,7 @@
 
     @include tab {
         padding-top: 60px;
+        // padding-bottom: 60px;
     }
 
     @include desc {
@@ -37,6 +41,10 @@
         }
 
 }
+
+// .pagination-section.pagination-search{
+//     padding-bottom: 60px;
+// }
 
 
 // .card-link:hover {
