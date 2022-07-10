@@ -42,12 +42,12 @@
     "photo_url": 'https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team-photo/Olya.jpg?raw=true',
     "githab": 'https://github.com/Lolichka-Olha',
   },
-  {
-    "name": 'Vasylenko Myroslava',
-    "possition": "Developer",
-    "photo_url":'https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team-photo/Mira.jpg?raw=true',
-    "githab": 'https://github.com/MiraVV',
-  },
+  // {
+  //   "name": 'Vasylenko Myroslava',
+  //   "possition": "Developer",
+  //   "photo_url":'https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team-photo/Mira.jpg?raw=true',
+  //   "githab": 'https://github.com/MiraVV',
+  // },
   {
     "name": "Andrew Timoshkin",
     "possition": "Developer",

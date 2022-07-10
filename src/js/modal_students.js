@@ -11,6 +11,7 @@ const backdropStEl = document.querySelector('.backdrop--students');
 const listStudents = document.querySelector('.team-items');
 const linkToDev = document.getElementById('openModalLink');
 const closeModalBtn = document.getElementById('closeModalStBtn');
+const closeModalBtnX = document.getElementById('closeModalStBtnX');
 
 // const studentItems = studentsData.map(studentsTemplate).join(' ');
 const studentItems = studentsData
@@ -26,7 +27,6 @@ const studentItems = studentsData
   <h3 class='ref__title'>${name}</h3>
   
    </div>
-
   </a>
 <p class='ref__pos'>${possition}</p>
 </li>
@@ -36,7 +36,6 @@ const studentItems = studentsData
 
 //   new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: "alt"});
 // console.log(studentItems);
-
 const lnk = document.querySelector('.footer-link');
 const renderModal = document.querySelector('.team-items');
 
@@ -48,30 +47,35 @@ const openLink = () => {
   showConfetti();
 };
 
+
 const closeModalStud = () => {
-  // listStudents.resetpage();
-  // listStudents.refresh();
   backdropStEl.classList.add('is-hidden');
   window.removeEventListener('keydown', onKeyPress);
+
+};
+
+const closeModalStudX = () => {
+  backdropStEl.classList.add('is-hidden');
+  window.removeEventListener('keydown', onKeyPress);
+
 };
 
 linkToDev.addEventListener('click', openLink);
 closeModalBtn.addEventListener('click', closeModalStud);
+closeModalBtnX.addEventListener('click', closeModalStudX);
 backdropStEl.addEventListener('click', onBackdropClick);
 
 function onKeyPress(event) {
   if (event.code === 'Escape') {
     closeModalStud();
-    // listStudents.resetpage();
-    //  listStudents.refresh();
+ 
   }
 }
 
 function onBackdropClick(event) {
   if (event.target === event.currentTarget) {
     closeModalStud();
-    // listStudents.resetpage();
-    //  listStudents.refresh();
+
   }
 }
 
