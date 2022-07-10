@@ -15,15 +15,15 @@ background-image: url('../images/dark.png');
 }
 
 html.light body {
-  background-color: #d1cfcf;
+background-image: url('../images/light.jpg');
   color: #000000;
 }
 
 html.dark .footer {
-  background-color: #1a1919c2;
+  background-color: #1a1919ad;
 }
 html.light .footer {
-  background-color: #ffffffa1;
+  background-color: #ffffff5b;
 }
 
 html.dark .theme-btn {
