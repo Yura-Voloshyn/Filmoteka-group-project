@@ -4,6 +4,10 @@ import { onPaginateBtnClick } from './pagination';
 import { refs } from './refs';
 let singleGenre = [];
 export const movieApiService = new MovieApiService();
+movieApiService
+  .getGenres()
+  .then(res => localStorage.setItem('genres', JSON.stringify(res.data.genres)))
+  .catch(eror => console.log(eror));
 
 export const loadAnimationAction = document.querySelector(
   '.hollow-dots-spinner'
@@ -21,20 +25,12 @@ async function renderMainPage() {
   const max_page = data.total_pages;
 
   renderPaginationBtn(max_page);
-
-  //   console.log(markup);
-  //   console.log(data.results);
   refs.mainMarkup.insertAdjacentHTML('beforeend', markup);
 }
 
-// refs.homeBtn.addEventListener('click', renderMainPage);
 refs.logoBtn.addEventListener('click', renderMainPage);
 refs.homeBtn.addEventListener('click', renderMainPage);
 export default renderMainPage();
-
-movieApiService
-  .getGenres()
-  .then(res => localStorage.setItem('genres', JSON.stringify(res.data.genres)));
 
 export const getGenreName = function (ids) {
   const parsedGenres = JSON.parse(localStorage.getItem('genres'));
@@ -59,7 +55,6 @@ export function itemMarkup({
   title,
   genre_ids,
   release_date,
-  vote_average,
 }) {
   getGenreName(genre_ids);
   return `
@@ -79,10 +74,6 @@ export function itemMarkup({
     <p class="info-item info-item__date">| 
       ${release_date.slice(0, 4)}
     </p>
-    <p class="info-item info-item__vote">
-      ${vote_average.toFixed(1)}
-    </p>
-    
     
   </div>
 </li>

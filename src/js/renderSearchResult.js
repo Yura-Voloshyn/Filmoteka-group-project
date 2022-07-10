@@ -3,19 +3,20 @@ import { refs } from './refs';
 import { onPaginateSearchBtnClick } from './paginationSearch';
 import { renderPaginationSearchBtn } from './paginationSearch';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import debounce from 'lodash.debounce';
 
 let singleGenre = [];
 const movieApiService = new MovieApiService();
-refs.form.addEventListener('submit', onFormSubmit);
-// refs.btn.addEventListener('click', console.log('click'));
+refs.input.addEventListener('input', debounce(onInputForm, 300));
 import { loadAnimationAction } from './renderTrendingPage';
-export async function onFormSubmit(e) {
+
+export async function onInputForm(e) {
   e.preventDefault();
   refs.homeBtn.disabled = false;
   refs.pagination.innerHTML = '';
   refs.paginationSearch.innerHTML = '';
   refs.mainMarkup.innerHTML = '';
-  movieApiService.query = e.currentTarget.elements[0].value;
+  movieApiService.query = e.target.value;
   if (movieApiService.query === '') {
     Notify.failure('input field cannot be empty.');
     return;
@@ -23,23 +24,22 @@ export async function onFormSubmit(e) {
   clearMarkup();
   movieApiService.resetPage();
   loadAnimationAction.classList.remove('is-hiden');
-  const input = e.currentTarget.elements[0].value;
-  console.log("input", input);
+  const input = e.target.value;
+  // console.log('input', input);
   movieApiService.query = input;
   const searchData = await movieApiService.fetchArticlesSearch(1);
 
-    console.log("movieApiService.query", movieApiService.query);
-    console.log("searchData", searchData);
+  // console.log('movieApiService.query', movieApiService.query);
+  // console.log('searchData', searchData);
   const searchMarkup = searchData.results
     .map(item => itemMarkupBySearch(item))
     .join('');
-  const max_page = searchData.total_pages; 
+  const max_page = searchData.total_pages;
 
   renderPaginationSearchBtn(max_page);
-  
-  //   console.log(searchMarkup);
+
   loadAnimationAction.classList.add('is-hiden');
-  //   console.log(searchData.total_results);
+
   if (searchData.total_results === 0) {
     Notify.failure(
       'Sorry, there are no movies matching your search query. Please try again.'
@@ -48,18 +48,11 @@ export async function onFormSubmit(e) {
   }
   refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
   return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
-  
 }
 
 export function clearMarkup() {
   refs.mainMarkup.innerHTML = '';
 }
-// export const getGenreName = function (ids) {
-//   singleGenre = [];
-//   ids.forEach(id => {
-//     singleGenre.push(localStorage.getItem(id));
-//   });
-// };
 
 const getGenreName = function (ids) {
   const parsedGenres = JSON.parse(localStorage.getItem('genres'));
@@ -85,10 +78,9 @@ export function itemMarkupBySearch({
   title,
   genre_ids,
   release_date,
-  vote_average,
 }) {
   if (poster_path === null) {
-    console.log('poster_path is null', poster_path);
+    // console.log('poster_path is null', poster_path);
     return;
   } else {
     getGenreName(genre_ids);
@@ -102,17 +94,13 @@ export function itemMarkupBySearch({
     <div class="info">
     <p class="info-item">
       ${genreEditForRender(
-      singleGenre.map(genre => genre.name),
-      2
-    )} 
+        singleGenre.map(genre => genre.name),
+        2
+      )} 
     </p>
     <p class="info-item info-item__date">| 
       ${release_date.slice(0, 4)}
     </p>
-    <p class="info-item info-item__vote">
-      ${vote_average.toFixed(1)}
-    </p>
-    
     
   </div>
 </li>
