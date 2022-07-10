@@ -11,6 +11,7 @@ const backdropStEl = document.querySelector('.backdrop--students');
 const listStudents = document.querySelector('.team-items');
 const linkToDev = document.getElementById('openModalLink');
 const closeModalBtn = document.getElementById('closeModalStBtn');
+const closeModalBtnX = document.getElementById('closeModalStBtnX');
 
 // const studentItems = studentsData.map(studentsTemplate).join(' ');
 const studentItems = studentsData
@@ -46,7 +47,14 @@ const openLink = () => {
   showConfetti();
 };
 
+
 const closeModalStud = () => {
+  backdropStEl.classList.add('is-hidden');
+  window.removeEventListener('keydown', onKeyPress);
+
+};
+
+const closeModalStudX = () => {
   backdropStEl.classList.add('is-hidden');
   window.removeEventListener('keydown', onKeyPress);
 
@@ -54,6 +62,7 @@ const closeModalStud = () => {
 
 linkToDev.addEventListener('click', openLink);
 closeModalBtn.addEventListener('click', closeModalStud);
+closeModalBtnX.addEventListener('click', closeModalStudX);
 backdropStEl.addEventListener('click', onBackdropClick);
 
 function onKeyPress(event) {
