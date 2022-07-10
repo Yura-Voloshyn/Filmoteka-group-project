@@ -22,15 +22,10 @@ export async function onWatchedBtnClick() {
   refs.watchedBtn.removeEventListener('click', onWatchedBtnClick);
   refs.queueBtn.addEventListener('click', onQueueBtnClick);
 
-  const watchedMovieId = JSON.parse(localStorage.getItem('watched')).map(id =>
-    Number(id)
-  );
-  console.log(watchedMovieId);
-  if (watchedMovieId.length === 0) { 
-    console.log("clock!");
-    refs.clockFrame.className.remove('is-hiden');
-  }
+  const watchedMovieId = JSON.parse(localStorage.getItem('watched')) === null ? [] : [...JSON.parse(localStorage.getItem('watched')).map(id => Number(id))];
 
+  watchedMovieId.length === 0 ? refs.clockFrame.classList.remove('is-hiden') : refs.clockFrame.classList.add('is-hiden');
+  
   watchedMovieId.forEach(id => {
     movieApiService.getMovieById(id).then(result => {
       refs.mainMarkup.insertAdjacentHTML('beforeend', idItemMarkup(result));
