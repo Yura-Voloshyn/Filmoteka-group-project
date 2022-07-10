@@ -14,7 +14,9 @@ refs.queueBtn.addEventListener('click', onQueueBtnClick);
 export async function onQueueBtnClick() {
   refs.watchedBtn.classList.remove('selected');
   refs.queueBtn.classList.add('selected');
-  refs.pagination.classList.add('visually-hidden');
+  refs.pagination.innerHTML = '';
+  refs.paginationSearch.innerHTML = '';
+
   clearMarkup();
   refs.queueBtn.removeEventListener('click', onQueueBtnClick);
 
@@ -23,6 +25,7 @@ export async function onQueueBtnClick() {
   const queueMovieId = JSON.parse(localStorage.getItem('queue')).map(id =>
     Number(id)
   );
+
   queueMovieId.forEach(id => {
     movieApiService.getMovieById(id).then(result => {
       refs.mainMarkup.insertAdjacentHTML('beforeend', idItemMarkup(result));

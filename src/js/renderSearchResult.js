@@ -25,16 +25,16 @@ export async function onInputForm(e) {
   movieApiService.resetPage();
   loadAnimationAction.classList.remove('is-hiden');
   const input = e.target.value;
-  console.log("input", input);
+  console.log('input', input);
   movieApiService.query = input;
   const searchData = await movieApiService.fetchArticlesSearch(1);
 
-    console.log("movieApiService.query", movieApiService.query);
-    console.log("searchData", searchData);
+  console.log('movieApiService.query', movieApiService.query);
+  console.log('searchData', searchData);
   const searchMarkup = searchData.results
     .map(item => itemMarkupBySearch(item))
     .join('');
-  const max_page = searchData.total_pages; 
+  const max_page = searchData.total_pages;
 
   renderPaginationSearchBtn(max_page);
 
@@ -48,7 +48,6 @@ export async function onInputForm(e) {
   }
   refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
   return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
-  
 }
 
 export function clearMarkup() {
@@ -95,16 +94,14 @@ export function itemMarkupBySearch({
     <div class="info">
     <p class="info-item">
       ${genreEditForRender(
-      singleGenre.map(genre => genre.name),
-      2
-    )} 
+        singleGenre.map(genre => genre.name),
+        2
+      )} 
     </p>
     <p class="info-item info-item__date">| 
       ${release_date.slice(0, 4)}
     </p>
-    <p class="info-item info-item__vote">
-      ${vote_average.toFixed(1)}
-    </p>
+    
   </div>
 </li>
       `;
