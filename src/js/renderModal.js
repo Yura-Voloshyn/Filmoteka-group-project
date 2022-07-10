@@ -82,7 +82,11 @@ function handleButtons(movieId) {
 
 function checkStorage(key, movieId) {
   let arr = JSON.parse(localStorage.getItem(key));
-  return arr.includes(movieId);
+  if (arr !== null) {
+    return arr.includes(movieId);
+  } else {
+    return;
+  }
 }
 
 function removeFromWatched(e) {
