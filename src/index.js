@@ -23,3 +23,4 @@ import './js/modal_students';
 import './js/paginationSearch';
 import './js/pagination';
 // pagination
+import "./js/clock-animation";

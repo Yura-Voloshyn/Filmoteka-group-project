@@ -21,10 +21,18 @@ export async function onQueueBtnClick() {
   refs.queueBtn.removeEventListener('click', onQueueBtnClick);
 
   refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
+  // const queueMovieId = JSON.parse(localStorage.getItem('queue')).map(id =>
+  //   Number(id)
+  // );
 
-  const queueMovieId = JSON.parse(localStorage.getItem('queue')).map(id =>
-    Number(id)
-  );
+  const queueMovieId = JSON.parse(localStorage.getItem('queue') === null ? [] : [...JSON.parse(localStorage.getItem('queue')).map(id => Number(id))]);
+  console.log(queueMovieId);
+
+    if (!queueMovieId) { 
+    console.log("clock!");
+    refs.clockFrame.className.remove('is-hiden');
+  }
+
 
   queueMovieId.forEach(id => {
     movieApiService.getMovieById(id).then(result => {

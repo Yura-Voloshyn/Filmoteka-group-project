@@ -13,4 +13,5 @@ export const refs = {
   watchedBtn: document.querySelector('.wached'),
   queueBtn: document.querySelector('.queue'),
   input: document.querySelector('.input-form'),
+  clockFrame: document.querySelector('.clock__frame'),
 };

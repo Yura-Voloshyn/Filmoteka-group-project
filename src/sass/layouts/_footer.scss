@@ -34,6 +34,7 @@
 .favorite {
     margin-left: 5px;
     margin-right: 5px;
+    fill: #ff6b08;
 
     transform: scale(1);
     animation: pulse 700ms infinite;
@@ -46,6 +47,7 @@
 
     70% {
         transform: scale(1.2);
+        fill: #ff4208;
     }
 
     100% {
