@@ -5,6 +5,7 @@ export const refs = {
   modal: document.querySelector('.modal'),
   backToTopBtn: document.querySelector('.back-to-top-btn'),
   pageProgressBar: document.querySelector('.progress-bar'),
+  myLibBtn: document.querySelector('.library__btn'),
   // pagination
   pagination: document.querySelector('.pagination-main'),
   paginationSearch: document.querySelector('.pagination-search'),
@@ -13,4 +14,5 @@ export const refs = {
   watchedBtn: document.querySelector('.wached'),
   queueBtn: document.querySelector('.queue'),
   input: document.querySelector('.input-form'),
+  selectLang: document.querySelector('.select'),
 };

@@ -1,4 +1,4 @@
-const languageTranslate = {
+export const languageTranslate = {
   home: {
     en: 'home',
     uk: 'головна',

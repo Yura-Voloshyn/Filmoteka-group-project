@@ -23,3 +23,6 @@ import './js/modal_students';
 import './js/paginationSearch';
 import './js/pagination';
 // pagination
+// language
+import './js/language/language-translate-static';
+import './js/language/translateOnLangChange';
