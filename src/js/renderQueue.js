@@ -19,12 +19,11 @@ export async function onQueueBtnClick() {
 
   clearMarkup();
   refs.queueBtn.removeEventListener('click', onQueueBtnClick);
-
   refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
 
-  const queueMovieId = JSON.parse(localStorage.getItem('queue')).map(id =>
-    Number(id)
-  );
+  const queueMovieId = JSON.parse(localStorage.getItem('queue')) === null ? [] : [...JSON.parse(localStorage.getItem('queue')).map(id => Number(id))];
+
+  queueMovieId.length === 0 ? refs.clockFrame.classList.remove('is-hiden') : refs.clockFrame.classList.add('is-hiden');
 
   queueMovieId.forEach(id => {
     movieApiService.getMovieById(id).then(result => {
