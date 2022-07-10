@@ -96,7 +96,11 @@
     cursor: zoom-in;
     transform: scale(1.03);
 }
-
+ 
+.card-info{
+    display: flex;
+    justify-content: space-between;
+}
 .card-title {
     font-weight: 500;
     font-size: 12px;
