@@ -48,19 +48,19 @@ overflow-y: scroll;
     }
 
                 @include mob {
-                    width: 320px;
+                    max-width: 320px;
                     height: 958px;
                 }
 
                 @include tab {
-                    width: 708px;
-                    height: 700px;
+                    max-width: 708px;
+                    max-height: 670px;
                     // height: 100%;
                     top: 50%;
                     transform: translate(-50%, -50%);
                 }
                 @include desc {
-                     height: 790px;
+                     max-height: 660px;
                     //  height: 100%;
                      top: 50%;
                      transform: translate(-50%, -50%);
