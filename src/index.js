@@ -4,7 +4,7 @@ import './js/markup/markupTrend-and-search';
 import './js/markup/markupById';
 import './js/themeSwitchByCheckbox';
 // import './js/themeSwitchByCheckbox';
-
+import './js/notify-params/notify-styles';
 // import { itemMarkup } from './js/renderTrendingPage';
 import './js/renderSearchResult';
 

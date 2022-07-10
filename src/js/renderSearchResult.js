@@ -11,7 +11,7 @@ refs.form.addEventListener('submit', onFormSubmit);
 // refs.input.addEventListener('input', debounce(onInputForm, 600));
 import { loadAnimationAction } from './renderTrendingPage';
 
- export async function onFormSubmit(e) {
+export async function onFormSubmit(e) {
   e.preventDefault();
   refs.homeBtn.disabled = false;
   refs.pagination.innerHTML = '';
@@ -26,23 +26,23 @@ import { loadAnimationAction } from './renderTrendingPage';
   movieApiService.resetPage();
   loadAnimationAction.classList.remove('is-hiden');
   const input = e.currentTarget.elements[0].value;
-  console.log("input", input);
-   movieApiService.query = input;
-   console.log("movieApiService.query", movieApiService.query);
+  // console.log("input", input);
+  movieApiService.query = input;
+  //  console.log("movieApiService.query", movieApiService.query);
   const searchData = await movieApiService.fetchArticlesSearch(1);
 
-    console.log("movieApiService.query", movieApiService.query);
-    console.log("searchData", searchData);
+  // console.log("movieApiService.query", movieApiService.query);
+  // console.log("searchData", searchData);
   const searchMarkup = searchData.results
     .map(item => itemMarkupBySearch(item))
     .join('');
-  const max_page = searchData.total_pages; 
-   if (movieApiService.query === '') {
-     Notify.failure('input field cannot be empty.');
-     return;
-   } else {
-     renderPaginationSearchBtn(max_page);
-   }
+  const max_page = searchData.total_pages;
+  if (movieApiService.query === '') {
+    Notify.failure('input field cannot be empty.');
+    return;
+  } else {
+    renderPaginationSearchBtn(max_page);
+  }
   //   console.log(searchMarkup);
   loadAnimationAction.classList.add('is-hiden');
   //   console.log(searchData.total_results);
@@ -54,7 +54,6 @@ import { loadAnimationAction } from './renderTrendingPage';
   }
   refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
   return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
-  
 }
 
 // export async function onInputForm(e) {
@@ -128,10 +127,10 @@ export function itemMarkupBySearch({
   vote_average,
 }) {
   if (vote_average < 1) {
-    console.log('vote_average', vote_average);
+    // console.log('vote_average', vote_average);
     return;
   } else if (poster_path === null) {
-    console.log('poster_path is null', poster_path);
+    // console.log('poster_path is null', poster_path);
     return;
   } else {
     getGenreName(genre_ids);
@@ -144,9 +143,9 @@ export function itemMarkupBySearch({
     <div class="info">
     <p class="info-item">
       ${genreEditForRender(
-      singleGenre.map(genre => genre.name),
-      2
-    )} 
+        singleGenre.map(genre => genre.name),
+        2
+      )} 
     </p>
     <p class="info-item info-item__date">| 
       ${release_date.slice(0, 4)}
