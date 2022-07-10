@@ -25,12 +25,12 @@ export async function onInputForm(e) {
   movieApiService.resetPage();
   loadAnimationAction.classList.remove('is-hiden');
   const input = e.target.value;
-  console.log('input', input);
+  // console.log('input', input);
   movieApiService.query = input;
   const searchData = await movieApiService.fetchArticlesSearch(1);
 
-  console.log('movieApiService.query', movieApiService.query);
-  console.log('searchData', searchData);
+  // console.log('movieApiService.query', movieApiService.query);
+  // console.log('searchData', searchData);
   const searchMarkup = searchData.results
     .map(item => itemMarkupBySearch(item))
     .join('');
@@ -80,7 +80,7 @@ export function itemMarkupBySearch({
   release_date,
 }) {
   if (poster_path === null) {
-    console.log('poster_path is null', poster_path);
+    // console.log('poster_path is null', poster_path);
     return;
   } else {
     getGenreName(genre_ids);
