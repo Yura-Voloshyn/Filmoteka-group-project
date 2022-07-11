@@ -13,10 +13,9 @@ export default class MovieApiService {
       page: this.page,
     };
   }
-  // console.log(this.language[0]);
-  // lang = 'uk';
+
   async fetchMovies() {
-    const url = `${BASE_URL}/trending/movie/day?api_key=${this.options.key}&page=${this.page}&language=${lang}`;
+    const url = `${BASE_URL}/trending/movie/day?api_key=${this.options.key}&page=${this.page}&language=${this.language}`;
 
     return await axios
       .get(url, this.options)
@@ -28,10 +27,10 @@ export default class MovieApiService {
       .catch(error => console.log(error));
   }
   // pagination
-  async fetchArticles(page, lang) {
+  async fetchArticles(page) {
     const BASE_URL = 'https://api.themoviedb.org/3';
     const first = await axios.get(
-      `${BASE_URL}/trending/movie/day?api_key=${this.options.key}&page=${page}&language=${lang}`
+      `${BASE_URL}/trending/movie/day?api_key=${this.options.key}&page=${page}&language=${this.language}`
     );
     return first.data;
   }

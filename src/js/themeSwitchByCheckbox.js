@@ -19,26 +19,12 @@ export function windowLoad() {
     .addEventListener('change', e => {
       !saveUserTheme ? changeTheme() : null;
     });
-  //     {userTheme = wilight
-  //       .matchMedia('(preferce-color-scheme: dark)')
-  //       .addEventListener('change', e => {
-  //         !saveUserTheme ? changeTheme() : null;
-  //       });
-  //   }
-  //
 
   if (themeBtn) {
     themeBtn.addEventListener('click', function (e) {
       changeTheme(true);
     });
   }
-  //   const asd = (chbox.checked ^= 1);
-  //   console.log(asd);
-  // if ((chbox.checked ^= 1)) {
-  //   chbox.addEventListener('click', function (e) {
-  //     localStorage.setItem('user-theme', '');
-  //   });
-  // }
 
   function setThemeClass() {
     if (saveUserTheme) {
