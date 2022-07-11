@@ -15,4 +15,5 @@ export const refs = {
   queueBtn: document.querySelector('.queue'),
   input: document.querySelector('.input-form'),
   selectLang: document.querySelector('.select'),
+  loginBtn: document.querySelector('.login__btn'),
 };

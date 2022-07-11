@@ -6,16 +6,17 @@ export default class MovieApiService {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
-    this.language = 'en';
+    this.language = '';
     this.allGenres = [];
     this.options = {
       key: 'b28dcafbfbdc99f3059a27aaeb93fed6',
       page: this.page,
     };
   }
-
+  // console.log(this.language[0]);
+  // lang = 'uk';
   async fetchMovies() {
-    const url = `${BASE_URL}/trending/movie/day?api_key=${this.options.key}&page=${this.page}&language=${this.language}`;
+    const url = `${BASE_URL}/trending/movie/day?api_key=${this.options.key}&page=${this.page}&language=${lang}`;
 
     return await axios
       .get(url, this.options)
@@ -27,10 +28,10 @@ export default class MovieApiService {
       .catch(error => console.log(error));
   }
   // pagination
-  async fetchArticles(page) {
+  async fetchArticles(page, lang) {
     const BASE_URL = 'https://api.themoviedb.org/3';
     const first = await axios.get(
-      `${BASE_URL}/trending/movie/day?api_key=${this.options.key}&page=${page}&language=${this.language}`
+      `${BASE_URL}/trending/movie/day?api_key=${this.options.key}&page=${page}&language=${lang}`
     );
     return first.data;
   }
