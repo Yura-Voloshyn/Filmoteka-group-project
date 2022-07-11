@@ -36,7 +36,7 @@ export async function onWatchedBtnClick() {
     refs.mainMarkup.insertAdjacentHTML('beforeend', idItemMarkup(item))
   );
   // const markup = watchedMovieId.map(item => itemMarkup(item)).join('');
-  // console.log(markup);
+  console.log(markup);
   // watchedMovieId.forEach(id => {
   //   movieApiService.getMovieById(id).then(result => {
   //     refs.mainMarkup.insertAdjacentHTML('beforeend', idItemMarkup(result));
