@@ -86,7 +86,7 @@ function checkStorage(key, movieId) {
     localStorage.getItem(key) !== null
       ? JSON.parse(localStorage.getItem(key))
       : [];
-  console.log(arr);
+  // console.log(arr);
   return arr.some(movie => movie?.id === Number(movieId));
 }
 
