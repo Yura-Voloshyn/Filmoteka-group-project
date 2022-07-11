@@ -27,10 +27,10 @@ export default class MovieApiService {
       .catch(error => console.log(error));
   }
   // pagination
-  async fetchArticles(page) {
+  async fetchArticles(page, lang) {
     const BASE_URL = 'https://api.themoviedb.org/3';
     const first = await axios.get(
-      `${BASE_URL}/trending/movie/day?api_key=${this.options.key}&page=${page}&language=${this.language}`
+      `${BASE_URL}/trending/movie/day?api_key=${this.options.key}&page=${page}&language=${lang}`
     );
     return first.data;
   }

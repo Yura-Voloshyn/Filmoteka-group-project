@@ -1,5 +1,5 @@
 import { refs } from './refs';
-import { onWatchedBtnClick } from "./renderWatchedLib";
+import { onWatchedBtnClick } from './renderWatchedLib';
 
 refs.header = document.querySelector('header');
 refs.librarySwitcher = document.querySelector('.library__btn--wrapper');
@@ -46,8 +46,8 @@ function showLibrary() {
 
   refs.librarySwitcher.classList.remove('visually-hidden');
   refs.wachedBtn.classList.add('selected');
-  refs.mainMarkup.innerHTML = "";
-  
+  refs.mainMarkup.innerHTML = '';
+
   onWatchedBtnClick();
 }
 
@@ -60,5 +60,5 @@ function goToHomePage() {
   refs.header.classList.remove('library__header');
   refs.librarySwitcher.classList.add('visually-hidden');
 
-  refs.mainMarkup.innerHTML = "";
+  refs.mainMarkup.innerHTML = '';
 }

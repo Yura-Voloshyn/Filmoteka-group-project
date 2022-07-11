@@ -24,7 +24,9 @@ refs.selectLang.addEventListener('change', onLanguageChange);
 export function onLanguageChange(e) {
   lang = e.currentTarget.value;
   location.hash = lang;
+
   location.reload();
+  refs.selectLang.value = lang;
 }
 // console.log(languageTranslate);
 if (window.location.hash) {

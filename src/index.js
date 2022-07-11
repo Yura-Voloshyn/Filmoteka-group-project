@@ -6,6 +6,8 @@ import './js/themeSwitchByCheckbox';
 // import './js/themeSwitchByCheckbox';
 import './js/notify-params/notify-styles';
 // import { itemMarkup } from './js/renderTrendingPage';
+import './js/language/language-translate-static';
+import './js/language/translateOnLangChange';
 import './js/renderSearchResult';
 
 import './js/library';
@@ -25,5 +27,3 @@ import './js/paginationSearch';
 import './js/pagination';
 // pagination
 // language
-import './js/language/language-translate-static';
-import './js/language/translateOnLangChange';

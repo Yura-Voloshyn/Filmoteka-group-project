@@ -4,8 +4,11 @@ import { onPaginateBtnClick } from './pagination';
 import { refs } from './refs';
 import { onLanguageChange } from './language/translateOnLangChange';
 import './language/translateOnLangChange';
+
+import './library';
+
 let singleGenre = [];
-let lang = 'en';
+
 // console.log(asd);
 export const movieApiService = new MovieApiService();
 movieApiService
@@ -13,6 +16,12 @@ movieApiService
   .then(res => localStorage.setItem('genres', JSON.stringify(res.data.genres)))
   .catch(eror => console.log(eror));
 
+if (window.location.hash === '#en') {
+  refs.selectLang.value = 'en';
+} else if (window.location.hash === '#uk') {
+  refs.selectLang.value = 'uk';
+}
+const lang = refs.selectLang.value;
 export const loadAnimationAction = document.querySelector(
   '.hollow-dots-spinner'
 );
