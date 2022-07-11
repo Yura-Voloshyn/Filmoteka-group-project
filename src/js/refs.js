@@ -16,4 +16,5 @@ export const refs = {
   input: document.querySelector('.input-form'),
   selectLang: document.querySelector('.select'),
   loginBtn: document.querySelector('.login__btn'),
+  clockFrame: document.querySelector('.clock__frame'),
 };

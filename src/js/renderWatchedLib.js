@@ -17,17 +17,30 @@ export async function onWatchedBtnClick() {
   refs.watchedBtn.classList.add('selected');
   refs.paginationSearch.innerHTML = '';
   refs.pagination.innerHTML = '';
-  
+
   clearMarkup();
   refs.watchedBtn.removeEventListener('click', onWatchedBtnClick);
   refs.queueBtn.addEventListener('click', onQueueBtnClick);
 
-  const queueMovieId = JSON.parse(localStorage.getItem('watched')).map(id =>
-    Number(id)
+  const watchedMovieId =
+    JSON.parse(localStorage.getItem('watched')) === null
+      ? []
+      : JSON.parse(localStorage.getItem('watched'));
+  // console.log(watchedMovieId);
+
+  watchedMovieId.length === 0
+    ? refs.clockFrame.classList.remove('is-hiden')
+    : refs.clockFrame.classList.add('is-hiden');
+
+  watchedMovieId.forEach(item =>
+    refs.mainMarkup.insertAdjacentHTML('beforeend', idItemMarkup(item))
   );
-  queueMovieId.forEach(id => {
-    movieApiService.getMovieById(id).then(result => {
-      refs.mainMarkup.insertAdjacentHTML('beforeend', idItemMarkup(result));
-    });
-  });
+  // const markup = watchedMovieId.map(item => itemMarkup(item)).join('');
+  // console.log(markup);
+  // watchedMovieId.forEach(id => {
+  //   movieApiService.getMovieById(id).then(result => {
+  //     refs.mainMarkup.insertAdjacentHTML('beforeend', idItemMarkup(result));
+  //   });
+  // });
+  // refs.mainMarkup.insertAdjacentHTML('beforeend', markup);
 }

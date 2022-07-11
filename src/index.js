@@ -26,4 +26,4 @@ import './js/modal_students';
 import './js/paginationSearch';
 import './js/pagination';
 // pagination
-// language
+import "./js/clock-animation";

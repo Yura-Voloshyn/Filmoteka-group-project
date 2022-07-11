@@ -37,10 +37,6 @@ export function renderPaginationBtn(e) {
     appendBtn(1);
     if (per_page_max < 7) {
       for (let i = 2; i <= per_page_max; i++) {
-        // let total = i + 1;
-        // console.log("total", total);
-        console.log('per_page_max', per_page_max);
-        console.log('i', i);
         appendBtn(i);
       }
       return;
@@ -87,9 +83,7 @@ export function onPaginateBtnClick(e) {
   }
   refs.mainMarkup.innerHTML = '';
   let pageNum = e.target.innerText;
-  // console.log("pageNum", pageNum);
   movieApiService.fetchArticles(pageNum).then(data => {
-    // console.log("data.results on pag", data.results);
     const markupPagin = data.results.map(item => itemMarkup(item)).join('');
     refs.mainMarkup.insertAdjacentHTML('beforeend', markupPagin);
   });
