@@ -17,6 +17,7 @@ const lightBoxOptions = {
 };
 
 let modal; //собственно будущая модалка
+let movieData; // об'єкт фільму для маніпуляцій зі стореджом
 
 refs.mainMarkup.addEventListener('click', onMovieCardClick);
 
@@ -24,7 +25,7 @@ export async function onMovieCardClick(e) {
   e.preventDefault();
   const movieId = e.path.find(el => el.className === 'movie-card').id; //get movie ID
   loadAnimationAction.classList.remove('is-hiden'); //loader animation switched-on
-  const movieData = await movieApiService.getMovieById(movieId); //get from srver movie info
+  movieData = await movieApiService.getMovieById(movieId); //get from srver movie info
   const movieDatavideo = await movieApiService.getMovieByIdvideos(movieId);
   const videoId = movieDatavideo.results.find(el =>
     el.name.includes('Trailer')
@@ -81,12 +82,12 @@ function handleButtons(movieId) {
 }
 
 function checkStorage(key, movieId) {
-  let arr = JSON.parse(localStorage.getItem(key));
-  if (arr !== null) {
-    return arr.includes(movieId);
-  } else {
-    return;
-  }
+  let arr =
+    localStorage.getItem(key) !== null
+      ? JSON.parse(localStorage.getItem(key))
+      : [];
+  console.log(arr);
+  return arr.some(movie => movie?.id === Number(movieId));
 }
 
 function removeFromWatched(e) {
@@ -103,7 +104,9 @@ function removeFromQueue(e) {
 
 function removeFromStorage(e, key) {
   let arr = JSON.parse(localStorage.getItem(key));
-  let index = arr.indexOf(e.target.dataset.movieid);
+  let index = arr.findIndex(movie => {
+    return movie.id === Number(e.target.dataset.movieid);
+  });
   arr.splice(index, 1);
   localStorage.setItem(key, JSON.stringify(arr));
   buttonChange(key);
@@ -128,7 +131,7 @@ function addToStorage(event, key) {
     localStorage.getItem(key) !== null
       ? JSON.parse(localStorage.getItem(key))
       : [];
-  arr.push(event.target.dataset.movieid);
+  arr.push(movieData);
   localStorage.setItem(key, JSON.stringify(arr));
   Notify.success(`The movie successfully has been added to ${key}`);
 }
