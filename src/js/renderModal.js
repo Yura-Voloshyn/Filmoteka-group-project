@@ -5,6 +5,8 @@ import * as basicLightbox from 'basiclightbox';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { itemMarkup } from './markup/markupModal';
 
+import { modalTranslate } from './language/translateOnLangChange';
+
 const movieApiService = new MovieApiService();
 
 const lightBoxOptions = {
@@ -35,8 +37,10 @@ export async function onMovieCardClick(e) {
   ).key;
   const modalMarkup = itemMarkup(movieData, videoId); // create markup
   modal = basicLightbox.create(modalMarkup, lightBoxOptions); //create modal window//
+
   modalShow();
   handleButtons(movieId);
+  modalTranslate();
   loadAnimationAction.classList.add('is-hiden'); //loader animation switched-off
 }
 
