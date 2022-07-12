@@ -112,6 +112,10 @@ font-size: 12px;
 font-weight: 500;
 line-height: 1.17;
 
+    &.is-hidden {
+        display: none;
+    }
+
 }
 .nav-btn {
     text-transform: uppercase;
@@ -119,6 +123,7 @@ line-height: 1.17;
     font-size: 12px;
         font-weight: 500;
         line-height: 1.17;
+    text-transform: uppercase;
     color: $cl-white-primary;
     background-color: inherit;
     border: none;
