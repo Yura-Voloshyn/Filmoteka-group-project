@@ -9,7 +9,7 @@
     background: $cl-accent;
     box-shadow: $cl-modal-text 0px 3px 8px;
     cursor: pointer;
-    transition: opacity 250ms cubic-bezier(.4, 0, .2, 1), transform 300ms cubic-bezier(.4, 0, .2, 1);
+    transition: opacity 250ms $cl-transition-animation, transform 300ms $cl-transition-animation;
 
     &:hover,
     &:focus {  
