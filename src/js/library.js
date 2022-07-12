@@ -25,13 +25,13 @@ export function menuSwitcher(e) {
   if (e.target.classList.contains('library__btn')) {
     e.target.parentNode.classList.add('active__page');
     showLibrary();
-  } else if (e.target.classList.contains('home__btn')) { 
+  } else if (e.target.classList.contains('home__btn')) {
     e.target.parentNode.classList.add('active__page');
     goToHomePage();
   }
 }
 
-function showLibrary() {
+export function showLibrary() {
   refs.libraryBtn.disabled = true;
   refs.homePageBtn.disabled = false;
   refs.homePageBtn.parentNode.classList.remove('active__page');

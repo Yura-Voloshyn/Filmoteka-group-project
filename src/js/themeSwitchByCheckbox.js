@@ -1,5 +1,8 @@
 import { refs } from './refs';
 import { onQueueBtnClick } from './renderQueue';
+import './library';
+import { showLibrary } from './library';
+import { menuSwitcher } from './library';
 window.addEventListener('load', windowLoad);
 
 export function windowLoad() {
@@ -7,8 +10,8 @@ export function windowLoad() {
   const themeBtn = document.querySelector('.theme-btn');
   const htmlBlock = document.documentElement;
   const saveUserTheme = localStorage.getItem('user-theme');
-  // JSON.parse(localStorage.getItem('set'));
-  //   console.log(htmlBlock);
+  // menuSwitcher();
+  // showLibrary();
   let userTheme;
   if (window.matchMedia) {
     userTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
