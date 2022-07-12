@@ -22,10 +22,16 @@ export async function onQueueBtnClick() {
   refs.queueBtn.removeEventListener('click', onQueueBtnClick);
 
   refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
+  refs.queueBtn.removeEventListener('click', onQueueBtnClick);
 
-  const queueMovieId = JSON.parse(localStorage.getItem('queue')).map(id =>
-    Number(id)
-  );
+  const queueMovieId =
+    JSON.parse(localStorage.getItem('queue')) === null
+      ? []
+      : JSON.parse(localStorage.getItem('queue'));
+
+  queueMovieId.length === 0
+    ? refs.clockFrame.classList.remove('is-hiden')
+    : refs.clockFrame.classList.add('is-hiden');
 
   queueMovieId.forEach(item =>
     refs.mainMarkup.insertAdjacentHTML('beforeend', idItemMarkup(item))

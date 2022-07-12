@@ -54,6 +54,6 @@ function goToHomePage() {
   refs.form.classList.remove('visually-hidden');
   refs.header.classList.remove('library__header');
   refs.librarySwitcher.classList.add('visually-hidden');
-
+  refs.clockFrame.classList.add('is-hiden');
   refs.mainMarkup.innerHTML = '';
 }

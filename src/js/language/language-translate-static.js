@@ -19,4 +19,16 @@ export const languageTranslate = {
     en: 'my library',
     uk: 'бібліотека',
   },
+  placeholder: {
+    en: 'Movie search',
+    uk: 'Пошук фільму',
+  },
+  watchedB: {
+    en: 'watched',
+    uk: 'переглянуті',
+  },
+  queueB: {
+    en: 'queue',
+    uk: 'черга',
+  },
 };
