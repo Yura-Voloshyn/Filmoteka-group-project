@@ -34,5 +34,24 @@ export const languageTranslate = {
   genreOth: {
     en: 'other',
     uk: 'інші',
+  votes: {
+    en: 'Vote / Votes',
+    uk: 'Голос / Проголосували',
+  },
+  popularity: {
+    en: 'Popularuty',
+    uk: 'Популярність',
+  },
+  title: {
+    en: 'Original Title',
+    uk: 'Оригінальна назва',
+  },
+  genres: {
+    en: 'Genres',
+    uk: 'Жанри',
+  },
+  about: {
+    en: 'About',
+    uk: 'Про фільм',
   },
 };

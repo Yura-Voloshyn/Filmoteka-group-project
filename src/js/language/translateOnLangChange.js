@@ -18,6 +18,7 @@ export function onLanguageChange(e) {
   location.reload();
   refs.selectLang.value = lang;
 }
+
 // console.log(languageTranslate);
 // switch (window.location.hash) {
 //   case '#en':
@@ -59,7 +60,7 @@ export function modalTranslate() {
   document.querySelectorAll('[data-lang]').forEach(el => {
     for (const key in languageTranslate) {
       if (key === el.dataset.lang) {
-        // console.log(languageTranslate[key].uk);
+        
         el.textContent =
           location.hash === '#uk'
             ? languageTranslate[key].uk
