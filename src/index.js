@@ -25,3 +25,9 @@ import './js/paginationSearch';
 import './js/pagination';
 // pagination
 import "./js/clock-animation";
+
+// Firebase
+import './js/firebaseModals';
+import './js/firebaseInit';
+import './js/firebaseAuth';
+import './js/firebaseRegister';
