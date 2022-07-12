@@ -170,7 +170,7 @@ function addToStorage(event, key) {
     Notify.success(`The movie successfully has been added to ${key}`);
   }
   if (window.location.hash === '#uk') {
-    Notify.failure(`Фільм успішно додано до ${key}`);
+    Notify.success(`Фільм успішно додано до ${key}`);
   }
 }
 
