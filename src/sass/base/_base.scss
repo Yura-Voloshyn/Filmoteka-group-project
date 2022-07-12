@@ -98,3 +98,13 @@ html.dark .active-btn-pagination {
 .notiflix-notify {
   height: 10px;
 }
+
+// Login Modal Theme Switch
+html.light .modal-container {
+  background-color: $cl-white-primary;
+}
+html.dark .modal-container {
+  background-color: $cl-foot-text; //DimGray?
+  color: $cl-white-primary;
+  box-shadow: none;
+}
