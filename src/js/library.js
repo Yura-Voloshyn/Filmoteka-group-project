@@ -20,19 +20,14 @@ refs.logoLink.addEventListener('click', () => {
   refs.homePageBtn.parentNode.classList.add('active__page');
   goToHomePage();
 });
-//тут треба додати слухача на кнопку логін
 
 export function menuSwitcher(e) {
-  switch (e.target.innerText) {
-    case 'HOME':
-      e.target.parentNode.classList.add('active__page');
-      goToHomePage();
-      break;
-    case 'MY LIBRARY':
-      e.target.parentNode.classList.add('active__page');
-      showLibrary();
-      break;
-    //add case for login
+  if (e.target.classList.contains('library__btn')) {
+    e.target.parentNode.classList.add('active__page');
+    showLibrary();
+  } else if (e.target.classList.contains('home__btn')) { 
+    e.target.parentNode.classList.add('active__page');
+    goToHomePage();
   }
 }
 

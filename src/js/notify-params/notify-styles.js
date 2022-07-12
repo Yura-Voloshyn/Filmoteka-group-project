@@ -3,7 +3,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 Notify.init({
   position: 'center-top',
   timeout: 3000,
-  distance: '65px',
+  distance: '15px',
 
   width: '320px',
   fontSize: '14px',
