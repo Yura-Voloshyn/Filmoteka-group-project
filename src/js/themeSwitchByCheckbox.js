@@ -1,5 +1,5 @@
 import { refs } from './refs';
-
+import { onQueueBtnClick } from './renderQueue';
 window.addEventListener('load', windowLoad);
 
 export function windowLoad() {
@@ -7,6 +7,7 @@ export function windowLoad() {
   const themeBtn = document.querySelector('.theme-btn');
   const htmlBlock = document.documentElement;
   const saveUserTheme = localStorage.getItem('user-theme');
+  // JSON.parse(localStorage.getItem('set'));
   //   console.log(htmlBlock);
   let userTheme;
   if (window.matchMedia) {

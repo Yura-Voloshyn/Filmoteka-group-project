@@ -20,13 +20,16 @@ let modal; //собственно будущая модалка
 let movieData; // об'єкт фільму для маніпуляцій зі стореджом
 
 refs.mainMarkup.addEventListener('click', onMovieCardClick);
-
+const lang = refs.selectLang.value;
 export async function onMovieCardClick(e) {
   e.preventDefault();
   const movieId = e.path.find(el => el.className === 'movie-card').id; //get movie ID
   loadAnimationAction.classList.remove('is-hiden'); //loader animation switched-on
-  movieData = await movieApiService.getMovieById(movieId); //get from srver movie info
-  const movieDatavideo = await movieApiService.getMovieByIdvideos(movieId);
+  movieData = await movieApiService.getMovieById(movieId, lang); //get from srver movie info
+  const movieDatavideo = await movieApiService.getMovieByIdvideos(
+    movieId,
+    lang
+  );
   const videoId = movieDatavideo.results.find(el =>
     el.name.includes('Trailer')
   ).key;

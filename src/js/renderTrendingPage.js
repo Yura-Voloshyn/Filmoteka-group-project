@@ -11,10 +11,6 @@ let singleGenre = [];
 
 // console.log(asd);
 export const movieApiService = new MovieApiService();
-movieApiService
-  .getGenres()
-  .then(res => localStorage.setItem('genres', JSON.stringify(res.data.genres)))
-  .catch(eror => console.log(eror));
 
 if (window.location.hash === '#en') {
   refs.selectLang.value = 'en';
@@ -26,6 +22,12 @@ export const loadAnimationAction = document.querySelector(
   '.hollow-dots-spinner'
 );
 refs.pagination.addEventListener('click', onPaginateBtnClick);
+
+movieApiService
+  .getGenres(lang)
+  .then(res => localStorage.setItem('genres', JSON.stringify(res.data.genres)))
+  .catch(eror => console.log(eror));
+
 async function renderMainPage() {
   refs.selectLang.addEventListener('change', onLanguageChange);
 
@@ -89,9 +91,9 @@ export function itemMarkup({
     <div class="info">
     <p class="info-item">
       ${formatArr(
-      singleGenre.map(genre => genre.name),
-      2
-    )} 
+        singleGenre.map(genre => genre.name),
+        2
+      )} 
     </p>
     <p class="info-item info-item__date">| 
       ${release_date.slice(0, 4)}

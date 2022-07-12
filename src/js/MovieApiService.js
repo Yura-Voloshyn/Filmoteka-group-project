@@ -63,10 +63,10 @@ export default class MovieApiService {
       })
       .catch(error => console.log(error));
   }
-  getMovieById(movieId) {
+  getMovieById(movieId, lang) {
     return axios
       .get(
-        `${BASE_URL}/movie/${movieId}?api_key=${this.options.key}&language=${this.language}`
+        `${BASE_URL}/movie/${movieId}?api_key=${this.options.key}&language=${lang}`
       )
       .then(resp => {
         this.page += 1;
@@ -74,9 +74,9 @@ export default class MovieApiService {
       })
       .catch(error => console.log(error));
   }
-  getGenres() {
+  getGenres(lang) {
     return axios.get(
-      `${BASE_URL}/genre/movie/list?api_key=${this.options.key}&language=${this.language}`
+      `${BASE_URL}/genre/movie/list?api_key=${this.options.key}&language=${lang}`
     );
   }
 
