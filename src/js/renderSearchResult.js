@@ -19,7 +19,12 @@ export async function onFormSubmit(e) {
   refs.mainMarkup.innerHTML = '';
   movieApiService.query = e.currentTarget.elements[0].value;
   if (movieApiService.query === '') {
-    Notify.failure('input field cannot be empty.');
+    if (window.location.hash === '#en') {
+      Notify.failure('input field cannot be empty.');
+    }
+    if (window.location.hash === '#uk') {
+      Notify.failure('поле пошуку не може бути порожнім.');
+    }
     return;
   }
   clearMarkup();
@@ -37,9 +42,17 @@ export async function onFormSubmit(e) {
     movieApiService.query === ' ' ||
     searchData.total_results === 0
   ) {
-    Notify.failure(
-      'Sorry, there are no movies matching your search query. Please try again.'
-    );
+    if (window.location.hash === '#en') {
+      Notify.failure(
+        'Sorry, there are no movies matching your search query. Please try again.'
+      );
+    }
+    if (window.location.hash === '#uk') {
+      Notify.failure(
+        'На жаль, немає фільмів, які відповідають вашому пошуковому запиту. Будь ласка спробуйте ще раз.'
+      );
+    }
+
     loadAnimationAction.classList.add('is-hiden');
     return;
   } else {
@@ -47,9 +60,17 @@ export async function onFormSubmit(e) {
   }
   loadAnimationAction.classList.add('is-hiden');
   if (searchData.total_results === 0) {
-    Notify.failure(
-      'Sorry, there are no movies matching your search query. Please try again.'
-    );
+    if (window.location.hash === '#en') {
+      Notify.failure(
+        'Sorry, there are no movies matching your search query. Please try again.'
+      );
+    }
+    if (window.location.hash === '#uk') {
+      Notify.failure(
+        'На жаль, немає фільмів, які відповідають вашому пошуковому запиту. Будь ласка спробуйте ще раз.'
+      );
+    }
+
     return;
   }
   refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);

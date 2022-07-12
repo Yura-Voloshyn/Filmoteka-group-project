@@ -22,6 +22,7 @@ export function onLanguageChange(e) {
 if (window.location.hash) {
   if (window.location.hash === '#en') {
     refs.homePageBtn.textContent = languageTranslate.home.en;
+
     refs.libraryBtn.textContent = languageTranslate.library.en;
     refs.loginBtn.textContent = languageTranslate.log.en;
     refs.input.placeholder = languageTranslate.placeholder.en;
@@ -29,6 +30,7 @@ if (window.location.hash) {
     refs.queueBtn.textContent = languageTranslate.queueB.en;
   } else if (window.location.hash === '#uk') {
     refs.homePageBtn.textContent = languageTranslate.home.uk;
+
     refs.libraryBtn.textContent = languageTranslate.library.uk;
     refs.loginBtn.textContent = languageTranslate.log.uk;
     refs.input.placeholder = languageTranslate.placeholder.uk;

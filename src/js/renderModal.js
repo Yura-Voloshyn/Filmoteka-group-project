@@ -61,7 +61,12 @@ function keydownHandler(e) {
 
 function onPosterClick(e) {
   if (e.target.dataset.video === 'undefined') {
-    Notify.failure('There is no video in database');
+    if (window.location.hash === '#en') {
+      Notify.failure('There is no video in database');
+    }
+    if (window.location.hash === '#uk') {
+      Notify.failure('На жаль, У базі немає відео.');
+    }
   } else {
     basicLightbox
       .create(
@@ -132,7 +137,12 @@ function removeFromStorage(e, key) {
   arr.splice(index, 1);
   localStorage.setItem(key, JSON.stringify(arr));
   buttonChange(key);
-  Notify.failure(`The movie successfully has been removed from ${key}`);
+  if (window.location.hash === '#en') {
+    Notify.failure(`The movie successfully has been removed from ${key}`);
+  }
+  if (window.location.hash === '#uk') {
+    Notify.failure('Фільм успішно видалено з ${key}');
+  }
 }
 
 function addToWatched(e) {
@@ -155,7 +165,13 @@ function addToStorage(event, key) {
       : [];
   arr.push(movieData);
   localStorage.setItem(key, JSON.stringify(arr));
-  Notify.success(`The movie successfully has been added to ${key}`);
+
+  if (window.location.hash === '#en') {
+    Notify.success(`The movie successfully has been added to ${key}`);
+  }
+  if (window.location.hash === '#uk') {
+    Notify.failure(`Фільм успішно додано до ${key}`);
+  }
 }
 
 function buttonChange(key) {
