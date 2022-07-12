@@ -27,9 +27,7 @@ export async function onQueueBtnClick() {
     Number(id)
   );
 
-  queueMovieId.forEach(id => {
-    movieApiService.getMovieById(id).then(result => {
-      refs.mainMarkup.insertAdjacentHTML('beforeend', idItemMarkup(result));
-    });
-  });
+  queueMovieId.forEach(item =>
+    refs.mainMarkup.insertAdjacentHTML('beforeend', idItemMarkup(item))
+  );
 }
