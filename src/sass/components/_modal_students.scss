@@ -67,6 +67,21 @@ overflow-y: scroll;
 }     
 }
 
+.modal--students::-webkit-scrollbar {
+    width: 0px;
+}
+.modal--students::-webkit-scrollbar {
+    width: 5px;
+}
+
+.modal--students::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+.modal--students::-webkit-scrollbar-thumb {
+    background: #ff6b08;
+    border-radius: 5px;
+}
 .team-name--title {
     margin-bottom: 20px;
     font-weight: 500;

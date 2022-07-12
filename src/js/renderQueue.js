@@ -21,13 +21,26 @@ export async function onQueueBtnClick() {
   refs.queueBtn.removeEventListener('click', onQueueBtnClick);
   refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
 
-  const queueMovieId = JSON.parse(localStorage.getItem('queue')) === null ? [] : [...JSON.parse(localStorage.getItem('queue')).map(id => Number(id))];
+  const queueMovieId =
+    JSON.parse(localStorage.getItem('queue')) === null
+      ? []
+      : [...JSON.parse(localStorage.getItem('queue'))];
 
-  queueMovieId.length === 0 ? refs.clockFrame.classList.remove('is-hiden') : refs.clockFrame.classList.add('is-hiden');
+  // const queueMovieId =
+  //   JSON.parse(localStorage.getItem('queue')) === null
+  //     ? []
+  //     : [...JSON.parse(localStorage.getItem('queue')).map(id => Number(id))];
 
-  queueMovieId.forEach(id => {
-    movieApiService.getMovieById(id).then(result => {
-      refs.mainMarkup.insertAdjacentHTML('beforeend', idItemMarkup(result));
-    });
-  });
+  queueMovieId.length === 0
+    ? refs.clockFrame.classList.remove('is-hiden')
+    : refs.clockFrame.classList.add('is-hiden');
+
+  // queueMovieId.forEach(id => {
+  //   movieApiService.getMovieById(id).then(result => {
+  //     refs.mainMarkup.insertAdjacentHTML('beforeend', idItemMarkup(result));
+  //   });
+  // });
+  queueMovieId.forEach(item =>
+    refs.mainMarkup.insertAdjacentHTML('beforeend', idItemMarkup(item))
+  );
 }
