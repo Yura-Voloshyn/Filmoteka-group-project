@@ -4,6 +4,8 @@ import { refs } from './refs';
 import * as basicLightbox from 'basiclightbox';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { itemMarkup } from './markup/markupModal';
+import { onQueueBtnClick } from './renderQueue';
+import { onWatchedBtnClick } from './renderWatchedLib';
 
 const movieApiService = new MovieApiService();
 
@@ -27,9 +29,18 @@ export async function onMovieCardClick(e) {
   loadAnimationAction.classList.remove('is-hiden'); //loader animation switched-on
   movieData = await movieApiService.getMovieById(movieId); //get from srver movie info
   const movieDatavideo = await movieApiService.getMovieByIdvideos(movieId);
-  const videoId = movieDatavideo.results.find(el =>
-    el.name.includes('Trailer')
-  ).key;
+
+  let videoId;
+  if (movieDatavideo.results.length === 0) {
+    videoID = undefined;
+  } else if (movieDatavideo.results.find(el => el.name.includes('Trailer'))) {
+    videoId = movieDatavideo.results.find(el =>
+      el.name.includes('Trailer')
+    ).key;
+  } else {
+    videoId = movieDatavideo.results[0].key;
+  }
+
   const modalMarkup = itemMarkup(movieData, videoId); // create markup
   modal = basicLightbox.create(modalMarkup, lightBoxOptions); //create modal window//
   modalShow();
@@ -49,11 +60,17 @@ function keydownHandler(e) {
 }
 
 function onPosterClick(e) {
-  e.preventDefault();
-  const player = basicLightbox.create(`
-    <iframe src="https://www.youtube.com/embed/${e.target.dataset.video}" width="80%" height="70%" frameborder="0"></iframe>
-`);
-  player.show();
+  if (e.target.dataset.video === 'undefined') {
+    Notify.failure('There is no video in database');
+  } else {
+    basicLightbox
+      .create(
+        `
+      <iframe src="https://www.youtube.com/embed/${e.target.dataset.video}" width="80%" height="70%" frameborder="0"></iframe>
+  `
+      )
+      .show();
+  }
 }
 
 let btnWatched;
@@ -86,18 +103,23 @@ function checkStorage(key, movieId) {
     localStorage.getItem(key) !== null
       ? JSON.parse(localStorage.getItem(key))
       : [];
-  // console.log(arr);
   return arr.some(movie => movie?.id === Number(movieId));
 }
 
 function removeFromWatched(e) {
   removeFromStorage(e, 'watched');
+  if (refs.watchedBtn.classList.contains('selected')) {
+    onWatchedBtnClick();
+  }
   btnWatched.removeEventListener('click', removeFromWatched);
   btnWatched.addEventListener('click', addToWatched);
 }
 
 function removeFromQueue(e) {
   removeFromStorage(e, 'queue');
+  if (refs.queueBtn.classList.contains('selected')) {
+    onQueueBtnClick();
+  }
   btnQueue.removeEventListener('click', removeFromQueue);
   btnQueue.addEventListener('click', addToQueue);
 }
