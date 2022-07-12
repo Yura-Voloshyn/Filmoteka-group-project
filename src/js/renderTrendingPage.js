@@ -7,6 +7,7 @@ import './language/translateOnLangChange';
 import '../js/language/language-translate-static';
 import './library';
 import { languageTranslate } from './language/language-translate-static';
+import { modalTranslate } from './language/translateOnLangChange';
 
 let singleGenre = [];
 
@@ -28,7 +29,7 @@ movieApiService
   .getGenres(lang)
   .then(res => localStorage.setItem('genres', JSON.stringify(res.data.genres)))
   .catch(eror => console.log(eror));
-
+// modalTranslate();
 async function renderMainPage() {
   refs.selectLang.addEventListener('change', onLanguageChange);
 

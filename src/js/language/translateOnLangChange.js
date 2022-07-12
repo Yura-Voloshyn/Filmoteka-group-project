@@ -59,7 +59,7 @@ export function modalTranslate() {
   document.querySelectorAll('[data-lang]').forEach(el => {
     for (const key in languageTranslate) {
       if (key === el.dataset.lang) {
-        console.log(languageTranslate[key].uk);
+        // console.log(languageTranslate[key].uk);
         el.textContent =
           location.hash === '#uk'
             ? languageTranslate[key].uk
