@@ -8,8 +8,10 @@ export function formatArr(arr, maxLength) {
   let result;
   if (arr.length <= maxLength) {
     result = arr;
-  } else {
+  } else if (window.location.hash === '#en') {
     result = arr.slice(0, maxLength).join(', ') + ', other';
+  } else if (window.location.hash === '#uk') {
+    result = arr.slice(0, maxLength).join(', ') + ', інші';
   }
   return result;
 }

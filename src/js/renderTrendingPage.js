@@ -4,12 +4,13 @@ import { onPaginateBtnClick } from './pagination';
 import { refs } from './refs';
 import { onLanguageChange } from './language/translateOnLangChange';
 import './language/translateOnLangChange';
-
+import '../js/language/language-translate-static';
 import './library';
+import { languageTranslate } from './language/language-translate-static';
 
 let singleGenre = [];
 
-// console.log(asd);
+// console.log(languageTranslate.genreOth.uk);
 export const movieApiService = new MovieApiService();
 
 if (window.location.hash === '#en') {
@@ -62,8 +63,10 @@ export function formatArr(arr, maxLength) {
   let result;
   if (arr.length <= maxLength) {
     result = arr;
-  } else {
+  } else if (window.location.hash === '#en') {
     result = arr.slice(0, maxLength).join(', ') + ', other';
+  } else if (window.location.hash === '#uk') {
+    result = arr.slice(0, maxLength).join(', ') + ', інші';
   }
   return result;
 }
@@ -89,7 +92,7 @@ export function itemMarkup({
       ${title}
     </h2>
     <div class="info">
-    <p class="info-item">
+    <p class="info-item info-other">
       ${formatArr(
         singleGenre.map(genre => genre.name),
         2

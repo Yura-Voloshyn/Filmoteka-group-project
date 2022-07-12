@@ -1,13 +1,3 @@
-/* <div class="lang-select">
-  <select class="select" name="select" id="select">
-    <a href="#" class="opt-en">
-      <option value="en">EN</option>
-    </a>
-    <a href="#" class="opt-uk">
-      <option value="uk">UA</option>
-    </a>
-  </select>
-</div>; */
 import '../library';
 import MovieApiService from '../MovieApiService';
 import { refs } from '../refs';

@@ -31,4 +31,8 @@ export const languageTranslate = {
     en: 'queue',
     uk: 'черга',
   },
+  genreOth: {
+    en: 'other',
+    uk: 'інші',
+  },
 };

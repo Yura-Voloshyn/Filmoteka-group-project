@@ -32,8 +32,14 @@ export async function onFormSubmit(e) {
     .map(item => itemMarkupBySearch(item))
     .join('');
   const max_page = searchData.total_pages;
-  if (movieApiService.query === '' || movieApiService.query === ' ' || searchData.total_results === 0) {
-    Notify.failure('Sorry, there are no movies matching your search query. Please try again.');
+  if (
+    movieApiService.query === '' ||
+    movieApiService.query === ' ' ||
+    searchData.total_results === 0
+  ) {
+    Notify.failure(
+      'Sorry, there are no movies matching your search query. Please try again.'
+    );
     loadAnimationAction.classList.add('is-hiden');
     return;
   } else {
@@ -106,8 +112,10 @@ export function genreEditForRender(arr, maxLength) {
   let result;
   if (arr.length <= maxLength) {
     result = arr;
-  } else {
+  } else if (window.location.hash === '#en') {
     result = arr.slice(0, maxLength).join(', ') + ', other';
+  } else if (window.location.hash === '#uk') {
+    result = arr.slice(0, maxLength).join(', ') + ', інші';
   }
   return result;
 }
