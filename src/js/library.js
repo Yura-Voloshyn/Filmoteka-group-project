@@ -1,5 +1,5 @@
 import { refs } from './refs';
-import { onWatchedBtnClick } from "./renderWatchedLib";
+import { onWatchedBtnClick } from './renderWatchedLib';
 
 refs.header = document.querySelector('header');
 refs.librarySwitcher = document.querySelector('.library__btn--wrapper');
@@ -20,19 +20,14 @@ refs.logoLink.addEventListener('click', () => {
   refs.homePageBtn.parentNode.classList.add('active__page');
   goToHomePage();
 });
-//тут треба додати слухача на кнопку логін
 
 export function menuSwitcher(e) {
-  switch (e.target.innerText) {
-    case 'HOME':
-      e.target.parentNode.classList.add('active__page');
-      goToHomePage();
-      break;
-    case 'MY LIBRARY':
-      e.target.parentNode.classList.add('active__page');
-      showLibrary();
-      break;
-    //add case for login
+  if (e.target.classList.contains('library__btn')) {
+    e.target.parentNode.classList.add('active__page');
+    showLibrary();
+  } else if (e.target.classList.contains('home__btn')) {
+    e.target.parentNode.classList.add('active__page');
+    goToHomePage();
   }
 }
 
@@ -46,8 +41,8 @@ function showLibrary() {
 
   refs.librarySwitcher.classList.remove('visually-hidden');
   refs.wachedBtn.classList.add('selected');
-  refs.mainMarkup.innerHTML = "";
-  
+  refs.mainMarkup.innerHTML = '';
+
   onWatchedBtnClick();
 }
 
@@ -59,6 +54,6 @@ function goToHomePage() {
   refs.form.classList.remove('visually-hidden');
   refs.header.classList.remove('library__header');
   refs.librarySwitcher.classList.add('visually-hidden');
-
-  refs.mainMarkup.innerHTML = "";
+  refs.clockFrame.classList.add('is-hiden');
+  refs.mainMarkup.innerHTML = '';
 }

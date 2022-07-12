@@ -40,17 +40,17 @@
         height: 45px;
     }
 };
-.progress-bar {
-    width: 0.6%;
-    position: fixed;
-    top: 0;
-    right: 0;
-    border-radius: 4px;
-    opacity: 0.9;
-    background: $cl-accent;
-    box-shadow: $cl-modal-text 0px 3px 8px;
+// .progress-bar {
+//     width: 0.6%;
+//     position: fixed;
+//     top: 0;
+//     right: 0;
+//     border-radius: 4px;
+//     opacity: 0.9;
+//     background: $cl-accent;
+//     box-shadow: $cl-modal-text 0px 3px 8px;
 
-    @include tab {
-        width: 0.4%;
-    }
-};
+//     @include tab {
+//         width: 0.4%;
+//     }
+// };

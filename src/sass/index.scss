@@ -1,3 +1,6 @@
+// scrollbar
+@import './base/scrollbar';
+
 // base
 @import './common';
 @import './utils/mixins';
@@ -22,4 +25,6 @@
 @import './layouts/clock';
 
 @import './layouts/modal';
+
 @import './layouts/firebase_modals'
+
