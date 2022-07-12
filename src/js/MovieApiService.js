@@ -35,11 +35,11 @@ export default class MovieApiService {
     return first.data;
   }
 
-  async fetchArticlesSearch(page) {
+  async fetchArticlesSearch(page, lang) {
     const BASE_URL = 'https://api.themoviedb.org/3';
     const name = this.searchQuery;
     localStorage.setItem('name', name);
-    const url = `${BASE_URL}/search/movie?api_key=${this.options.key}&query=${name}&page=${page}&include_adult=false&language=${this.language}`;
+    const url = `${BASE_URL}/search/movie?api_key=${this.options.key}&query=${name}&page=${page}&include_adult=false&language=${lang}`;
     const first = await axios.get(url, this.options);
     return first.data;
   }

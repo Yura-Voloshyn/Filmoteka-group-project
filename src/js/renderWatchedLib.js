@@ -7,7 +7,10 @@ import { clearMarkup } from './renderSearchResult';
 import { idItemMarkup } from './markup/markupById';
 import './renderQueue';
 import { onQueueBtnClick } from './renderQueue';
-
+import '../js/language/translateOnLangChange';
+import '../js/language/language-translate-static';
+import { languageTranslate } from './language/language-translate-static';
+import { modalTranslate } from './language/translateOnLangChange';
 const movieApiService = new MovieApiService();
 
 refs.watchedBtn.addEventListener('click', onWatchedBtnClick);

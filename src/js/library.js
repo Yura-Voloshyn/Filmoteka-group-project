@@ -1,5 +1,9 @@
 import { refs } from './refs';
 import { onWatchedBtnClick } from './renderWatchedLib';
+import '../js/language/translateOnLangChange';
+import '../js/language/language-translate-static';
+import { languageTranslate } from './language/language-translate-static';
+import { modalTranslate } from './language/translateOnLangChange';
 
 refs.header = document.querySelector('header');
 refs.librarySwitcher = document.querySelector('.library__btn--wrapper');
@@ -24,6 +28,7 @@ refs.logoLink.addEventListener('click', () => {
 export function menuSwitcher(e) {
   if (e.target.classList.contains('library__btn')) {
     e.target.parentNode.classList.add('active__page');
+
     showLibrary();
   } else if (e.target.classList.contains('home__btn')) {
     e.target.parentNode.classList.add('active__page');

@@ -3,8 +3,17 @@ import { refs } from './refs';
 import { onPaginateSearchBtnClick } from './paginationSearch';
 import { renderPaginationSearchBtn } from './paginationSearch';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import '../js/language/translateOnLangChange';
+import '../js/language/language-translate-static';
+import { languageTranslate } from './language/language-translate-static';
+import { modalTranslate } from './language/translateOnLangChange';
 // import debounce from 'lodash.debounce';
-
+if (window.location.hash === '#en') {
+  refs.selectLang.value = 'en';
+} else if (window.location.hash === '#uk') {
+  refs.selectLang.value = 'uk';
+}
+const lang = refs.selectLang.value;
 let singleGenre = [];
 const movieApiService = new MovieApiService();
 refs.form.addEventListener('submit', onFormSubmit);
@@ -13,6 +22,7 @@ import { loadAnimationAction } from './renderTrendingPage';
 
 export async function onFormSubmit(e) {
   e.preventDefault();
+  modalTranslate();
   refs.homeBtn.disabled = false;
   refs.pagination.innerHTML = '';
   refs.paginationSearch.innerHTML = '';
@@ -32,7 +42,7 @@ export async function onFormSubmit(e) {
   loadAnimationAction.classList.remove('is-hiden');
   const input = e.currentTarget.elements[0].value;
   movieApiService.query = input;
-  const searchData = await movieApiService.fetchArticlesSearch(1);
+  const searchData = await movieApiService.fetchArticlesSearch(1, lang);
   const searchMarkup = searchData.results
     .map(item => itemMarkupBySearch(item))
     .join('');

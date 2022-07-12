@@ -1,6 +1,5 @@
 // https://api.themoviedb.org/3/movie/550?api_key=b28dcafbfbdc99f3059a27aaeb93fed6
-import './js/language/language-translate-static';
-import './js/language/translateOnLangChange';
+
 import './js/renderTrendingPage';
 import './js/markup/markupTrend-and-search';
 import './js/markup/markupById';
@@ -8,7 +7,8 @@ import './js/themeSwitchByCheckbox';
 // import './js/themeSwitchByCheckbox';
 import './js/notify-params/notify-styles';
 // import { itemMarkup } from './js/renderTrendingPage';
-
+import './js/language/language-translate-static';
+import './js/language/translateOnLangChange';
 import './js/renderSearchResult';
 
 import './js/library';

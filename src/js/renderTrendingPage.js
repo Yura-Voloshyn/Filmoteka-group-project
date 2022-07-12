@@ -3,7 +3,7 @@ import { renderPaginationBtn } from './pagination';
 import { onPaginateBtnClick } from './pagination';
 import { refs } from './refs';
 import { onLanguageChange } from './language/translateOnLangChange';
-import './language/translateOnLangChange';
+import '../js/language/translateOnLangChange';
 import '../js/language/language-translate-static';
 import './library';
 import { languageTranslate } from './language/language-translate-static';
@@ -29,7 +29,7 @@ movieApiService
   .getGenres(lang)
   .then(res => localStorage.setItem('genres', JSON.stringify(res.data.genres)))
   .catch(eror => console.log(eror));
-// modalTranslate();
+modalTranslate();
 async function renderMainPage() {
   refs.selectLang.addEventListener('change', onLanguageChange);
 
