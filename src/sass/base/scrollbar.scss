@@ -1,0 +1,22 @@
+// NO SCROLLBAR
+
+body::-webkit-scrollbar {
+    width: 0px;
+}
+
+// CUSTOM SCROLLBAR (працює лише для десктоп 
+// в ідеалі прибирати функцію прокрутки заповнення помаранчовим кольором 
+// в index.scss- 18строка, в файлі закоментити починаючи з 43 строки)
+
+// body::-webkit-scrollbar {
+//     width: 5px;
+// }
+
+// body::-webkit-scrollbar-track {
+//     background: #000000;
+// }
+
+// body::-webkit-scrollbar-thumb {
+//     background: #ff6b08;
+//     border-radius: 5px;
+// }
