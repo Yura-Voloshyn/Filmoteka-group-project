@@ -57,13 +57,14 @@ export function itemMarkup({
   release_date,
   vote_average,
 }) {
+  let src =
+    poster_path === null
+      ? 'https://stringfixer.com/files/951711496.jpg'
+      : `https://image.tmdb.org/t/p/w342/${poster_path}`;
   if (vote_average < 1) {
     return;
-  } else if (poster_path === null) {
-    return;
-  } else {
-    getGenreName(genre_ids);
-    return `
+  } else getGenreName(genre_ids);
+  return `
         <li class="movie-card" id="${id}">
   <a class="card-link" href="#"><img class="poster-image" src="https://image.tmdb.org/t/p/w342/${poster_path}" alt="${title}" loading="lazy" /></a>
   
@@ -73,9 +74,9 @@ export function itemMarkup({
     <div class="info">
     <p class="info-item">
       ${formatArr(
-      singleGenre.map(genre => genre.name),
-      2
-    )} 
+        singleGenre.map(genre => genre.name),
+        2
+      )} 
     </p>
     <p class="info-item info-item__date">| 
       ${release_date.slice(0, 4)}
@@ -84,5 +85,4 @@ export function itemMarkup({
   </div>
 </li>
       `;
-  }
 }
