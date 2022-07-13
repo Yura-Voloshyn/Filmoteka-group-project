@@ -55,34 +55,40 @@ export function itemMarkup({
   title,
   genre_ids,
   release_date,
-  vote_average,
 }) {
-  if (vote_average < 1) {
-    return;
-  } else if (poster_path === null) {
-    return;
-  } else {
-    getGenreName(genre_ids);
-    return `
+  getGenreName(genre_ids);
+
+  let genresForMkup =
+    genre_ids.length !== 0
+      ? `${formatArr(
+          singleGenre.map(genre => genre.name),
+          2
+        )}`
+      : 'Genres not found';
+  let src =
+    poster_path === null
+      ? 'https://stringfixer.com/files/951711496.jpg'
+      : `https://image.tmdb.org/t/p/w342/${poster_path}`;
+  let relData = !release_date
+    ? 'Date not found'
+    : `${release_date.slice(0, 4)}`;
+
+  return `
         <li class="movie-card" id="${id}">
-  <a class="card-link" href="#"><img class="poster-image" src="https://image.tmdb.org/t/p/w342/${poster_path}" alt="${title}" loading="lazy" /></a>
+  <a class="card-link" href="#"><img class="poster-image" src="${src}" alt="${title}" loading="lazy" /></a>
   
     <h2 class="card-title">
       ${title}
     </h2>
     <div class="info">
     <p class="info-item">
-      ${formatArr(
-      singleGenre.map(genre => genre.name),
-      2
-    )} 
+      ${genresForMkup} 
     </p>
     <p class="info-item info-item__date">| 
-      ${release_date.slice(0, 4)}
+      ${relData}
     </p>
     
   </div>
 </li>
       `;
-  }
 }
