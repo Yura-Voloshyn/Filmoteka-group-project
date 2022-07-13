@@ -1,9 +1,7 @@
 import { studentsData } from './students_arr';
 import { refs } from './refs';
-// import './language-translate-static';
-// import './studName';
-// import './possition';
-import { languageTranslate } from './language/language-translate-static';
+// import { languageTranslate } from './language/language-translate-static';
+// import { modalTranslate } from './language/translateOnLangChange';
 import { studName } from './language/language-translate-static';
 import { possition } from './language/language-translate-static';
 import SimpleLightbox from 'simplelightbox';
@@ -43,6 +41,8 @@ const openLink = () => {
   window.addEventListener('keydown', onKeyPress);
   refs.backdropStEl.classList.remove('is-hidden');
   showConfetti();
+  modalTranslateName();
+  modalTranslatePos();
 };
 
 
@@ -66,14 +66,12 @@ refs.backdropStEl.addEventListener('click', onBackdropClick);
 function onKeyPress(event) {
   if (event.code === 'Escape') {
     closeModalStud();
- 
-  }
+   }
 }
 
 function onBackdropClick(event) {
   if (event.target === event.currentTarget) {
     closeModalStud();
-
   }
 }
 
@@ -109,6 +107,9 @@ function modalTranslatePos() {
     }
   });
 }
+
+
+
 
 // import { studentsData } from './students_arr';
 
