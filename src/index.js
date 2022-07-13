@@ -27,3 +27,11 @@ import './js/paginationSearch';
 import './js/pagination';
 // pagination
 import './js/clock-animation';
+
+// Firebase
+import './js/firebase/firebaseModals';
+import './js/firebase/firebaseInit';
+import './js/firebase/firebaseAuth';
+import './js/firebase/firebaseRegister';
+import './js/firebase/firebaseCheckLoginStatus';
+import './js/firebase/firebaseLogout';
