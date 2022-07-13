@@ -7,6 +7,8 @@ import { itemMarkup } from './markup/markupModal';
 import { onQueueBtnClick } from './renderQueue';
 import { onWatchedBtnClick } from './renderWatchedLib';
 
+import { modalTranslate } from './language/translateOnLangChange';
+
 const movieApiService = new MovieApiService();
 
 const lightBoxOptions = {
@@ -43,8 +45,10 @@ export async function onMovieCardClick(e) {
 
   const modalMarkup = itemMarkup(movieData, videoId); // create markup
   modal = basicLightbox.create(modalMarkup, lightBoxOptions); //create modal window//
+
   modalShow();
   handleButtons(movieId);
+  modalTranslate();
   loadAnimationAction.classList.add('is-hiden'); //loader animation switched-off
 }
 
@@ -170,7 +174,7 @@ function addToStorage(event, key) {
     Notify.success(`The movie successfully has been added to ${key}`);
   }
   if (window.location.hash === '#uk') {
-    Notify.failure(`Фільм успішно додано до ${key}`);
+    Notify.success(`Фільм успішно додано до ${key}`);
   }
 }
 

@@ -6,6 +6,11 @@ import './renderSearchResult';
 import { clearMarkup } from './renderSearchResult';
 import { idItemMarkup } from './markup/markupById';
 import { onWatchedBtnClick } from './renderWatchedLib';
+import '../js/language/translateOnLangChange';
+import '../js/language/language-translate-static';
+import { languageTranslate } from './language/language-translate-static';
+import { modalTranslate } from './language/translateOnLangChange';
+
 let idsForRender = [];
 const movieApiService = new MovieApiService();
 

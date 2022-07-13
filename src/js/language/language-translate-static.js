@@ -34,5 +34,37 @@ export const languageTranslate = {
   genreOth: {
     en: 'other',
     uk: 'інші',
+    votes: {
+      en: 'Vote / Votes',
+      uk: 'Голос / Проголосували',
+    },
+    popularity: {
+      en: 'Popularuty',
+      uk: 'Популярність',
+    },
+    title: {
+      en: 'Original Title',
+      uk: 'Оригінальна назва',
+    },
+    genres: {
+      en: 'Genres',
+      uk: 'Жанри',
+    },
+    about: {
+      en: 'About',
+      uk: 'Про фільм',
+    },
+    clockTopText: {
+      en: 'You haven`t saved anything.',
+      uk: 'Ти ще нічого не зберіг.',
+    },
+    clockMidText: {
+      en: 'DON`T WASTE YOUR TIME!',
+      uk: 'НЕ МАРНУЙ СВОГО ЧАСУ!',
+    },
+    clockBotText: {
+      en: 'Add something . . .',
+      uk: 'Додай що-небудь . . .',
+    },
   },
 };
