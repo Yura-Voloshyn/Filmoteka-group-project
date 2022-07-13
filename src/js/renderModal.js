@@ -25,7 +25,10 @@ refs.mainMarkup.addEventListener('click', onMovieCardClick);
 
 export async function onMovieCardClick(e) {
   e.preventDefault();
-  const movieId = e.path.find(el => el.className === 'movie-card').id; //get movie ID
+  const movieId = e.path.find(el => el.className === 'movie-card')?.id; //get movie ID
+  if (!movieId) {
+    return;
+  }
   loadAnimationAction.classList.remove('is-hiden'); //loader animation switched-on
   movieData = await movieApiService.getMovieById(movieId); //get from srver movie info
   const movieDatavideo = await movieApiService.getMovieByIdvideos(movieId);
