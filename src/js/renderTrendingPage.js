@@ -66,7 +66,7 @@ export function itemMarkup({
   } else getGenreName(genre_ids);
   return `
         <li class="movie-card" id="${id}">
-  <a class="card-link" href="#"><img class="poster-image" src="https://image.tmdb.org/t/p/w342/${poster_path}" alt="${title}" loading="lazy" /></a>
+  <a class="card-link" href="#"><img class="poster-image" src="${src}" alt="${title}" loading="lazy" /></a>
   
     <h2 class="card-title">
       ${title}
