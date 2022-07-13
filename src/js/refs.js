@@ -27,5 +27,11 @@ export const refs = {
   loginForm: document.querySelector('.modal-form.login'),
   registerForm: document.querySelector('.modal-form.register'),
   modalBtn: document.querySelectorAll('.modal-form button[data-action="toggle"]'),
-
+// Students Modal
+  backdropStEl: document.querySelector('.backdrop--students'),
+  listStudents: document.querySelector('.team-items'),
+  linkToDev: document.getElementById('openModalLink'),
+  closeModalBtn: document.getElementById('closeModalStBtn'),
+  closeModalBtnX: document.getElementById('closeModalStBtnX'),
+  renderModal: document.querySelector('.team-items'),
 };

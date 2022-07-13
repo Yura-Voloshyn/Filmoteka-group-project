@@ -119,9 +119,86 @@ export const languageTranslate = {
 
 };
 
-const studName = {
+// const studName = {
+//   yuraVol: {
+//     en: 'Yura Voloshyn',
+//     uk: 'Юрій Волоший',
+//   teamName: {
+//     en: 'YOUR WEEKEND TEAM',
+//     uk: 'ВАША WEEKEND КОМАНДА',
+//   },
+//   closeBtn: {
+//     en: 'Close',
+//     uk: 'Закрити',
+//   },
+// };
+
+export const studName = {
   yuraVol: {
     en: 'Yura Voloshyn',
-    uk: 'Юрій Волоший',
+    uk: 'Юрій Волошин',
+  },
+  sergSma: {
+    en: 'Sergiy Smaga',
+    uk: 'Сергій Смага',
+  },
+  olenaLot: {
+    en: 'Olena Lotos',
+    uk: 'Олена Лотос',
+  },
+  iraShash: {
+    en: 'Iryna Shashko',
+    uk: 'Ірина Шашко',
+  },
+  yuliaPakh: {
+    en: 'Yulia Pakhachuk',
+    uk: 'Юлія Пахачук',
+  },
+  hannaShu: {
+    en: 'Hanna Shumakova',
+    uk: 'Анна Шумакова',
+  },
+  olhatru: {
+    en: 'Olha Truba',
+    uk: 'Ольга Труба',
+  },
+  andrTim: {
+    en: 'Andrew Timoshkin',
+    uk: 'Андрій Тімошкін',
+  },
+};
+
+export const possition = {
+  yuraVol: {
+    en: 'Team Leader',
+    uk: 'Тімлід',
+  },
+  sergSma: {
+    en: 'Scrum Master',
+    uk: 'Скрам Мастер',
+  },
+  olenaLot: {
+    en: 'Developer',
+    uk: 'Розробник',
+  },
+  iraShash: {
+    en: 'Developer',
+    uk: 'Розробник',
+  },
+  yuliaPakh: {
+    en: 'Developer',
+    uk: 'Розробник',
+  },
+  hannaShu: {
+    en: 'Developer',
+    uk: 'Розробник',
+  },
+  olhatru: {
+    en: 'Developer',
+    uk: 'Розробник',
+  },
+  andrTim: {
+    en: 'Developer',
+    uk: 'Розробник',
   },
 };
