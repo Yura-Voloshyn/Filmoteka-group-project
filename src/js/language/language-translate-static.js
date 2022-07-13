@@ -68,3 +68,10 @@ export const languageTranslate = {
     uk: 'Додай що-небудь . . .',
   },
 };
+
+const studName = {
+  yuraVol: {
+    en: 'Yura Voloshyn',
+    uk: 'Юрій Волоший',
+  },
+};
