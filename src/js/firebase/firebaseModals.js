@@ -1,4 +1,5 @@
 import { refs } from '../refs';
+import { modalTranslate } from './language/translateOnLangChange';
 
 const switchModals = () => {
   refs.loginForm.classList.toggle('is-hidden');
@@ -32,6 +33,8 @@ const buttonToggle = () => {
     ? (refs.openLoginBtn.textContent = `Log Out`)
     : (refs.openLoginBtn.textContent = `Log In`);
 };
+
+modalTranslate();
 
 refs.modalBtn[0].addEventListener('click', switchModals);
 refs.modalBtn[1].addEventListener('click', switchModals);
