@@ -1,4 +1,4 @@
-import { studentsData } from './students_arr';
+import { studentsDataEn, studentsDataUk } from './students_arr';
 import { refs } from './refs';
 // import { languageTranslate } from './language/language-translate-static';
 import { modalTranslate } from './language/translateOnLangChange';
@@ -8,9 +8,10 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import confetti from 'canvas-confetti';
 
-const studentItems = studentsData
-  .map(({ photo_url, name, githab, possition }) => {
-    return `
+if (location.hash === '#en') {
+  const studentItemsEn = studentsDataEn
+    .map(({ photo_url, name, githab, possition }) => {
+      return `
   <li class='team'>
   <div class='card__tumb team__tumb'>
     <img data-lang="studName" class='card__image team__image' src='${photo_url}' alt='${name}' />
@@ -25,8 +26,31 @@ const studentItems = studentsData
 <p data-lang="possition" class='ref__pos'>${possition}</p>
 </li>
 `;
-  })
-  .join('');
+    })
+    .join('');
+}
+if (location.hash === '#en') {
+  let studentItemsUk = studentsDataUk
+    .map(({ photo_url, name, githab, possition }) => {
+      return `
+  <li class='team'>
+  <div class='card__tumb team__tumb'>
+    <img data-lang="studName" class='card__image team__image' src='${photo_url}' alt='${name}' />
+  </div>
+  <a href='${githab}' class='ref'>
+  <div class='ref__cover'>
+  <span class='ref__icon'></span>
+  <h3 data-lang="studName" class='ref__title'>${name}</h3>
+  
+   </div>
+  </a>
+<p data-lang="possition" class='ref__pos'>${possition}</p>
+</li>
+`;
+    })
+    .join('');
+  return studentItemsUk;
+}
 
 //   new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: "alt"});
 // console.log(studentItems);
@@ -38,7 +62,7 @@ const openLink = () => {
   modalTranslate();
   modalTranslateName();
   modalTranslatePos();
-  refs.listStudents.insertAdjacentHTML('afterbegin', studentItems);
+  refs.listStudents.insertAdjacentHTML('afterbegin', studentItemsUk);
   window.addEventListener('keydown', onKeyPress);
   refs.backdropStEl.classList.remove('is-hidden');
   showConfetti();
@@ -71,12 +95,12 @@ function onBackdropClick(event) {
   }
 }
 
-function showConfetti() {
-  confetti.create(document.getElementById('canvas'), {
-    resize: true,
-    useWorker: true,
-  })({ particleCount: 100, spread: 160, zIndex: 2021 });
-}
+// function showConfetti() {
+//   confetti.create(document.getElementById('canvas'), {
+//     resize: true,
+//     useWorker: true,
+//   })({ particleCount: 100, spread: 160, zIndex: 2021 });
+// }
 
 function modalTranslateName() {
   document.querySelectorAll('[data-lang]').forEach(el => {

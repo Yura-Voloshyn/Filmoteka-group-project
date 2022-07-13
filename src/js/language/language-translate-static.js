@@ -87,11 +87,19 @@ export const languageTranslate = {
     en: 'Add to queue',
     uk: 'Додати до черги',
   },
+  teamName: {
+    en: 'YOUR WEEKEND TEAM',
+    uk: 'ВАША WEEKEND КОМАНДА',
+  },
+  closeBtn: {
+    en: 'Close',
+    uk: 'Закрити',
+  },
   // KEYS FOR LOGIN TRANSLATION
   emailPlaceholder: {
-      en: 'Email',
-      uk: 'Введіть Email',
-    },
+    en: 'Email',
+    uk: 'Введіть Email',
+  },
   passwordPlaceholder: {
     en: 'Password',
     uk: 'Введіть Пароль',
@@ -116,7 +124,6 @@ export const languageTranslate = {
     en: 'Don`t have an account?',
     uk: 'Немає облікового запису?',
   },
-
 };
 
 // const studName = {
