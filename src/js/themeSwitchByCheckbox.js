@@ -1,5 +1,8 @@
 import { refs } from './refs';
-
+import { onQueueBtnClick } from './renderQueue';
+import './library';
+import { showLibrary } from './library';
+import { menuSwitcher } from './library';
 window.addEventListener('load', windowLoad);
 
 export function windowLoad() {
@@ -7,7 +10,8 @@ export function windowLoad() {
   const themeBtn = document.querySelector('.theme-btn');
   const htmlBlock = document.documentElement;
   const saveUserTheme = localStorage.getItem('user-theme');
-  //   console.log(htmlBlock);
+  // menuSwitcher();
+  // showLibrary();
   let userTheme;
   if (window.matchMedia) {
     userTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -19,26 +23,12 @@ export function windowLoad() {
     .addEventListener('change', e => {
       !saveUserTheme ? changeTheme() : null;
     });
-  //     {userTheme = wilight
-  //       .matchMedia('(preferce-color-scheme: dark)')
-  //       .addEventListener('change', e => {
-  //         !saveUserTheme ? changeTheme() : null;
-  //       });
-  //   }
-  //
 
   if (themeBtn) {
     themeBtn.addEventListener('click', function (e) {
       changeTheme(true);
     });
   }
-  //   const asd = (chbox.checked ^= 1);
-  //   console.log(asd);
-  // if ((chbox.checked ^= 1)) {
-  //   chbox.addEventListener('click', function (e) {
-  //     localStorage.setItem('user-theme', '');
-  //   });
-  // }
 
   function setThemeClass() {
     if (saveUserTheme) {

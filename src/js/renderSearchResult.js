@@ -3,8 +3,17 @@ import { refs } from './refs';
 import { onPaginateSearchBtnClick } from './paginationSearch';
 import { renderPaginationSearchBtn } from './paginationSearch';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import '../js/language/translateOnLangChange';
+import '../js/language/language-translate-static';
+import { languageTranslate } from './language/language-translate-static';
+import { modalTranslate } from './language/translateOnLangChange';
 // import debounce from 'lodash.debounce';
-
+if (window.location.hash === '#en') {
+  refs.selectLang.value = 'en';
+} else if (window.location.hash === '#uk') {
+  refs.selectLang.value = 'uk';
+}
+const lang = refs.selectLang.value;
 let singleGenre = [];
 const movieApiService = new MovieApiService();
 refs.form.addEventListener('submit', onFormSubmit);
@@ -13,13 +22,19 @@ import { loadAnimationAction } from './renderTrendingPage';
 
 export async function onFormSubmit(e) {
   e.preventDefault();
+  modalTranslate();
   refs.homeBtn.disabled = false;
   refs.pagination.innerHTML = '';
   refs.paginationSearch.innerHTML = '';
   refs.mainMarkup.innerHTML = '';
   movieApiService.query = e.currentTarget.elements[0].value;
   if (movieApiService.query === '') {
-    Notify.failure('input field cannot be empty.');
+    if (window.location.hash === '#en') {
+      Notify.failure('input field cannot be empty.');
+    }
+    if (window.location.hash === '#uk') {
+      Notify.failure('поле пошуку не може бути порожнім.');
+    }
     return;
   }
   clearMarkup();
@@ -27,13 +42,27 @@ export async function onFormSubmit(e) {
   loadAnimationAction.classList.remove('is-hiden');
   const input = e.currentTarget.elements[0].value;
   movieApiService.query = input;
-  const searchData = await movieApiService.fetchArticlesSearch(1);
+  const searchData = await movieApiService.fetchArticlesSearch(1, lang);
   const searchMarkup = searchData.results
     .map(item => itemMarkupBySearch(item))
     .join('');
   const max_page = searchData.total_pages;
-  if (movieApiService.query === '' || movieApiService.query === ' ' || searchData.total_results === 0) {
-    Notify.failure('Sorry, there are no movies matching your search query. Please try again.');
+  if (
+    movieApiService.query === '' ||
+    movieApiService.query === ' ' ||
+    searchData.total_results === 0
+  ) {
+    if (window.location.hash === '#en') {
+      Notify.failure(
+        'Sorry, there are no movies matching your search query. Please try again.'
+      );
+    }
+    if (window.location.hash === '#uk') {
+      Notify.failure(
+        'На жаль, немає фільмів, які відповідають вашому пошуковому запиту. Будь ласка спробуйте ще раз.'
+      );
+    }
+
     loadAnimationAction.classList.add('is-hiden');
     return;
   } else {
@@ -41,9 +70,17 @@ export async function onFormSubmit(e) {
   }
   loadAnimationAction.classList.add('is-hiden');
   if (searchData.total_results === 0) {
-    Notify.failure(
-      'Sorry, there are no movies matching your search query. Please try again.'
-    );
+    if (window.location.hash === '#en') {
+      Notify.failure(
+        'Sorry, there are no movies matching your search query. Please try again.'
+      );
+    }
+    if (window.location.hash === '#uk') {
+      Notify.failure(
+        'На жаль, немає фільмів, які відповідають вашому пошуковому запиту. Будь ласка спробуйте ще раз.'
+      );
+    }
+
     return;
   }
   refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
@@ -106,8 +143,10 @@ export function genreEditForRender(arr, maxLength) {
   let result;
   if (arr.length <= maxLength) {
     result = arr;
-  } else {
+  } else if (window.location.hash === '#en') {
     result = arr.slice(0, maxLength).join(', ') + ', other';
+  } else if (window.location.hash === '#uk') {
+    result = arr.slice(0, maxLength).join(', ') + ', інші';
   }
   return result;
 }
