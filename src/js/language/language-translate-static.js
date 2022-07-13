@@ -67,6 +67,18 @@ export const languageTranslate = {
     en: 'Add something . . .',
     uk: 'Додай що-небудь . . .',
   },
+  footText1: {
+    en: '© 2022 | All Rights Reserved | Developed with',
+    uk: '© 2022 | Всі права захищенні | Розроблено з',
+  },
+  footText2: {
+    en: 'by',
+    uk: 'від',
+  },
+  footText3: {
+    en: 'GoIT Students',
+    uk: 'Студентів GoIT',
+  },
 };
 
 const studName = {
