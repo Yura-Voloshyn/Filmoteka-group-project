@@ -1,8 +1,15 @@
 import { studentsData } from './students_arr';
 import { refs } from './refs';
+// import './language-translate-static';
+// import './studName';
+// import './possition';
+import { languageTranslate } from './language/language-translate-static';
+import { studName } from './language/language-translate-static';
+import { possition } from './language/language-translate-static';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import confetti from 'canvas-confetti';
+
 
 
 const studentItems = studentsData
@@ -10,16 +17,16 @@ const studentItems = studentsData
     return `
   <li class='team'>
   <div class='card__tumb team__tumb'>
-    <img class='card__image team__image' src='${photo_url}' alt='${name}' />
+    <img data-lang="studName" class='card__image team__image' src='${photo_url}' alt='${name}' />
   </div>
   <a href='${githab}' class='ref'>
   <div class='ref__cover'>
   <span class='ref__icon'></span>
-  <h3 class='ref__title'>${name}</h3>
+  <h3 data-lang="studName" class='ref__title'>${name}</h3>
   
    </div>
   </a>
-<p class='ref__pos'>${possition}</p>
+<p data-lang="possition" class='ref__pos'>${possition}</p>
 </li>
 `;
   })
@@ -77,7 +84,31 @@ function showConfetti() {
   })({ particleCount: 100, spread: 160, zIndex: 2021 });
 }
 
+function modalTranslateName() {
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    for (const key in studName) {
+      if (key === el.dataset.lang) {
+        el.textContent =
+          location.hash === '#uk'
+            ? studName[key].uk
+            : studName[key].en;
+      }
+    }
+  });
+}
 
+function modalTranslatePos() {
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    for (const key in possition) {
+      if (key === el.dataset.lang) {
+        el.textContent =
+          location.hash === '#uk'
+            ? possition[key].uk
+            : possition[key].en;
+      }
+    }
+  });
+}
 
 // import { studentsData } from './students_arr';
 
