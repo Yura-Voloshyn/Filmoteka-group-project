@@ -1,5 +1,6 @@
 import { refs } from '../refs';
-import { modalTranslate } from './language/translateOnLangChange';
+import { modalTranslate } from '../language/translateOnLangChange';
+import { languageTranslate } from '../language/language-translate-static';
 
 const switchModals = () => {
   refs.loginForm.classList.toggle('is-hidden');
@@ -34,6 +35,23 @@ const buttonToggle = () => {
     : (refs.openLoginBtn.textContent = `Log In`);
 };
 
+//Translation
+
+switch (window.location.hash) {
+  case '#en':
+    document.querySelector("input[data-lang='emailPlaceholder']").placeholder = languageTranslate.emailPlaceholder.en;
+    document.querySelector("input[data-lang='passwordPlaceholder']").placeholder = languageTranslate.passwordPlaceholder.en;
+    document.querySelector("input[data-lang='repeatPlaceholder']").placeholder = languageTranslate.repeatPlaceholder.en;
+
+    break;
+  case '#uk':
+    document.querySelector("input[data-lang='emailPlaceholder']").placeholder = languageTranslate.emailPlaceholder.uk;
+    document.querySelector("input[data-lang='passwordPlaceholder']").placeholder = languageTranslate.passwordPlaceholder.uk;
+    document.querySelector("input[data-lang='repeatPlaceholder']").placeholder = languageTranslate.repeatPlaceholder.uk;
+
+    break;
+};
+
 modalTranslate();
 
 refs.modalBtn[0].addEventListener('click', switchModals);
@@ -41,37 +59,3 @@ refs.modalBtn[1].addEventListener('click', switchModals);
 refs.openLoginBtn.addEventListener('click', openLoginModal);
 refs.closeLoginBtn.addEventListener('click', closeLoginModal);
 refs.loginBackdrop.addEventListener('click', onBackdropClick);
-
-
-
-// KEYS FOR LOGIN TRANSLATION
-
-// emailPlaceholder: {
-//     en: 'Email',
-//     uk: 'Введіть Email',
-//   },
-// passwordPlaceholder: {
-//   en: 'Password',
-//   uk: 'Введіть Пароль',
-// },
-// repeatPlaceholder: {
-//   en: 'Repeat Password',
-//   uk: 'Повторіть Пароль',
-// },
-// registerBtn: {
-//   en: 'Register',
-//   uk: 'Реєстрація',
-// },
-// loginBtn: {
-//   en: 'Login',
-//   uk: 'Увійти',
-// },
-// account: {
-//   en: 'Have an account?',
-//   uk: 'Вже є аккаунт?',
-// },
-// noAccount: {
-//   en: 'Don`t have an account?',
-//   uk: 'Немає облікового запису?',
-// },
-

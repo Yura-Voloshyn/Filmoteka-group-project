@@ -116,6 +116,10 @@ export const languageTranslate = {
     en: 'Login',
     uk: 'Увійти',
   },
+  logoutBtn: {
+    en: 'Log Out',
+    uk: 'Вийти',
+  },
   account: {
     en: 'Have an account?',
     uk: 'Вже є аккаунт?',
@@ -163,7 +167,7 @@ export const studName = {
   },
   hannaShu: {
     en: 'Hanna Shumakova',
-    uk: 'Анна Шумакова',
+    uk: 'Ганна Шумакова',
   },
   olhatru: {
     en: 'Olha Truba',
@@ -182,7 +186,7 @@ export const possition = {
   },
   sergSma: {
     en: 'Scrum Master',
-    uk: 'Скрам Мастер',
+    uk: 'Скрам Майстер',
   },
   olenaLot: {
     en: 'Developer',
