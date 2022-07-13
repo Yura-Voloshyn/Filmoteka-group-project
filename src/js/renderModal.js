@@ -47,8 +47,8 @@ export async function onMovieCardClick(e) {
   modal = basicLightbox.create(modalMarkup, lightBoxOptions); //create modal window//
 
   modalShow();
-  handleButtons(movieId);
   modalTranslate();
+  handleButtons(movieId);
   loadAnimationAction.classList.add('is-hiden'); //loader animation switched-off
 }
 
@@ -181,7 +181,18 @@ function addToStorage(event, key) {
 function buttonChange(key) {
   let btn = document.querySelector(`.button-${key}`);
   btn.classList.toggle('already-added');
-  btn.textContent === `Add to ${key}`
-    ? (btn.textContent = `Remove from ${key}`)
-    : (btn.textContent = `Add to ${key}`);
+
+  switch (window.location.hash) {
+    case '#en':
+      btn.textContent === `Add to ${key}`
+        ? (btn.textContent = `Remove from ${key}`)
+        : (btn.textContent = `Add to ${key}`);
+      break;
+    case '#uk':
+      key = key === 'watched' ? 'переглянутих' : 'черги';
+      btn.textContent === `Додати до ${key}`
+        ? (btn.textContent = `Видалити з ${key}`)
+        : (btn.textContent = `Додати до ${key}`);
+      break;
+  }
 }

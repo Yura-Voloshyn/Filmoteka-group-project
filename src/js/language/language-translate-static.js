@@ -79,6 +79,14 @@ export const languageTranslate = {
     en: 'GoIT Students',
     uk: 'Студентів GoIT',
   },
+  watched: {
+    en: 'Add to watched',
+    uk: 'Додати до переглянутих',
+  },
+  queue: {
+    en: 'Add to queue',
+    uk: 'Додати до черги',
+  },
 };
 
 const studName = {
