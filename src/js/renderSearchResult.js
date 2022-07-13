@@ -124,19 +124,22 @@ export function itemMarkupBySearch({
   title,
   genre_ids,
   release_date,
-  vote_average,
 }) {
-  if (vote_average < 1) {
-    return;
-  } else if (poster_path === null) {
-    return;
-  }
+  getGenreName(genre_ids);
+
+  let genresForMkup =
+    genre_ids.length !== 0
+      ? `${genreEditForRender(
+          singleGenre.map(genre => genre.name),
+          2
+        )}`
+      : 'Genres not found';
   let src =
     poster_path === null
       ? 'https://stringfixer.com/files/951711496.jpg'
       : `https://image.tmdb.org/t/p/w342/${poster_path}`;
-  !release_date ? '-' : release_date;
-  getGenreName(genre_ids);
+  let relData = !release_date ? 'Not found' : `${release_date.slice(0, 4)}`;
+
   return `
         <li class="movie-card" id="${id}">
   <a class="card-link" href="#"><img class="poster-image" src="${src}" alt="${title}" loading="lazy" /></a>
@@ -145,13 +148,10 @@ export function itemMarkupBySearch({
     </h2>
     <div class="info">
     <p class="info-item">
-      ${genreEditForRender(
-        singleGenre.map(genre => genre.name),
-        2
-      )} 
+      ${genresForMkup} 
     </p>
     <p class="info-item info-item__date">| 
-      ${release_date.slice(0, 4)}
+      ${relData}
     </p>
   </div>
 </li>
