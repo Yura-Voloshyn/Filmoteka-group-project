@@ -157,7 +157,6 @@ export function itemMarkupBySearch({
   title,
   genre_ids,
   release_date,
-  vote_average,
 }) {
   let src =
     poster_path === null
@@ -175,13 +174,10 @@ export function itemMarkupBySearch({
     </h2>
     <div class="info">
     <p class="info-item">
-      ${genreEditForRender(
-        singleGenre.map(genre => genre.name),
-        2
-      )} 
+      ${genresForMkup} 
     </p>
     <p class="info-item info-item__date">| 
-      ${release_date.slice(0, 4)}
+      ${relData}
     </p>
   </div>
 </li>

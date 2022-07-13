@@ -12,6 +12,13 @@ export function itemMarkup(
   },
   videoId
 ) {
+  let genresForMkup =
+    genres.length !== 0 ? `${genresToString(genres)}` : 'Genres not found';
+  let src =
+    poster_path === null
+      ? 'https://stringfixer.com/files/951711496.jpg'
+      : `https://image.tmdb.org/t/p/w500/${poster_path}`;
+
   return `
   <div class='modal'>
   <button class="close-modal"></button>
@@ -19,7 +26,7 @@ export function itemMarkup(
     <div class="card-div"
       ><img
         class="movie-poster"
-        src="https://image.tmdb.org/t/p/w500/${poster_path}"
+        src="${src}"
         alt="${title}"
         loading="lazy"
         data-video='${videoId}'

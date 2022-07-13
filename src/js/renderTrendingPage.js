@@ -77,7 +77,6 @@ export function itemMarkup({
   title,
   genre_ids,
   release_date,
-  vote_average,
 }) {
   let src =
     poster_path === null
@@ -106,7 +105,7 @@ export function itemMarkup({
       )} 
     </p>
     <p class="info-item info-item__date">| 
-      ${release_date.slice(0, 4)}
+      ${relData}
     </p>
     
   </div>
