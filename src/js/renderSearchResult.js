@@ -135,9 +135,7 @@ export function itemMarkupBySearch({
     poster_path === null
       ? 'https://stringfixer.com/files/951711496.jpg'
       : `https://image.tmdb.org/t/p/w342/${poster_path}`;
-  if (vote_average < 1) {
-    return;
-  }
+  !release_date ? '-' : release_date;
   getGenreName(genre_ids);
   return `
         <li class="movie-card" id="${id}">
