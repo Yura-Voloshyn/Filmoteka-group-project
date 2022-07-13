@@ -32,7 +32,7 @@ export async function onMovieCardClick(e) {
 
   let videoId;
   if (movieDatavideo.results.length === 0) {
-    videoID = undefined;
+    videoId = undefined;
   } else if (movieDatavideo.results.find(el => el.name.includes('Trailer'))) {
     videoId = movieDatavideo.results.find(el =>
       el.name.includes('Trailer')
