@@ -1,4 +1,4 @@
-import { refs } from './refs';
+import { refs } from '../refs';
 
 const switchModals = () => {
   refs.loginForm.classList.toggle('is-hidden');
@@ -25,6 +25,12 @@ const onBackdropClick = (event) => {
   if (event.target === event.currentTarget) {
     closeLoginModal();
   }
+};
+
+const buttonToggle = () => {
+  refs.openLoginBtn.textContent.toLowerCase() === 'log in'
+    ? (refs.openLoginBtn.textContent = `Log Out`)
+    : (refs.openLoginBtn.textContent = `Log In`);
 };
 
 refs.modalBtn[0].addEventListener('click', switchModals);
