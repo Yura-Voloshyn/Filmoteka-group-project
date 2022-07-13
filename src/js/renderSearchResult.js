@@ -32,8 +32,14 @@ export async function onFormSubmit(e) {
     .map(item => itemMarkupBySearch(item))
     .join('');
   const max_page = searchData.total_pages;
-  if (movieApiService.query === '' || movieApiService.query === ' ' || searchData.total_results === 0) {
-    Notify.failure('Sorry, there are no movies matching your search query. Please try again.');
+  if (
+    movieApiService.query === '' ||
+    movieApiService.query === ' ' ||
+    searchData.total_results === 0
+  ) {
+    Notify.failure(
+      'Sorry, there are no movies matching your search query. Please try again.'
+    );
     loadAnimationAction.classList.add('is-hiden');
     return;
   } else {
@@ -124,11 +130,18 @@ export function itemMarkupBySearch({
     return;
   } else if (poster_path === null) {
     return;
-  } else {
-    getGenreName(genre_ids);
-    return `
+  }
+  let src =
+    poster_path === null
+      ? 'https://stringfixer.com/files/951711496.jpg'
+      : `https://image.tmdb.org/t/p/w342/${poster_path}`;
+  if (vote_average < 1) {
+    return;
+  }
+  getGenreName(genre_ids);
+  return `
         <li class="movie-card" id="${id}">
-  <a class="card-link" href="#"><img class="poster-image" src="https://image.tmdb.org/t/p/w342/${poster_path}" alt="${title}" loading="lazy" /></a>
+  <a class="card-link" href="#"><img class="poster-image" src="${src}" alt="${title}" loading="lazy" /></a>
     <h2 class="card-title">
       ${title}
     </h2>
@@ -145,6 +158,6 @@ export function itemMarkupBySearch({
   </div>
 </li>
       `;
-  }
 }
+
 refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
