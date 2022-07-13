@@ -64,6 +64,11 @@
     background-color: transparent;
     border-radius: 5px;
     border: 1px solid $cl-white-primary;
+
+    &:hover {
+        background-color: #ff00193b;
+        box-shadow: 8px 8px 14px -8px rgba(255, 255, 255, 1);
+    }
     
     @include tab {
         width: 148px;

@@ -22,6 +22,7 @@
     "basiclightbox": "^5.0.4",
     "canvas-confetti": "^1.5.1",
     "confetti-js": "0.0.18",
+    "firebase": "^9.9.0",
     "hbs": "^4.2.0",
     "lodash.debounce": "^4.0.8",
     "modern-normalize": "^1.1.0",
