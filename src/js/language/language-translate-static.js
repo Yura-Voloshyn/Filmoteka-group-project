@@ -87,22 +87,14 @@ export const languageTranslate = {
     en: 'Add to queue',
     uk: 'Додати до черги',
   },
-};
-
-const studName = {
-  yuraVol: {
-    en: 'Yura Voloshyn',
-    uk: 'Юрій Волоший',
+  teamName: {
+    en: 'YOUR WEEKEND TEAM',
+    uk: 'ВАША WEEKEND КОМАНДА',
   },
-    teamName: {
-      en: 'YOUR WEEKEND TEAM',
-      uk: 'ВАША WEEKEND КОМАНДА',
+  closeBtn: {
+    en: 'Close',
+    uk: 'Закрити',
   },
-    closeBtn: {
-      en: 'Close',
-      uk: 'Закрити', 
-  },
-
 };
 
 export const studName = {

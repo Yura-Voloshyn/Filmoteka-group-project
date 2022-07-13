@@ -1,14 +1,12 @@
 import { studentsData } from './students_arr';
 import { refs } from './refs';
 // import { languageTranslate } from './language/language-translate-static';
-// import { modalTranslate } from './language/translateOnLangChange';
+import { modalTranslate } from './language/translateOnLangChange';
 import { studName } from './language/language-translate-static';
 import { possition } from './language/language-translate-static';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import confetti from 'canvas-confetti';
-
-
 
 const studentItems = studentsData
   .map(({ photo_url, name, githab, possition }) => {
@@ -37,25 +35,23 @@ const renderModal = document.querySelector('.team-items');
 
 const openLink = () => {
   renderModal.innerHTML = '';
+  modalTranslate();
+  modalTranslateName();
+  modalTranslatePos();
   refs.listStudents.insertAdjacentHTML('afterbegin', studentItems);
   window.addEventListener('keydown', onKeyPress);
   refs.backdropStEl.classList.remove('is-hidden');
   showConfetti();
-  modalTranslateName();
-  modalTranslatePos();
 };
-
 
 const closeModalStud = () => {
   refs.backdropStEl.classList.add('is-hidden');
   window.removeEventListener('keydown', onKeyPress);
-
 };
 
 const closeModalStudX = () => {
   refs.backdropStEl.classList.add('is-hidden');
   window.removeEventListener('keydown', onKeyPress);
-
 };
 
 refs.linkToDev.addEventListener('click', openLink);
@@ -66,7 +62,7 @@ refs.backdropStEl.addEventListener('click', onBackdropClick);
 function onKeyPress(event) {
   if (event.code === 'Escape') {
     closeModalStud();
-   }
+  }
 }
 
 function onBackdropClick(event) {
@@ -87,9 +83,7 @@ function modalTranslateName() {
     for (const key in studName) {
       if (key === el.dataset.lang) {
         el.textContent =
-          location.hash === '#uk'
-            ? studName[key].uk
-            : studName[key].en;
+          location.hash === '#uk' ? studName[key].uk : studName[key].en;
       }
     }
   });
@@ -100,16 +94,11 @@ function modalTranslatePos() {
     for (const key in possition) {
       if (key === el.dataset.lang) {
         el.textContent =
-          location.hash === '#uk'
-            ? possition[key].uk
-            : possition[key].en;
+          location.hash === '#uk' ? possition[key].uk : possition[key].en;
       }
     }
   });
 }
-
-
-
 
 // import { studentsData } from './students_arr';
 
@@ -138,7 +127,7 @@ function modalTranslatePos() {
 //   <div class='ref__cover'>
 //   <span class='ref__icon'></span>
 //   <h3 class='ref__title'>${name}</h3>
-  
+
 //    </div>
 //   </a>
 // <p class='ref__pos'>${possition}</p>
@@ -160,7 +149,6 @@ function modalTranslatePos() {
 //   showConfetti();
 // };
 
-
 // const closeModalStud = () => {
 //   backdropStEl.classList.add('is-hidden');
 //   window.removeEventListener('keydown', onKeyPress);
@@ -181,7 +169,7 @@ function modalTranslatePos() {
 // function onKeyPress(event) {
 //   if (event.code === 'Escape') {
 //     closeModalStud();
- 
+
 //   }
 // }
 
