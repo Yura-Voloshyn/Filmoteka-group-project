@@ -8,7 +8,6 @@
 }
 
 .modal {
-  
   position: absolute;
   top: 0;
   left: 50%;
@@ -211,7 +210,6 @@
 }
 
 @media screen and (max-width: 1279px) {
-
   .modal-rendered {
     .card-div {
       max-width: 264px;
@@ -256,17 +254,17 @@
     padding: 20px;
 
     &::-webkit-scrollbar {
-        width: 5px;
-      }
-    
-      &::-webkit-scrollbar-track {
-        background: rgba($color: $cl-primary, $alpha: 0.3);
-      }
-    
-      &::-webkit-scrollbar-thumb {
-        background: $cl-accent;
-        border-radius: 5px;
-      }
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba($color: $cl-primary, $alpha: 0.3);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $cl-accent;
+      border-radius: 5px;
+    }
   }
 
   .modal-rendered {
