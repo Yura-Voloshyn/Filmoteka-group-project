@@ -42,9 +42,9 @@ export default class MovieApiService {
     return first.data;
   }
 
-  async fetchArticlesSearchClick(page) {
+  async fetchArticlesSearchClick(page, lang) {
     const searchName = localStorage.getItem('name');
-    const url = `${BASE_URL}/search/movie?api_key=${this.options.key}&query=${searchName}&page=${page}&include_adult=false&language=${this.language}`;
+    const url = `${BASE_URL}/search/movie?api_key=${this.options.key}&query=${searchName}&page=${page}&include_adult=false&language=${lang}`;
     const first = await axios.get(url, this.options);
     return first.data;
   }
