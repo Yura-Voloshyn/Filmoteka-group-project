@@ -17,6 +17,7 @@ const lightBoxOptions = {
   },
   onClose: () => {
     window.removeEventListener('keydown', keydownHandler);
+    enableScroll();
   },
 };
 
@@ -27,6 +28,7 @@ refs.mainMarkup.addEventListener('click', onMovieCardClick);
 const lang = refs.selectLang.value;
 export async function onMovieCardClick(e) {
   e.preventDefault();
+  disableScroll();
   const movieId = e.path.find(el => el.className === 'movie-card')?.id; //get movie ID
   if (!movieId) {
     return;
@@ -50,8 +52,8 @@ export async function onMovieCardClick(e) {
   modal = basicLightbox.create(modalMarkup, lightBoxOptions); //create modal window//
 
   modalShow();
-  handleButtons(movieId);
   modalTranslate();
+  handleButtons(movieId);
   loadAnimationAction.classList.add('is-hiden'); //loader animation switched-off
 }
 
@@ -184,7 +186,26 @@ function addToStorage(event, key) {
 function buttonChange(key) {
   let btn = document.querySelector(`.button-${key}`);
   btn.classList.toggle('already-added');
-  btn.textContent === `Add to ${key}`
-    ? (btn.textContent = `Remove from ${key}`)
-    : (btn.textContent = `Add to ${key}`);
+
+  switch (window.location.hash) {
+    case '#en':
+      btn.textContent === `Add to ${key}`
+        ? (btn.textContent = `Remove from ${key}`)
+        : (btn.textContent = `Add to ${key}`);
+      break;
+    case '#uk':
+      key = key === 'watched' ? 'переглянутих' : 'черги';
+      btn.textContent === `Додати до ${key}`
+        ? (btn.textContent = `Видалити з ${key}`)
+        : (btn.textContent = `Додати до ${key}`);
+      break;
+  }
 }
+
+function disableScroll() {
+  document.body.classList.add("stop-scrolling");
+};
+  
+function enableScroll() {
+  document.body.classList.remove("stop-scrolling");
+};

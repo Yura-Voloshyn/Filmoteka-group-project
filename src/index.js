@@ -1,4 +1,5 @@
 // https://api.themoviedb.org/3/movie/550?api_key=b28dcafbfbdc99f3059a27aaeb93fed6
+import './js/refs';
 
 import './js/renderTrendingPage';
 import './js/markup/markupTrend-and-search';
@@ -27,7 +28,7 @@ import './js/modal_students';
 import './js/paginationSearch';
 import './js/pagination';
 // pagination
-import "./js/clock-animation";
+import './js/clock-animation';
 
 // Firebase
 import './js/firebase/firebaseModals';

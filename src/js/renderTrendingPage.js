@@ -103,11 +103,8 @@ export function itemMarkup({
       ${title}
     </h2>
     <div class="info">
-    <p class="info-item info-other">
-      ${formatArr(
-        singleGenre.map(genre => genre.name),
-        2
-      )} 
+    <p class="info-item">
+      ${genresForMkup} 
     </p>
     <p class="info-item info-item__date">| 
       ${relData}
@@ -116,5 +113,4 @@ export function itemMarkup({
   </div>
 </li>
       `;
-  }
 }

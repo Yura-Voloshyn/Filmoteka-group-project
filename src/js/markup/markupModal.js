@@ -63,8 +63,8 @@ export function itemMarkup(
       <p data-lang='about' class="info-about">About</p>
       <p class="info-overview">${overview}</p>
       <div class="buttons">
-        <button class="button-watched" data-movieId='${id}'>Add to watched</button>
-        <button class="button-queue" data-movieId='${id}'>Add to queue</button>
+        <button data-lang='watched' class="button-watched" data-movieId='${id}'>Add to watched</button>
+        <button data-lang='queue' class="button-queue" data-movieId='${id}'>Add to queue</button>
       </div>
     </div>
   </section>
