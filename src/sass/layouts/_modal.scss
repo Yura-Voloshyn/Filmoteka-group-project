@@ -8,9 +8,15 @@
 }
 
 .modal {
-  max-width: 806px;
+  
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  width: 80%;
   max-height: 940px;
-  padding: 40px 12px;
+  max-width: 480px;
+  padding: 0;
   background-color: $cl-white-primary;
   border-radius: 5px;
 
@@ -19,12 +25,19 @@
   line-height: 16px;
 
   @include tab {
+    position: static;
+    transform: translate(0);
     display: flex;
-    max-height: 552px;
+    width: auto;
+    height: 552px;
+    max-width: 704px;
+    padding: 40px 36px;
   }
 
   @include desc {
-    max-height: 558px;
+    height: 558px;
+    max-width: 806px;
+    padding: 40px 12px;
   }
 
   p,
@@ -70,7 +83,7 @@
 
 .modal-rendered {
   display: flex;
-  max-height: 940px;
+  max-height: 100%;
 
   @include tab {
     max-height: 552px;
@@ -198,10 +211,6 @@
 }
 
 @media screen and (max-width: 1279px) {
-  .modal {
-    max-width: 704px;
-    padding: 40px 36px;
-  }
 
   .modal-rendered {
     .card-div {
@@ -242,32 +251,22 @@
     position: fixed;
     top: 0;
     left: 0;
-    // overflow-y: auto;
+    overflow-y: auto;
     display: block;
     padding: 20px;
 
-    // &::-webkit-scrollbar {
-    //     width: 5px;
-    //   }
+    &::-webkit-scrollbar {
+        width: 5px;
+      }
     
-    //   &::-webkit-scrollbar-track {
-    //     background: rgba($color: $cl-primary, $alpha: 0.3);
-    //   }
+      &::-webkit-scrollbar-track {
+        background: rgba($color: $cl-primary, $alpha: 0.3);
+      }
     
-    //   &::-webkit-scrollbar-thumb {
-    //     background: $cl-accent;
-    //     border-radius: 5px;
-    //   }
-  }
-
-  .modal {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%);
-    width: 90%;
-    max-width: 480px;
-    padding: 0;
+      &::-webkit-scrollbar-thumb {
+        background: $cl-accent;
+        border-radius: 5px;
+      }
   }
 
   .modal-rendered {
