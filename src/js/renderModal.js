@@ -6,6 +6,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { itemMarkup } from './markup/markupModal';
 import { onQueueBtnClick } from './renderQueue';
 import { onWatchedBtnClick } from './renderWatchedLib';
+import { renderPaginationWatchedBtn } from './renderWatchedPaginationBtn';
 
 import { modalTranslate } from './language/translateOnLangChange';
 

@@ -22,6 +22,7 @@ export async function onQueueBtnClick() {
   refs.queueBtn.classList.add('selected');
   refs.pagination.innerHTML = '';
   refs.paginationSearch.innerHTML = '';
+  refs.paginationWatched.innerHTML = '';
 
   clearMarkup();
   refs.queueBtn.removeEventListener('click', onQueueBtnClick);
