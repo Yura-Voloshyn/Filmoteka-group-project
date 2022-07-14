@@ -51,6 +51,7 @@ export async function onFormSubmit(e) {
         'На жаль, немає фільмів, які відповідають вашому пошуковому запиту. Будь ласка спробуйте ще раз.'
       );
     }
+
     loadAnimationAction.classList.add('is-hiden');
     return;
   } else {

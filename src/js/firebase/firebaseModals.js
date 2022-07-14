@@ -38,15 +38,17 @@ const buttonToggle = () => {
 //Translation
 
 switch (window.location.hash) {
-  case '#en':
-    document.querySelector("input[data-lang='emailPlaceholder']").placeholder = languageTranslate.emailPlaceholder.en;
-    document.querySelector("input[data-lang='passwordPlaceholder']").placeholder = languageTranslate.passwordPlaceholder.en;
+  case ('#en' || ''):
+    document.querySelectorAll("input[data-lang='emailPlaceholder']").placeholder = languageTranslate.emailPlaceholder.en;
+    document.querySelectorAll("input[data-lang='passwordPlaceholder']").placeholder = languageTranslate.passwordPlaceholder.en;
     document.querySelector("input[data-lang='repeatPlaceholder']").placeholder = languageTranslate.repeatPlaceholder.en;
 
     break;
   case '#uk':
-    document.querySelector("input[data-lang='emailPlaceholder']").placeholder = languageTranslate.emailPlaceholder.uk;
-    document.querySelector("input[data-lang='passwordPlaceholder']").placeholder = languageTranslate.passwordPlaceholder.uk;
+    document.querySelectorAll("input[data-lang='emailPlaceholder']")[0].placeholder = languageTranslate.emailPlaceholder.uk;
+    document.querySelectorAll("input[data-lang='passwordPlaceholder']")[0].placeholder = languageTranslate.passwordPlaceholder.uk;
+    document.querySelectorAll("input[data-lang='emailPlaceholder']")[1].placeholder = languageTranslate.emailPlaceholder.uk;
+    document.querySelectorAll("input[data-lang='passwordPlaceholder']")[1].placeholder = languageTranslate.passwordPlaceholder.uk;
     document.querySelector("input[data-lang='repeatPlaceholder']").placeholder = languageTranslate.repeatPlaceholder.uk;
 
     break;
