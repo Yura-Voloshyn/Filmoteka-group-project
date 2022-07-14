@@ -209,16 +209,16 @@ function buttonChange(key) {
   btn.classList.toggle('already-added');
 
   switch (window.location.hash) {
-    case '#en':
-      btn.textContent === `Add to ${key}`
-        ? (btn.textContent = `Remove from ${key}`)
-        : (btn.textContent = `Add to ${key}`);
-      break;
     case '#uk':
       key = key === 'watched' ? 'переглянутих' : 'черги';
       btn.textContent === `Додати до ${key}`
         ? (btn.textContent = `Видалити з ${key}`)
         : (btn.textContent = `Додати до ${key}`);
+      break;
+    default:
+      btn.textContent === `Add to ${key}`
+        ? (btn.textContent = `Remove from ${key}`)
+        : (btn.textContent = `Add to ${key}`);
       break;
   }
 }
