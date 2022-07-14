@@ -45,7 +45,6 @@ export default class MovieApiService {
   }
 
   async fetchArticlesSearchClick(page) {
-    const BASE_URL = 'https://api.themoviedb.org/3';
     const searchName = localStorage.getItem('name');
     const url = `${BASE_URL}/search/movie?api_key=${this.options.key}&query=${searchName}&page=${page}&include_adult=false&language=${this.language}`;
     const first = await axios.get(url, this.options);
