@@ -28,7 +28,6 @@ export default class MovieApiService {
   }
   // pagination
   async fetchArticles(page) {
-    const BASE_URL = 'https://api.themoviedb.org/3';
     const first = await axios.get(
       `${BASE_URL}/trending/movie/day?api_key=${this.options.key}&page=${page}&language=${this.language}`
     );
@@ -36,7 +35,6 @@ export default class MovieApiService {
   }
 
   async fetchArticlesSearch(page) {
-    const BASE_URL = 'https://api.themoviedb.org/3';
     const name = this.searchQuery;
     localStorage.setItem('name', name);
     const url = `${BASE_URL}/search/movie?api_key=${this.options.key}&query=${name}&page=${page}&include_adult=false&language=${this.language}`;
@@ -45,7 +43,6 @@ export default class MovieApiService {
   }
 
   async fetchArticlesSearchClick(page) {
-    const BASE_URL = 'https://api.themoviedb.org/3';
     const searchName = localStorage.getItem('name');
     const url = `${BASE_URL}/search/movie?api_key=${this.options.key}&query=${searchName}&page=${page}&include_adult=false&language=${this.language}`;
     const first = await axios.get(url, this.options);
