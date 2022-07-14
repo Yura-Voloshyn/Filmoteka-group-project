@@ -24,7 +24,7 @@ export async function onFormSubmit(e) {
   e.preventDefault();
   modalTranslate();
   refs.homeBtn.disabled = false;
-  refs.pagination.innerHTML = '';
+  
   refs.paginationSearch.innerHTML = '';
 
   const input = e.currentTarget.elements[0].value;
@@ -37,7 +37,7 @@ export async function onFormSubmit(e) {
     }
     return;
   }
-
+  
   movieApiService.query = input;
   const searchData = await movieApiService.fetchArticlesSearch(1, lang);
   if (searchData.total_pages === 0) {
@@ -55,6 +55,7 @@ export async function onFormSubmit(e) {
     loadAnimationAction.classList.add('is-hiden');
     return;
   } else {
+    refs.pagination.innerHTML = '';
     clearMarkup();
     const searchMarkup = searchData.results
       .map(item => itemMarkupBySearch(item))
