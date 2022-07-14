@@ -1,4 +1,6 @@
 import { refs } from '../refs';
+import { modalTranslate } from '../language/translateOnLangChange';
+import { languageTranslate } from '../language/language-translate-static';
 
 const switchModals = () => {
   refs.loginForm.classList.toggle('is-hidden');
@@ -32,6 +34,25 @@ const buttonToggle = () => {
     ? (refs.openLoginBtn.textContent = `Log Out`)
     : (refs.openLoginBtn.textContent = `Log In`);
 };
+
+//Translation
+
+switch (window.location.hash) {
+  case '#en':
+    document.querySelector("input[data-lang='emailPlaceholder']").placeholder = languageTranslate.emailPlaceholder.en;
+    document.querySelector("input[data-lang='passwordPlaceholder']").placeholder = languageTranslate.passwordPlaceholder.en;
+    document.querySelector("input[data-lang='repeatPlaceholder']").placeholder = languageTranslate.repeatPlaceholder.en;
+
+    break;
+  case '#uk':
+    document.querySelector("input[data-lang='emailPlaceholder']").placeholder = languageTranslate.emailPlaceholder.uk;
+    document.querySelector("input[data-lang='passwordPlaceholder']").placeholder = languageTranslate.passwordPlaceholder.uk;
+    document.querySelector("input[data-lang='repeatPlaceholder']").placeholder = languageTranslate.repeatPlaceholder.uk;
+
+    break;
+};
+
+modalTranslate();
 
 refs.modalBtn[0].addEventListener('click', switchModals);
 refs.modalBtn[1].addEventListener('click', switchModals);
