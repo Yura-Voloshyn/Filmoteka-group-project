@@ -4,9 +4,16 @@ import { itemMarkupBySearch } from './renderSearchResult.js';
 import { itemMarkup } from './renderTrendingPage';
 import { getGenres } from './renderTrendingPage';
 import { getGenreName } from './renderTrendingPage';
-
+import { languageTranslate } from './language/language-translate-static';
+import { modalTranslate } from './language/translateOnLangChange';
 const movieApiService = new MovieApiService();
 
+if (window.location.hash === '#en') {
+  refs.selectLang.value = 'en';
+} else if (window.location.hash === '#uk') {
+  refs.selectLang.value = 'uk';
+}
+const lang = refs.selectLang.value;
 export function renderPaginationSearchBtn(e) {
   const per_page_max = e;
   let current_page = 1;
@@ -84,8 +91,7 @@ export function onPaginateSearchBtnClick(e) {
   refs.mainMarkup.innerHTML = '';
   let page = e.target.innerText;
 
-  movieApiService.fetchArticlesSearchClick(page).then(data => {
-
+  movieApiService.fetchArticlesSearchClick(page, lang).then(data => {
     const markupPagin = data.results
       .map(item => itemMarkupBySearch(item))
       .join('');
