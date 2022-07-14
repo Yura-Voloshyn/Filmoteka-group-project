@@ -9,6 +9,8 @@ import './library';
 import { languageTranslate } from './language/language-translate-static';
 import { modalTranslate } from './language/translateOnLangChange';
 
+// window.location.hash = '#en';
+
 let singleGenre = [];
 
 // console.log(languageTranslate.genreOth.uk);

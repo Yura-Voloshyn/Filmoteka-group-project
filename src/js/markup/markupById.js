@@ -58,7 +58,7 @@ export function idItemMarkup({
 
 function genresToString(genres) {
   let arr = [];
-  genres.forEach(el => {
+  genres.slice(0, 2).forEach(el => {
     arr.push(el.name);
   });
   return arr.join(', ');
