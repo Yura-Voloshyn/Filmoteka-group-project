@@ -1,15 +1,16 @@
 import { studentsData } from './students_arr';
+import { studentsDataUk } from './students_arr';
 import { refs } from './refs';
 // import { languageTranslate } from './language/language-translate-static';
 // import { modalTranslate } from './language/translateOnLangChange';
-import { studName } from './language/language-translate-static';
-import { possition } from './language/language-translate-static';
+// import { studName } from './language/language-translate-static';
+// import { possition } from './language/language-translate-static';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import confetti from 'canvas-confetti';
 
 
-
+if (location.hash === '#en') { 
 const studentItems = studentsData
   .map(({ photo_url, name, githab, possition }) => {
     return `
@@ -29,7 +30,28 @@ const studentItems = studentsData
 `;
   })
   .join('');
-
+}
+else {
+  const studentItemsUk = studentsDataUk
+  .map(({ photo_url, name, githab, possition }) => {
+    return `
+  <li class='team'>
+  <div class='card__tumb team__tumb'>
+    <img data-lang="studName" class='card__image team__image' src='${photo_url}' alt='${name}' />
+  </div>
+  <a href='${githab}' class='ref'>
+  <div class='ref__cover'>
+  <span class='ref__icon'></span>
+  <h3 data-lang="studName" class='ref__title'>${name}</h3>
+  
+   </div>
+  </a>
+<p data-lang="possition" class='ref__pos'>${possition}</p>
+</li>
+`;
+  })
+  .join('');
+}
 //   new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: "alt"});
 // console.log(studentItems);
 const lnk = document.querySelector('.footer-link');
@@ -41,10 +63,19 @@ const openLink = () => {
   window.addEventListener('keydown', onKeyPress);
   refs.backdropStEl.classList.remove('is-hidden');
   showConfetti();
-  modalTranslateName();
-  modalTranslatePos();
+  // modalTranslateName();
+  // modalTranslatePos();
 };
 
+const openLinkUk = () => {
+  renderModal.innerHTML = '';
+  refs.listStudents.insertAdjacentHTML('afterbegin', studentItemsUk);
+  window.addEventListener('keydown', onKeyPress);
+  refs.backdropStEl.classList.remove('is-hidden');
+  showConfetti();
+  // modalTranslateName();
+  // modalTranslatePos();
+};
 
 const closeModalStud = () => {
   refs.backdropStEl.classList.add('is-hidden');
@@ -59,6 +90,7 @@ const closeModalStudX = () => {
 };
 
 refs.linkToDev.addEventListener('click', openLink);
+refs.linkToDev.addEventListener('click', openLinkUk);
 refs.closeModalBtn.addEventListener('click', closeModalStud);
 refs.closeModalBtnX.addEventListener('click', closeModalStudX);
 refs.backdropStEl.addEventListener('click', onBackdropClick);
@@ -82,31 +114,31 @@ function showConfetti() {
   })({ particleCount: 100, spread: 160, zIndex: 2021 });
 }
 
-function modalTranslateName() {
-  document.querySelectorAll('[data-lang]').forEach(el => {
-    for (const key in studName) {
-      if (key === el.dataset.lang) {
-        el.textContent =
-          location.hash === '#uk'
-            ? studName[key].uk
-            : studName[key].en;
-      }
-    }
-  });
-}
+// function modalTranslateName() {
+//   document.querySelectorAll('[data-lang]').forEach(el => {
+//     for (const key in studName) {
+//       if (key === el.dataset.lang) {
+//         el.textContent =
+//           location.hash === '#uk'
+//             ? studName[key].uk
+//             : studName[key].en;
+//       }
+//     }
+//   });
+// }
 
-function modalTranslatePos() {
-  document.querySelectorAll('[data-lang]').forEach(el => {
-    for (const key in possition) {
-      if (key === el.dataset.lang) {
-        el.textContent =
-          location.hash === '#uk'
-            ? possition[key].uk
-            : possition[key].en;
-      }
-    }
-  });
-}
+// function modalTranslatePos() {
+//   document.querySelectorAll('[data-lang]').forEach(el => {
+//     for (const key in possition) {
+//       if (key === el.dataset.lang) {
+//         el.textContent =
+//           location.hash === '#uk'
+//             ? possition[key].uk
+//             : possition[key].en;
+//       }
+//     }
+//   });
+// }
 
 
 
