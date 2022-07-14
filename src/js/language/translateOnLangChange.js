@@ -23,9 +23,11 @@ export function onLanguageChange(e) {
 switch (window.location.hash) {
   case '#en':
     refs.input.placeholder = languageTranslate.placeholder.en;
+    refs.logoBtn.href = "#en";
     break;
   case '#uk':
     refs.input.placeholder = languageTranslate.placeholder.uk;
+    refs.logoBtn.href = "#uk";
     break;
 }
 // if (window.location.hash) {
