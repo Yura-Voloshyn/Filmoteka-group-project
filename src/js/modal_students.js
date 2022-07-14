@@ -68,15 +68,9 @@ const closeModalStud = () => {
   scroll.enableScroll();
 };
 
-const closeModalStudX = () => {
-  refs.backdropStEl.classList.add('is-hidden');
-  window.removeEventListener('keydown', onKeyPress);
-  scroll.enableScroll();
-};
-
 refs.linkToDev.addEventListener('click', openLink);
 refs.closeModalBtn.addEventListener('click', closeModalStud);
-refs.closeModalBtnX.addEventListener('click', closeModalStudX);
+refs.closeModalBtnX.addEventListener('click', closeModalStud);
 refs.backdropStEl.addEventListener('click', onBackdropClick);
 
 function onKeyPress(event) {
