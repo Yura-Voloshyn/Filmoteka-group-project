@@ -39,9 +39,10 @@
     z-index: 3;
     transform: translate(-50%, -50%) scale(1);
     transition: transform 250ms $cl-transition-animation, visibility 250ms $cl-transition-animation;
-    
-    @include desc {
-        min-width: 806px;
+    box-shadow: $cl-modal-text 0px 3px 8px;
+
+    @include tab {
+        max-width: 600px;
     }
 }
 
@@ -54,7 +55,7 @@
 
 .modal-img {
     width: 40%;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .modal-form {
@@ -75,6 +76,7 @@
     border-radius: 5px;
     width: 100%;
     outline: none;
+    color: inherit;
     background-color: transparent;
 
     &:hover,
@@ -103,7 +105,8 @@
         background: $cl-accent;
         border-color: $cl-accent;
         color: $cl-white-primary;
-        // box-shadow: $cl-modal-text 0px 5px 15px;
+        // box-shadow: $cl-modal-text 0px 3px 8px;
+        
     }
 
     @include tab {
@@ -113,11 +116,26 @@
     @include desc {
         min-width: 136px;
     }
+
+    &[data-action="toggle"] {
+        border: none;
+        text-decoration: underline;
+        background-color: transparent;
+        color: inherit;
+
+        &:hover,
+        &:focus {
+            background-color: transparent;
+            border-color: $cl-accent;
+            color: $cl-accent;
+            text-shadow: rgb(255, 107, 8, 0.4) 0px 3px 8px;
+        }
+    }
 }
 
 .modal-text {
     font: inherit;
     color: $cl-accent;
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }

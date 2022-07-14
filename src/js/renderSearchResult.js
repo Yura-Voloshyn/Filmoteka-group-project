@@ -18,7 +18,7 @@ let singleGenre = [];
 const movieApiService = new MovieApiService();
 refs.form.addEventListener('submit', onFormSubmit);
 // refs.input.addEventListener('input', debounce(onInputForm, 600));
-import { loadAnimationAction } from './renderTrendingPage';
+import renderTrendingPage, { loadAnimationAction } from './renderTrendingPage';
 
 export async function onFormSubmit(e) {
   e.preventDefault();
@@ -37,10 +37,7 @@ export async function onFormSubmit(e) {
     }
     return;
   }
-  clearMarkup();
-  movieApiService.resetPage();
-  loadAnimationAction.classList.remove('is-hiden');
-  const input = e.currentTarget.elements[0].value;
+  console.log("input", input)
   movieApiService.query = input;
   const searchData = await movieApiService.fetchArticlesSearch(1, lang);
   const searchMarkup = searchData.results
@@ -66,8 +63,14 @@ export async function onFormSubmit(e) {
     loadAnimationAction.classList.add('is-hiden');
     return;
   } else {
+    clearMarkup();
+    const searchMarkup = searchData.results
+    .map(item => itemMarkupBySearch(item))
+    .join('');
+  const max_page = searchData.total_pages;
+ 
     renderPaginationSearchBtn(max_page);
-  }
+  
   loadAnimationAction.classList.add('is-hiden');
   if (searchData.total_results === 0) {
     if (window.location.hash === '#en') {
@@ -85,7 +88,76 @@ export async function onFormSubmit(e) {
   }
   refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
   return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
+  }
+  
 }
+
+export function clearMarkup() {
+  refs.mainMarkup.innerHTML = '';
+}
+
+const getGenreName = function (ids) {
+  const parsedGenres = JSON.parse(localStorage.getItem('genres'));
+  singleGenre = [];
+  ids.forEach(id => {
+    singleGenre.push(parsedGenres.find(gnr => gnr.id === id));
+  });
+};
+
+export function genreEditForRender(arr, maxLength) {
+  let result;
+  if (arr.length <= maxLength) {
+    result = arr;
+  } else {
+    result = arr.slice(0, maxLength).join(', ') + ', other';
+  }
+  return result;
+}
+
+export function itemMarkupBySearch({
+  id,
+  poster_path,
+  title,
+  genre_ids,
+  release_date,
+}) {
+  getGenreName(genre_ids);
+
+  let genresForMkup =
+    genre_ids.length !== 0
+      ? `${genreEditForRender(
+          singleGenre.map(genre => genre.name),
+          2
+        )}`
+      : 'Genres not found';
+  let src =
+    poster_path === null
+      ? 'https://stringfixer.com/files/951711496.jpg'
+      : `https://image.tmdb.org/t/p/w342/${poster_path}`;
+  let relData = !release_date ? 'Not found' : `${release_date.slice(0, 4)}`;
+
+  return `
+        <li class="movie-card" id="${id}">
+  <a class="card-link" href="#"><img class="poster-image" src="${src}" alt="${title}" loading="lazy" /></a>
+    <h2 class="card-title">
+      ${title}
+    </h2>
+    <div class="info">
+    <p class="info-item">
+      ${genresForMkup} 
+    </p>
+    <p class="info-item info-item__date">| 
+      ${relData}
+    </p>
+  </div>
+</li>
+      `;
+}
+
+refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
+
+
+
 
 // export async function onInputForm(e) {
 //   e.preventDefault();

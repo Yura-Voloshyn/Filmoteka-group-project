@@ -1,6 +1,6 @@
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { refs } from "./refs";
+import { refs } from "../refs";
 
 const auth = getAuth();
 const onRegisterFormSubmit = async (event) => {
@@ -23,11 +23,10 @@ const onRegisterFormSubmit = async (event) => {
     if (loginPassword === repeatPassword) {
         try {
         const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword);
+            
             const user = userCredential.user.email;
             Notify.success(`Welcome, ${user}! Account successfully created.`);
             refs.loginBackdrop.classList.toggle('is-hidden');
-            refs.logoutBtn.parentNode.classList.toggle('is-hidden');
-            refs.openLoginBtn.parentNode.classList.toggle('is-hidden');
 
         } catch (error) {
             if (error.message === 'Firebase: Error (auth/invalid-email).') {
