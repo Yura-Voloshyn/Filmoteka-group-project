@@ -120,22 +120,39 @@ function checkStorage(key, movieId) {
   return arr.some(movie => movie?.id === Number(movieId));
 }
 
+const libWrapper = document.querySelector('.library__btn--wrapper');
+
 function removeFromWatched(e) {
   removeFromStorage(e, 'watched');
-  if (refs.watchedBtn.classList.contains('selected')) {
-    onWatchedBtnClick();
-  }
+  btnWatched.addEventListener('blur', rerenderWatchedOnBlur, { once: true });
+
   btnWatched.removeEventListener('click', removeFromWatched);
   btnWatched.addEventListener('click', addToWatched);
 }
 
+function rerenderWatchedOnBlur() {
+  if (
+    refs.watchedBtn.classList.contains('selected') &&
+    !libWrapper.classList.contains('visually-hidden')
+  ) {
+    onWatchedBtnClick();
+  }
+}
+
 function removeFromQueue(e) {
   removeFromStorage(e, 'queue');
-  if (refs.queueBtn.classList.contains('selected')) {
-    onQueueBtnClick();
-  }
+  btnQueue.addEventListener('blur', rerenderQueueOnBlur, { once: true });
   btnQueue.removeEventListener('click', removeFromQueue);
   btnQueue.addEventListener('click', addToQueue);
+}
+
+function rerenderQueueOnBlur() {
+  if (
+    refs.watchedBtn.classList.contains('selected') &&
+    !libWrapper.classList.contains('visually-hidden')
+  ) {
+    onQueueBtnClick();
+  }
 }
 
 function removeFromStorage(e, key) {
@@ -156,12 +173,14 @@ function removeFromStorage(e, key) {
 
 function addToWatched(e) {
   addToStorage(e, 'watched');
+  btnWatched.addEventListener('blur', rerenderWatchedOnBlur, { once: true });
   btnWatched.addEventListener('click', removeFromWatched);
   btnWatched.removeEventListener('click', addToWatched);
 }
 
 function addToQueue(e) {
   addToStorage(e, 'queue');
+  btnQueue.addEventListener('blur', rerenderQueueOnBlur, { once: true });
   btnQueue.addEventListener('click', removeFromQueue);
   btnQueue.removeEventListener('click', addToQueue);
 }
@@ -203,9 +222,9 @@ function buttonChange(key) {
 }
 
 function disableScroll() {
-  document.body.classList.add("stop-scrolling");
-};
-  
+  document.body.classList.add('stop-scrolling');
+}
+
 function enableScroll() {
-  document.body.classList.remove("stop-scrolling");
-};
+  document.body.classList.remove('stop-scrolling');
+}
