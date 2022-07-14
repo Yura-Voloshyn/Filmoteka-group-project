@@ -8,8 +8,15 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import confetti from 'canvas-confetti';
 
+if (window.location.hash === '#en') {
+  refs.selectLang.value = 'en';
+} else if (window.location.hash === '#uk') {
+  refs.selectLang.value = 'uk';
+}
+const lang = refs.selectLang.value;
+
 if (location.hash === '#en') {
-  const studentItemsEn = studentsDataEn
+  let studentItemsEn = studentsDataEn
     .map(({ photo_url, name, githab, possition }) => {
       return `
   <li class='team'>
@@ -93,12 +100,12 @@ function onBackdropClick(event) {
   }
 }
 
-// function showConfetti() {
-//   confetti.create(document.getElementById('canvas'), {
-//     resize: true,
-//     useWorker: true,
-//   })({ particleCount: 100, spread: 160, zIndex: 2021 });
-// }
+function showConfetti() {
+  confetti.create(document.getElementById('canvas'), {
+    resize: true,
+    useWorker: true,
+  })({ particleCount: 100, spread: 160, zIndex: 2021 });
+}
 
 function modalTranslateName() {
   document.querySelectorAll('[data-lang]').forEach(el => {
