@@ -124,36 +124,48 @@ const libWrapper = document.querySelector('.library__btn--wrapper');
 
 function removeFromWatched(e) {
   removeFromStorage(e, 'watched');
-  btnWatched.addEventListener('blur', rerenderWatchedOnBlur, { once: true });
-
-  btnWatched.removeEventListener('click', removeFromWatched);
-  btnWatched.addEventListener('click', addToWatched);
-}
-
-function rerenderWatchedOnBlur() {
   if (
     refs.watchedBtn.classList.contains('selected') &&
     !libWrapper.classList.contains('visually-hidden')
   ) {
     onWatchedBtnClick();
   }
+  // btnWatched.addEventListener('blur', rerenderWatchedOnBlur, { once: true });
+
+  btnWatched.removeEventListener('click', removeFromWatched);
+  btnWatched.addEventListener('click', addToWatched);
 }
+
+// function rerenderWatchedOnBlur() {
+//   if (
+//     refs.watchedBtn.classList.contains('selected') &&
+//     !libWrapper.classList.contains('visually-hidden')
+//   ) {
+//     onWatchedBtnClick();
+//   }
+// }
 
 function removeFromQueue(e) {
   removeFromStorage(e, 'queue');
-  btnQueue.addEventListener('blur', rerenderQueueOnBlur, { once: true });
-  btnQueue.removeEventListener('click', removeFromQueue);
-  btnQueue.addEventListener('click', addToQueue);
-}
-
-function rerenderQueueOnBlur() {
   if (
     refs.queueBtn.classList.contains('selected') &&
     !libWrapper.classList.contains('visually-hidden')
   ) {
     onQueueBtnClick();
   }
+  // btnQueue.addEventListener('blur', rerenderQueueOnBlur, { once: true });
+  btnQueue.removeEventListener('click', removeFromQueue);
+  btnQueue.addEventListener('click', addToQueue);
 }
+
+// function rerenderQueueOnBlur() {
+//   if (
+//     refs.queueBtn.classList.contains('selected') &&
+//     !libWrapper.classList.contains('visually-hidden')
+//   ) {
+//     onQueueBtnClick();
+//   }
+// }
 
 function removeFromStorage(e, key) {
   let arr = JSON.parse(localStorage.getItem(key));
@@ -174,14 +186,26 @@ function removeFromStorage(e, key) {
 
 function addToWatched(e) {
   addToStorage(e, 'watched');
-  btnWatched.addEventListener('blur', rerenderWatchedOnBlur, { once: true });
+  if (
+    refs.watchedBtn.classList.contains('selected') &&
+    !libWrapper.classList.contains('visually-hidden')
+  ) {
+    onWatchedBtnClick();
+  }
+  // btnWatched.addEventListener('blur', rerenderWatchedOnBlur, { once: true });
   btnWatched.addEventListener('click', removeFromWatched);
   btnWatched.removeEventListener('click', addToWatched);
 }
 
 function addToQueue(e) {
   addToStorage(e, 'queue');
-  btnQueue.addEventListener('blur', rerenderQueueOnBlur, { once: true });
+  if (
+    refs.queueBtn.classList.contains('selected') &&
+    !libWrapper.classList.contains('visually-hidden')
+  ) {
+    onQueueBtnClick();
+  }
+  // btnQueue.addEventListener('blur', rerenderQueueOnBlur, { once: true });
   btnQueue.addEventListener('click', removeFromQueue);
   btnQueue.removeEventListener('click', addToQueue);
 }
@@ -209,16 +233,16 @@ function buttonChange(key) {
   btn.classList.toggle('already-added');
 
   switch (window.location.hash) {
-    case '#en':
-      btn.textContent === `Add to ${key}`
-        ? (btn.textContent = `Remove from ${key}`)
-        : (btn.textContent = `Add to ${key}`);
-      break;
     case '#uk':
       key = key === 'watched' ? 'переглянутих' : 'черги';
       btn.textContent === `Додати до ${key}`
         ? (btn.textContent = `Видалити з ${key}`)
         : (btn.textContent = `Додати до ${key}`);
+      break;
+    default:
+      btn.textContent === `Add to ${key}`
+        ? (btn.textContent = `Remove from ${key}`)
+        : (btn.textContent = `Add to ${key}`);
       break;
   }
 }
