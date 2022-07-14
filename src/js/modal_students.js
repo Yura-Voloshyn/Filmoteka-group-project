@@ -2,6 +2,7 @@ import { studentsDataEn, studentsDataUk } from './students_arr';
 import { refs } from './refs';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import confetti from 'canvas-confetti';
+import { scroll } from './stop-scrolling';
 
 let defaultHash = location.hash === '#en' || location.hash === ''
 let studentItems;
@@ -58,16 +59,19 @@ const openLink = () => {
   window.addEventListener('keydown', onKeyPress);
   refs.backdropStEl.classList.remove('is-hidden');
   showConfetti();
+  scroll.disableScroll();
 };
 
 const closeModalStud = () => {
   refs.backdropStEl.classList.add('is-hidden');
   window.removeEventListener('keydown', onKeyPress);
+  scroll.enableScroll();
 };
 
 const closeModalStudX = () => {
   refs.backdropStEl.classList.add('is-hidden');
   window.removeEventListener('keydown', onKeyPress);
+  scroll.enableScroll();
 };
 
 refs.linkToDev.addEventListener('click', openLink);
