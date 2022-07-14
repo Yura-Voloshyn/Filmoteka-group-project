@@ -1,4 +1,7 @@
 import { refs } from '../refs';
+import { modalTranslate } from '../language/translateOnLangChange';
+import { languageTranslate } from '../language/language-translate-static';
+import { scroll } from '../stop-scrolling';
 
 const switchModals = () => {
   refs.loginForm.classList.toggle('is-hidden');
@@ -6,11 +9,13 @@ const switchModals = () => {
 };
 
 const openLoginModal = () => {
+  scroll.disableScroll();
   refs.loginBackdrop.classList.toggle('is-hidden');
   window.addEventListener('keydown', onEscPress);
 };
 
-const closeLoginModal = () => {
+export const closeLoginModal = () => {
+  scroll.enableScroll();
   refs.loginBackdrop.classList.toggle('is-hidden');
   window.removeEventListener('keydown', onEscPress);
 };
@@ -32,6 +37,27 @@ const buttonToggle = () => {
     ? (refs.openLoginBtn.textContent = `Log Out`)
     : (refs.openLoginBtn.textContent = `Log In`);
 };
+
+//Translation
+
+switch (window.location.hash) {
+  case ('#en' || ''):
+    document.querySelectorAll("input[data-lang='emailPlaceholder']").placeholder = languageTranslate.emailPlaceholder.en;
+    document.querySelectorAll("input[data-lang='passwordPlaceholder']").placeholder = languageTranslate.passwordPlaceholder.en;
+    document.querySelector("input[data-lang='repeatPlaceholder']").placeholder = languageTranslate.repeatPlaceholder.en;
+
+    break;
+  case '#uk':
+    document.querySelectorAll("input[data-lang='emailPlaceholder']")[0].placeholder = languageTranslate.emailPlaceholder.uk;
+    document.querySelectorAll("input[data-lang='passwordPlaceholder']")[0].placeholder = languageTranslate.passwordPlaceholder.uk;
+    document.querySelectorAll("input[data-lang='emailPlaceholder']")[1].placeholder = languageTranslate.emailPlaceholder.uk;
+    document.querySelectorAll("input[data-lang='passwordPlaceholder']")[1].placeholder = languageTranslate.passwordPlaceholder.uk;
+    document.querySelector("input[data-lang='repeatPlaceholder']").placeholder = languageTranslate.repeatPlaceholder.uk;
+
+    break;
+};
+
+modalTranslate();
 
 refs.modalBtn[0].addEventListener('click', switchModals);
 refs.modalBtn[1].addEventListener('click', switchModals);

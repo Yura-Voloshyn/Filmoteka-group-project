@@ -7,6 +7,9 @@ import { itemMarkup } from './markup/markupModal';
 import { onQueueBtnClick } from './renderQueue';
 import { onWatchedBtnClick } from './renderWatchedLib';
 
+import { modalTranslate } from './language/translateOnLangChange';
+import { scroll } from './stop-scrolling';
+
 const movieApiService = new MovieApiService();
 
 const lightBoxOptions = {
@@ -15,6 +18,7 @@ const lightBoxOptions = {
   },
   onClose: () => {
     window.removeEventListener('keydown', keydownHandler);
+    scroll.enableScroll();
   },
 };
 
@@ -22,15 +26,16 @@ let modal; //собственно будущая модалка
 let movieData; // об'єкт фільму для маніпуляцій зі стореджом
 
 refs.mainMarkup.addEventListener('click', onMovieCardClick);
-
+const lang = refs.selectLang.value;
 export async function onMovieCardClick(e) {
   e.preventDefault();
+  scroll.disableScroll();
   const movieId = e.path.find(el => el.className === 'movie-card')?.id; //get movie ID
   if (!movieId) {
     return;
   }
   loadAnimationAction.classList.remove('is-hiden'); //loader animation switched-on
-  movieData = await movieApiService.getMovieById(movieId); //get from srver movie info
+  movieData = await movieApiService.getMovieById(movieId, lang); //get from srver movie info
   const movieDatavideo = await movieApiService.getMovieByIdvideos(movieId);
 
   let videoId;
@@ -46,7 +51,9 @@ export async function onMovieCardClick(e) {
 
   const modalMarkup = itemMarkup(movieData, videoId); // create markup
   modal = basicLightbox.create(modalMarkup, lightBoxOptions); //create modal window//
+
   modalShow();
+  modalTranslate();
   handleButtons(movieId);
   loadAnimationAction.classList.add('is-hiden'); //loader animation switched-off
 }
@@ -64,7 +71,12 @@ function keydownHandler(e) {
 
 function onPosterClick(e) {
   if (e.target.dataset.video === 'undefined') {
-    Notify.failure('There is no video in database');
+    if (window.location.hash === '#en') {
+      Notify.failure('There is no video in database');
+    }
+    if (window.location.hash === '#uk') {
+      Notify.failure('На жаль, У базі немає відео.');
+    }
   } else {
     basicLightbox
       .create(
@@ -109,23 +121,52 @@ function checkStorage(key, movieId) {
   return arr.some(movie => movie?.id === Number(movieId));
 }
 
+const libWrapper = document.querySelector('.library__btn--wrapper');
+
 function removeFromWatched(e) {
   removeFromStorage(e, 'watched');
-  if (refs.watchedBtn.classList.contains('selected')) {
+  if (
+    refs.watchedBtn.classList.contains('selected') &&
+    !libWrapper.classList.contains('visually-hidden')
+  ) {
     onWatchedBtnClick();
   }
+  // btnWatched.addEventListener('blur', rerenderWatchedOnBlur, { once: true });
+
   btnWatched.removeEventListener('click', removeFromWatched);
   btnWatched.addEventListener('click', addToWatched);
 }
 
+// function rerenderWatchedOnBlur() {
+//   if (
+//     refs.watchedBtn.classList.contains('selected') &&
+//     !libWrapper.classList.contains('visually-hidden')
+//   ) {
+//     onWatchedBtnClick();
+//   }
+// }
+
 function removeFromQueue(e) {
   removeFromStorage(e, 'queue');
-  if (refs.queueBtn.classList.contains('selected')) {
+  if (
+    refs.queueBtn.classList.contains('selected') &&
+    !libWrapper.classList.contains('visually-hidden')
+  ) {
     onQueueBtnClick();
   }
+  // btnQueue.addEventListener('blur', rerenderQueueOnBlur, { once: true });
   btnQueue.removeEventListener('click', removeFromQueue);
   btnQueue.addEventListener('click', addToQueue);
 }
+
+// function rerenderQueueOnBlur() {
+//   if (
+//     refs.queueBtn.classList.contains('selected') &&
+//     !libWrapper.classList.contains('visually-hidden')
+//   ) {
+//     onQueueBtnClick();
+//   }
+// }
 
 function removeFromStorage(e, key) {
   let arr = JSON.parse(localStorage.getItem(key));
@@ -135,17 +176,37 @@ function removeFromStorage(e, key) {
   arr.splice(index, 1);
   localStorage.setItem(key, JSON.stringify(arr));
   buttonChange(key);
-  Notify.failure(`The movie successfully has been removed from ${key}`);
+  if (window.location.hash === '#en') {
+    Notify.failure(`The movie successfully has been removed from ${key}`);
+  }
+  if (window.location.hash === '#uk') {
+    key = key === 'watched' ? 'переглянутих' : 'черги';
+    Notify.failure(`Фільм успішно видалено з ${key}`);
+  }
 }
 
 function addToWatched(e) {
   addToStorage(e, 'watched');
+  if (
+    refs.watchedBtn.classList.contains('selected') &&
+    !libWrapper.classList.contains('visually-hidden')
+  ) {
+    onWatchedBtnClick();
+  }
+  // btnWatched.addEventListener('blur', rerenderWatchedOnBlur, { once: true });
   btnWatched.addEventListener('click', removeFromWatched);
   btnWatched.removeEventListener('click', addToWatched);
 }
 
 function addToQueue(e) {
   addToStorage(e, 'queue');
+  if (
+    refs.queueBtn.classList.contains('selected') &&
+    !libWrapper.classList.contains('visually-hidden')
+  ) {
+    onQueueBtnClick();
+  }
+  // btnQueue.addEventListener('blur', rerenderQueueOnBlur, { once: true });
   btnQueue.addEventListener('click', removeFromQueue);
   btnQueue.removeEventListener('click', addToQueue);
 }
@@ -158,13 +219,31 @@ function addToStorage(event, key) {
       : [];
   arr.push(movieData);
   localStorage.setItem(key, JSON.stringify(arr));
-  Notify.success(`The movie successfully has been added to ${key}`);
+
+  if (window.location.hash === '#en') {
+    Notify.success(`The movie successfully has been added to ${key}`);
+  }
+  if (window.location.hash === '#uk') {
+    key = key === 'watched' ? 'переглянутих' : 'черги';
+    Notify.success(`Фільм успішно додано до ${key}`);
+  }
 }
 
 function buttonChange(key) {
   let btn = document.querySelector(`.button-${key}`);
   btn.classList.toggle('already-added');
-  btn.textContent === `Add to ${key}`
-    ? (btn.textContent = `Remove from ${key}`)
-    : (btn.textContent = `Add to ${key}`);
+
+  switch (window.location.hash) {
+    case '#uk':
+      key = key === 'watched' ? 'переглянутих' : 'черги';
+      btn.textContent === `Додати до ${key}`
+        ? (btn.textContent = `Видалити з ${key}`)
+        : (btn.textContent = `Додати до ${key}`);
+      break;
+    default:
+      btn.textContent === `Add to ${key}`
+        ? (btn.textContent = `Remove from ${key}`)
+        : (btn.textContent = `Add to ${key}`);
+      break;
+  }
 }

@@ -1,0 +1,15 @@
+.lang-select {
+    position: absolute;
+        top: 130px;
+        right: 0;
+}
+.select {
+    background: transparent;
+    color: $cl-white-primary;
+    border-radius: 4px;
+}
+option {
+    // border: none;
+    background-color: black;
+    // outline: none;
+}

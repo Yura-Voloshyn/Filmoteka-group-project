@@ -1,87 +1,93 @@
-import { studentsData } from './students_arr';
-
-import SimpleLightbox from 'simplelightbox';
+import { studentsDataEn, studentsDataUk } from './students_arr';
+import { refs } from './refs';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import confetti from 'canvas-confetti';
+import { scroll } from './stop-scrolling';
 
-// import studentsTemplate from '../templates/modal_students.hbs';
-// import { refs } from './refs';
+let defaultHash = location.hash === '#en' || location.hash === ''
+let studentItems;
 
-const backdropStEl = document.querySelector('.backdrop--students');
-const listStudents = document.querySelector('.team-items');
-const linkToDev = document.getElementById('openModalLink');
-const closeModalBtn = document.getElementById('closeModalStBtn');
-const closeModalBtnX = document.getElementById('closeModalStBtnX');
-
-// const studentItems = studentsData.map(studentsTemplate).join(' ');
-const studentItems = studentsData
-  .map(({ photo_url, name, githab, possition }) => {
-    return `
+if (defaultHash) {
+  studentItems = studentsDataEn
+    .map(({ photo_url, name, githab, possition }) => {
+      return `
   <li class='team'>
   <div class='card__tumb team__tumb'>
-    <img class='card__image team__image' src='${photo_url}' alt='${name}' />
+    <img data-lang="studName" class='card__image team__image' src='${photo_url}' alt='${name}' />
   </div>
   <a href='${githab}' class='ref'>
   <div class='ref__cover'>
   <span class='ref__icon'></span>
-  <h3 class='ref__title'>${name}</h3>
+  <h3 data-lang="studName" class='ref__title'>${name}</h3>
   
    </div>
   </a>
-<p class='ref__pos'>${possition}</p>
+<p data-lang="possition" class='ref__pos'>${possition}</p>
 </li>
 `;
-  })
-  .join('');
+    })
+    .join('');
+};
 
-//   new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: "alt"});
-// console.log(studentItems);
-const lnk = document.querySelector('.footer-link');
+if (location.hash === '#uk') {
+  studentItems = studentsDataUk
+    .map(({ photo_url, name, githab, possition }) => {
+      return `
+  <li class='team'>
+  <div class='card__tumb team__tumb'>
+    <img data-lang="studName" class='card__image team__image' src='${photo_url}' alt='${name}' />
+  </div>
+  <a href='${githab}' class='ref'>
+  <div class='ref__cover'>
+  <span class='ref__icon'></span>
+  <h3 data-lang="studName" class='ref__title'>${name}</h3>
+  
+   </div>
+  </a>
+<p data-lang="possition" class='ref__pos'>${possition}</p>
+</li>
+`;
+    })
+    .join('');
+};
+
 const renderModal = document.querySelector('.team-items');
 
 const openLink = () => {
   renderModal.innerHTML = '';
-  listStudents.insertAdjacentHTML('afterbegin', studentItems);
+  refs.listStudents.insertAdjacentHTML('afterbegin', studentItems);
   window.addEventListener('keydown', onKeyPress);
-  backdropStEl.classList.remove('is-hidden');
+  refs.backdropStEl.classList.remove('is-hidden');
   showConfetti();
+  scroll.disableScroll();
 };
-
 
 const closeModalStud = () => {
-  backdropStEl.classList.add('is-hidden');
+  refs.backdropStEl.classList.add('is-hidden');
   window.removeEventListener('keydown', onKeyPress);
-
+  scroll.enableScroll();
 };
 
-const closeModalStudX = () => {
-  backdropStEl.classList.add('is-hidden');
-  window.removeEventListener('keydown', onKeyPress);
-
-};
-
-linkToDev.addEventListener('click', openLink);
-closeModalBtn.addEventListener('click', closeModalStud);
-closeModalBtnX.addEventListener('click', closeModalStudX);
-backdropStEl.addEventListener('click', onBackdropClick);
+refs.linkToDev.addEventListener('click', openLink);
+refs.closeModalBtn.addEventListener('click', closeModalStud);
+refs.closeModalBtnX.addEventListener('click', closeModalStud);
+refs.backdropStEl.addEventListener('click', onBackdropClick);
 
 function onKeyPress(event) {
   if (event.code === 'Escape') {
     closeModalStud();
- 
   }
-}
+};
 
 function onBackdropClick(event) {
   if (event.target === event.currentTarget) {
     closeModalStud();
-
   }
-}
+};
 
 function showConfetti() {
   confetti.create(document.getElementById('canvas'), {
     resize: true,
     useWorker: true,
   })({ particleCount: 100, spread: 160, zIndex: 2021 });
-}
+};

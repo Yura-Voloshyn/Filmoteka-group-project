@@ -8,8 +8,10 @@ export function formatArr(arr, maxLength) {
   let result;
   if (arr.length <= maxLength) {
     result = arr;
-  } else {
+  } else if (window.location.hash === '#en') {
     result = arr.slice(0, maxLength).join(', ') + ', other';
+  } else if (window.location.hash === '#uk') {
+    result = arr.slice(0, maxLength).join(', ') + ', інші';
   }
   return result;
 }
@@ -56,7 +58,7 @@ export function idItemMarkup({
 
 function genresToString(genres) {
   let arr = [];
-  genres.forEach(el => {
+  genres.slice(0, 2).forEach(el => {
     arr.push(el.name);
   });
   return arr.join(', ');

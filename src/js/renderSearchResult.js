@@ -3,7 +3,17 @@ import { refs } from './refs';
 import { onPaginateSearchBtnClick } from './paginationSearch';
 import { renderPaginationSearchBtn } from './paginationSearch';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
+import '../js/language/translateOnLangChange';
+import '../js/language/language-translate-static';
+import { languageTranslate } from './language/language-translate-static';
+import { modalTranslate } from './language/translateOnLangChange';
+// import debounce from 'lodash.debounce';
+if (window.location.hash === '#en') {
+  refs.selectLang.value = 'en';
+} else if (window.location.hash === '#uk') {
+  refs.selectLang.value = 'uk';
+}
+const lang = refs.selectLang.value;
 let singleGenre = [];
 const movieApiService = new MovieApiService();
 refs.form.addEventListener('submit', onFormSubmit);
@@ -12,22 +22,36 @@ import renderTrendingPage, { loadAnimationAction } from './renderTrendingPage';
 
 export async function onFormSubmit(e) {
   e.preventDefault();
+  modalTranslate();
   refs.homeBtn.disabled = false;
   refs.pagination.innerHTML = '';
   refs.paginationSearch.innerHTML = '';
 
   const input = e.currentTarget.elements[0].value;
   if (input === '') {
-    Notify.failure('input field cannot be empty.');
+    if (window.location.hash === '#en') {
+      Notify.failure('input field cannot be empty.');
+    }
+    if (window.location.hash === '#uk') {
+      Notify.failure('поле пошуку не може бути порожнім.');
+    }
     return;
   }
 
   movieApiService.query = input;
-  const searchData = await movieApiService.fetchArticlesSearch(1);
+  const searchData = await movieApiService.fetchArticlesSearch(1, lang);
   if (searchData.total_pages === 0) {
-    Notify.failure(
-      'Sorry, there are no movies matching your search query. Please try again.'
-    );
+    if (window.location.hash === '#en') {
+      Notify.failure(
+        'Sorry, there are no movies matching your search query. Please try again.'
+      );
+    }
+    if (window.location.hash === '#uk') {
+      Notify.failure(
+        'На жаль, немає фільмів, які відповідають вашому пошуковому запиту. Будь ласка спробуйте ще раз.'
+      );
+    }
+
     loadAnimationAction.classList.add('is-hiden');
     return;
   } else {
@@ -44,6 +68,24 @@ export async function onFormSubmit(e) {
     refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
     return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
   }
+
+  loadAnimationAction.classList.add('is-hiden');
+  if (searchData.total_results === 0) {
+    if (window.location.hash === '#en') {
+      Notify.failure(
+        'Sorry, there are no movies matching your search query. Please try again.'
+      );
+    }
+    if (window.location.hash === '#uk') {
+      Notify.failure(
+        'На жаль, немає фільмів, які відповідають вашому пошуковому запиту. Будь ласка спробуйте ще раз.'
+      );
+    }
+
+    return;
+  }
+  refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
+  return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
 }
 
 export function clearMarkup() {
@@ -62,8 +104,10 @@ export function genreEditForRender(arr, maxLength) {
   let result;
   if (arr.length <= maxLength) {
     result = arr;
-  } else {
+  } else if (window.location.hash === '#en') {
     result = arr.slice(0, maxLength).join(', ') + ', other';
+  } else if (window.location.hash === '#uk') {
+    result = arr.slice(0, maxLength).join(', ') + ', інші';
   }
   return result;
 }

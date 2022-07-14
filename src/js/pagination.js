@@ -3,9 +3,15 @@ import { refs } from './refs';
 import { itemMarkup } from './renderTrendingPage';
 import { getGenres } from './renderTrendingPage';
 import { getGenreName } from './renderTrendingPage';
-
+import { languageTranslate } from './language/language-translate-static';
+import { modalTranslate } from './language/translateOnLangChange';
 const movieApiService = new MovieApiService();
-
+if (window.location.hash === '#en') {
+  refs.selectLang.value = 'en';
+} else if (window.location.hash === '#uk') {
+  refs.selectLang.value = 'uk';
+}
+const lang = refs.selectLang.value;
 export function renderPaginationBtn(e) {
   const per_page_max = e;
   let current_page = 1;
@@ -83,7 +89,7 @@ export function onPaginateBtnClick(e) {
   }
   refs.mainMarkup.innerHTML = '';
   let pageNum = e.target.innerText;
-  movieApiService.fetchArticles(pageNum).then(data => {
+  movieApiService.fetchArticles(pageNum, lang).then(data => {
     const markupPagin = data.results.map(item => itemMarkup(item)).join('');
     refs.mainMarkup.insertAdjacentHTML('beforeend', markupPagin);
   });

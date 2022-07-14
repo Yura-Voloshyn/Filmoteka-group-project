@@ -2,24 +2,46 @@ import MovieApiService from './MovieApiService';
 import { renderPaginationBtn } from './pagination';
 import { onPaginateBtnClick } from './pagination';
 import { refs } from './refs';
-let singleGenre = [];
-export const movieApiService = new MovieApiService();
-movieApiService
-  .getGenres()
-  .then(res => localStorage.setItem('genres', JSON.stringify(res.data.genres)))
-  .catch(eror => console.log(eror));
+import { onLanguageChange } from './language/translateOnLangChange';
+import '../js/language/translateOnLangChange';
+import '../js/language/language-translate-static';
+import './library';
+import { languageTranslate } from './language/language-translate-static';
+import { modalTranslate } from './language/translateOnLangChange';
 
+// window.location.hash = '#en';
+
+let singleGenre = [];
+
+// console.log(languageTranslate.genreOth.uk);
+export const movieApiService = new MovieApiService();
+
+if (window.location.hash === '#en') {
+  refs.selectLang.value = 'en';
+} else if (window.location.hash === '#uk') {
+  refs.selectLang.value = 'uk';
+}
+const lang = refs.selectLang.value;
 export const loadAnimationAction = document.querySelector(
   '.hollow-dots-spinner'
 );
 refs.pagination.addEventListener('click', onPaginateBtnClick);
+
+movieApiService
+  .getGenres(lang)
+  .then(res => localStorage.setItem('genres', JSON.stringify(res.data.genres)))
+  .catch(eror => console.log(eror));
+modalTranslate();
 async function renderMainPage() {
+  refs.selectLang.addEventListener('change', onLanguageChange);
+
   refs.paginationSearch.innerHTML = '';
   refs.pagination.innerHTML = '';
   refs.mainMarkup.innerHTML = '';
   refs.input.value = '';
   loadAnimationAction.classList.remove('is-hiden');
-  const data = await movieApiService.fetchArticles(1);
+
+  const data = await movieApiService.fetchArticles(1, lang);
   const markup = data.results.map(item => itemMarkup(item)).join('');
   loadAnimationAction.classList.add('is-hiden');
   const max_page = data.total_pages;
@@ -44,8 +66,10 @@ export function formatArr(arr, maxLength) {
   let result;
   if (arr.length <= maxLength) {
     result = arr;
-  } else {
+  } else if (window.location.hash === '#en') {
     result = arr.slice(0, maxLength).join(', ') + ', other';
+  } else if (window.location.hash === '#uk') {
+    result = arr.slice(0, maxLength).join(', ') + ', інші';
   }
   return result;
 }
