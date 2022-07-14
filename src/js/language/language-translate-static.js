@@ -177,38 +177,35 @@ export const studName = {
     en: 'Andrew Timoshkin',
     uk: 'Андрій Тімошкін',
   },
-};
-
-export const possition = {
-  yuraVol: {
+  possition1: {
     en: 'Team Leader',
     uk: 'Тімлід',
   },
-  sergSma: {
+  possition2: {
     en: 'Scrum Master',
     uk: 'Скрам Майстер',
   },
-  olenaLot: {
+  possition3: {
     en: 'Developer',
     uk: 'Розробник',
   },
-  iraShash: {
+  possition4: {
     en: 'Developer',
     uk: 'Розробник',
   },
-  yuliaPakh: {
+  possition5: {
     en: 'Developer',
     uk: 'Розробник',
   },
-  hannaShu: {
+  possition6: {
     en: 'Developer',
     uk: 'Розробник',
   },
-  olhatru: {
+  possition7: {
     en: 'Developer',
     uk: 'Розробник',
   },
-  andrTim: {
+  possition8: {
     en: 'Developer',
     uk: 'Розробник',
   },

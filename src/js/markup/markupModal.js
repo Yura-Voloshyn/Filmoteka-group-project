@@ -54,8 +54,8 @@ export function itemMarkup(
             <td class="list-values">${original_title.toUpperCase()}</td>
           </tr>
           <tr>
-            <td data-lang='genres' class="list-keys">Genres</td>
-            <td class="list-values">${genresToString(genres)}</td>
+            <td class="list-keys">Genres</td>
+            <td class="list-values">${genresForMkup}</td>
           </tr>
         </tbody>
       </table>
