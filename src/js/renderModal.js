@@ -167,7 +167,8 @@ function removeFromStorage(e, key) {
     Notify.failure(`The movie successfully has been removed from ${key}`);
   }
   if (window.location.hash === '#uk') {
-    Notify.failure('Фільм успішно видалено з ${key}');
+    key = key === 'watched' ? 'переглянутих' : 'черги';
+    Notify.failure(`Фільм успішно видалено з ${key}`);
   }
 }
 
@@ -198,6 +199,7 @@ function addToStorage(event, key) {
     Notify.success(`The movie successfully has been added to ${key}`);
   }
   if (window.location.hash === '#uk') {
+    key = key === 'watched' ? 'переглянутих' : 'черги';
     Notify.success(`Фільм успішно додано до ${key}`);
   }
 }
