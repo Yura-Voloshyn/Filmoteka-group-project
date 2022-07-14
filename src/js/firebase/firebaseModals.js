@@ -1,6 +1,7 @@
 import { refs } from '../refs';
 import { modalTranslate } from '../language/translateOnLangChange';
 import { languageTranslate } from '../language/language-translate-static';
+import { scroll } from '../stop-scrolling';
 
 const switchModals = () => {
   refs.loginForm.classList.toggle('is-hidden');
@@ -10,11 +11,13 @@ const switchModals = () => {
 const openLoginModal = () => {
   refs.loginBackdrop.classList.toggle('is-hidden');
   window.addEventListener('keydown', onEscPress);
+  scroll.disableScroll();
 };
 
 const closeLoginModal = () => {
   refs.loginBackdrop.classList.toggle('is-hidden');
   window.removeEventListener('keydown', onEscPress);
+  scroll.enableScroll();
 };
 
 const onEscPress = (event) => {

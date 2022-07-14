@@ -8,6 +8,7 @@ import { onQueueBtnClick } from './renderQueue';
 import { onWatchedBtnClick } from './renderWatchedLib';
 
 import { modalTranslate } from './language/translateOnLangChange';
+import { scroll } from './stop-scrolling';
 
 const movieApiService = new MovieApiService();
 
@@ -17,7 +18,7 @@ const lightBoxOptions = {
   },
   onClose: () => {
     window.removeEventListener('keydown', keydownHandler);
-    enableScroll();
+    scroll.enableScroll();
   },
 };
 
@@ -28,7 +29,7 @@ refs.mainMarkup.addEventListener('click', onMovieCardClick);
 const lang = refs.selectLang.value;
 export async function onMovieCardClick(e) {
   e.preventDefault();
-  disableScroll();
+  scroll.disableScroll();
   const movieId = e.path.find(el => el.className === 'movie-card')?.id; //get movie ID
   if (!movieId) {
     return;
@@ -201,11 +202,3 @@ function buttonChange(key) {
       break;
   }
 }
-
-function disableScroll() {
-  document.body.classList.add("stop-scrolling");
-};
-  
-function enableScroll() {
-  document.body.classList.remove("stop-scrolling");
-};
