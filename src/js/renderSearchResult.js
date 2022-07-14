@@ -3,98 +3,48 @@ import { refs } from './refs';
 import { onPaginateSearchBtnClick } from './paginationSearch';
 import { renderPaginationSearchBtn } from './paginationSearch';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import debounce from 'lodash.debounce';
 
 let singleGenre = [];
 const movieApiService = new MovieApiService();
 refs.form.addEventListener('submit', onFormSubmit);
 // refs.input.addEventListener('input', debounce(onInputForm, 600));
-import { loadAnimationAction } from './renderTrendingPage';
+import renderTrendingPage, { loadAnimationAction } from './renderTrendingPage';
 
 export async function onFormSubmit(e) {
   e.preventDefault();
   refs.homeBtn.disabled = false;
   refs.pagination.innerHTML = '';
   refs.paginationSearch.innerHTML = '';
-  refs.mainMarkup.innerHTML = '';
-  movieApiService.query = e.currentTarget.elements[0].value;
-  if (movieApiService.query === '') {
+
+  const input = e.currentTarget.elements[0].value;
+  if (input === '') {
     Notify.failure('input field cannot be empty.');
     return;
   }
-  clearMarkup();
-  movieApiService.resetPage();
-  loadAnimationAction.classList.remove('is-hiden');
-  const input = e.currentTarget.elements[0].value;
+
   movieApiService.query = input;
   const searchData = await movieApiService.fetchArticlesSearch(1);
-  const searchMarkup = searchData.results
-    .map(item => itemMarkupBySearch(item))
-    .join('');
-  const max_page = searchData.total_pages;
-  if (
-    movieApiService.query === '' ||
-    movieApiService.query === ' ' ||
-    searchData.total_results === 0
-  ) {
+  if (searchData.total_pages === 0) {
     Notify.failure(
       'Sorry, there are no movies matching your search query. Please try again.'
     );
     loadAnimationAction.classList.add('is-hiden');
     return;
   } else {
+    clearMarkup();
+    const searchMarkup = searchData.results
+      .map(item => itemMarkupBySearch(item))
+      .join('');
+    const max_page = searchData.total_pages;
+
     renderPaginationSearchBtn(max_page);
+
+    loadAnimationAction.classList.add('is-hiden');
+
+    refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
+    return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
   }
-  loadAnimationAction.classList.add('is-hiden');
-  if (searchData.total_results === 0) {
-    Notify.failure(
-      'Sorry, there are no movies matching your search query. Please try again.'
-    );
-    return;
-  }
-  refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
-  return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
 }
-
-// export async function onInputForm(e) {
-//   e.preventDefault();
-//   refs.homeBtn.disabled = false;
-//   refs.pagination.innerHTML = '';
-//   refs.paginationSearch.innerHTML = '';
-//   refs.mainMarkup.innerHTML = '';
-//   movieApiService.query = e.target.value;
-//   if (movieApiService.query === '') {
-//     Notify.failure('input field cannot be empty.');
-//     return;
-//   }
-//   clearMarkup();
-//   movieApiService.resetPage();
-//   loadAnimationAction.classList.remove('is-hiden');
-//   const input = e.target.value;
-//   console.log('input', input);
-//   movieApiService.query = input;
-//   const searchData = await movieApiService.fetchArticlesSearch(1);
-
-//   console.log('movieApiService.query', movieApiService.query);
-//   console.log('searchData', searchData);
-//   const searchMarkup = searchData.results
-//     .map(item => itemMarkupBySearch(item))
-//     .join('');
-//   const max_page = searchData.total_pages;
-
-//   renderPaginationSearchBtn(max_page);
-
-//   loadAnimationAction.classList.add('is-hiden');
-
-//   if (searchData.total_results === 0) {
-//     Notify.failure(
-//       'Sorry, there are no movies matching your search query. Please try again.'
-//     );
-//     return;
-//   }
-//   refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
-//   return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
-// }
 
 export function clearMarkup() {
   refs.mainMarkup.innerHTML = '';
@@ -159,3 +109,43 @@ export function itemMarkupBySearch({
 }
 
 refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
+
+// export async function onInputForm(e) {
+//   e.preventDefault();
+//   refs.homeBtn.disabled = false;
+//   refs.pagination.innerHTML = '';
+//   refs.paginationSearch.innerHTML = '';
+//   refs.mainMarkup.innerHTML = '';
+//   movieApiService.query = e.target.value;
+//   if (movieApiService.query === '') {
+//     Notify.failure('input field cannot be empty.');
+//     return;
+//   }
+//   clearMarkup();
+//   movieApiService.resetPage();
+//   loadAnimationAction.classList.remove('is-hiden');
+//   const input = e.target.value;
+//   console.log('input', input);
+//   movieApiService.query = input;
+//   const searchData = await movieApiService.fetchArticlesSearch(1);
+
+//   console.log('movieApiService.query', movieApiService.query);
+//   console.log('searchData', searchData);
+//   const searchMarkup = searchData.results
+//     .map(item => itemMarkupBySearch(item))
+//     .join('');
+//   const max_page = searchData.total_pages;
+
+//   renderPaginationSearchBtn(max_page);
+
+//   loadAnimationAction.classList.add('is-hiden');
+
+//   if (searchData.total_results === 0) {
+//     Notify.failure(
+//       'Sorry, there are no movies matching your search query. Please try again.'
+//     );
+//     return;
+//   }
+//   refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
+//   return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
+// }
