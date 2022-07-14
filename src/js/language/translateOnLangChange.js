@@ -8,7 +8,7 @@ import { languageTranslate } from './language-translate-static';
 //   location.reload();
 // }
 const movieApiService = new MovieApiService();
-
+let lang;
 refs.selectLang.addEventListener('change', onLanguageChange);
 
 export function onLanguageChange(e) {
