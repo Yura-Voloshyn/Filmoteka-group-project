@@ -1,6 +1,7 @@
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { refs } from "../refs";
+import { closeLoginModal } from './firebaseModals';
 
 const auth = getAuth();
 const onRegisterFormSubmit = async (event) => {
@@ -38,7 +39,7 @@ const onRegisterFormSubmit = async (event) => {
                 Аккаунт успішно створено.`);
             };
             
-            refs.loginBackdrop.classList.toggle('is-hidden');
+           closeLoginModal();
 
         } catch (error) {
             if (error.message === 'Firebase: Error (auth/invalid-email).') {

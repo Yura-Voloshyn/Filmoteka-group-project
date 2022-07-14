@@ -9,15 +9,15 @@ const switchModals = () => {
 };
 
 const openLoginModal = () => {
+  scroll.disableScroll();
   refs.loginBackdrop.classList.toggle('is-hidden');
   window.addEventListener('keydown', onEscPress);
-  scroll.disableScroll();
 };
 
-const closeLoginModal = () => {
+export const closeLoginModal = () => {
+  scroll.enableScroll();
   refs.loginBackdrop.classList.toggle('is-hidden');
   window.removeEventListener('keydown', onEscPress);
-  scroll.enableScroll();
 };
 
 const onEscPress = (event) => {

@@ -1,6 +1,7 @@
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { refs } from "../refs";
+import { closeLoginModal } from './firebaseModals';
 
 const auth = getAuth();
 const onLoginFormSubmit = async (event) => {
@@ -35,7 +36,7 @@ const onLoginFormSubmit = async (event) => {
             З поверненням, ${user}!`);
         };
 
-        refs.loginBackdrop.classList.toggle('is-hidden');
+        closeLoginModal();
 
     } catch (error) {
         console.log(error.message);
