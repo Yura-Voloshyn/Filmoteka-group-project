@@ -15,6 +15,7 @@ const lightBoxOptions = {
   },
   onClose: () => {
     window.removeEventListener('keydown', keydownHandler);
+    enableScroll();
   },
 };
 
@@ -25,6 +26,7 @@ refs.mainMarkup.addEventListener('click', onMovieCardClick);
 
 export async function onMovieCardClick(e) {
   e.preventDefault();
+  disableScroll();
   const movieId = e.path.find(el => el.className === 'movie-card')?.id; //get movie ID
   if (!movieId) {
     return;
@@ -168,3 +170,11 @@ function buttonChange(key) {
     ? (btn.textContent = `Remove from ${key}`)
     : (btn.textContent = `Add to ${key}`);
 }
+
+function disableScroll() {
+  document.body.classList.add("stop-scrolling");
+};
+  
+function enableScroll() {
+  document.body.classList.remove("stop-scrolling");
+};
