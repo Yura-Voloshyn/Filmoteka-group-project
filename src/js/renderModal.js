@@ -7,6 +7,8 @@ import { itemMarkup } from './markup/markupModal';
 import { onQueueBtnClick } from './renderQueue';
 import { onWatchedBtnClick } from './renderWatchedLib';
 
+import { modalTranslate } from './language/translateOnLangChange';
+
 const movieApiService = new MovieApiService();
 
 const lightBoxOptions = {
@@ -23,7 +25,7 @@ let modal; //собственно будущая модалка
 let movieData; // об'єкт фільму для маніпуляцій зі стореджом
 
 refs.mainMarkup.addEventListener('click', onMovieCardClick);
-
+const lang = refs.selectLang.value;
 export async function onMovieCardClick(e) {
   e.preventDefault();
   disableScroll();
@@ -32,7 +34,7 @@ export async function onMovieCardClick(e) {
     return;
   }
   loadAnimationAction.classList.remove('is-hiden'); //loader animation switched-on
-  movieData = await movieApiService.getMovieById(movieId); //get from srver movie info
+  movieData = await movieApiService.getMovieById(movieId, lang); //get from srver movie info
   const movieDatavideo = await movieApiService.getMovieByIdvideos(movieId);
 
   let videoId;
@@ -48,7 +50,9 @@ export async function onMovieCardClick(e) {
 
   const modalMarkup = itemMarkup(movieData, videoId); // create markup
   modal = basicLightbox.create(modalMarkup, lightBoxOptions); //create modal window//
+
   modalShow();
+  modalTranslate();
   handleButtons(movieId);
   loadAnimationAction.classList.add('is-hiden'); //loader animation switched-off
 }
@@ -66,7 +70,12 @@ function keydownHandler(e) {
 
 function onPosterClick(e) {
   if (e.target.dataset.video === 'undefined') {
-    Notify.failure('There is no video in database');
+    if (window.location.hash === '#en') {
+      Notify.failure('There is no video in database');
+    }
+    if (window.location.hash === '#uk') {
+      Notify.failure('На жаль, У базі немає відео.');
+    }
   } else {
     basicLightbox
       .create(
@@ -137,7 +146,12 @@ function removeFromStorage(e, key) {
   arr.splice(index, 1);
   localStorage.setItem(key, JSON.stringify(arr));
   buttonChange(key);
-  Notify.failure(`The movie successfully has been removed from ${key}`);
+  if (window.location.hash === '#en') {
+    Notify.failure(`The movie successfully has been removed from ${key}`);
+  }
+  if (window.location.hash === '#uk') {
+    Notify.failure('Фільм успішно видалено з ${key}');
+  }
 }
 
 function addToWatched(e) {
@@ -160,15 +174,32 @@ function addToStorage(event, key) {
       : [];
   arr.push(movieData);
   localStorage.setItem(key, JSON.stringify(arr));
-  Notify.success(`The movie successfully has been added to ${key}`);
+
+  if (window.location.hash === '#en') {
+    Notify.success(`The movie successfully has been added to ${key}`);
+  }
+  if (window.location.hash === '#uk') {
+    Notify.success(`Фільм успішно додано до ${key}`);
+  }
 }
 
 function buttonChange(key) {
   let btn = document.querySelector(`.button-${key}`);
   btn.classList.toggle('already-added');
-  btn.textContent === `Add to ${key}`
-    ? (btn.textContent = `Remove from ${key}`)
-    : (btn.textContent = `Add to ${key}`);
+
+  switch (window.location.hash) {
+    case '#en':
+      btn.textContent === `Add to ${key}`
+        ? (btn.textContent = `Remove from ${key}`)
+        : (btn.textContent = `Add to ${key}`);
+      break;
+    case '#uk':
+      key = key === 'watched' ? 'переглянутих' : 'черги';
+      btn.textContent === `Додати до ${key}`
+        ? (btn.textContent = `Видалити з ${key}`)
+        : (btn.textContent = `Додати до ${key}`);
+      break;
+  }
 }
 
 function disableScroll() {

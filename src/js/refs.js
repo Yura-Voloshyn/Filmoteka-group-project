@@ -5,6 +5,7 @@ export const refs = {
   modal: document.querySelector('.modal'),
   backToTopBtn: document.querySelector('.back-to-top-btn'),
   pageProgressBar: document.querySelector('.progress-bar'),
+  myLibBtn: document.querySelector('.library__btn'),
   // pagination
   pagination: document.querySelector('.pagination-main'),
   paginationSearch: document.querySelector('.pagination-search'),
@@ -13,6 +14,9 @@ export const refs = {
   watchedBtn: document.querySelector('.wached'),
   queueBtn: document.querySelector('.queue'),
   input: document.querySelector('.input-form'),
+  placeholder: document.querySelector('.input-form').placeholder,
+  selectLang: document.querySelector('.select'),
+  loginBtn: document.querySelector('.login__btn'),
   clockFrame: document.querySelector('.clock__frame'),
   // Login Modal
   loginBackdrop: document.querySelector('.modal-backdrop'),
@@ -23,5 +27,11 @@ export const refs = {
   loginForm: document.querySelector('.modal-form.login'),
   registerForm: document.querySelector('.modal-form.register'),
   modalBtn: document.querySelectorAll('.modal-form button[data-action="toggle"]'),
-
+// Students Modal
+  backdropStEl: document.querySelector('.backdrop--students'),
+  listStudents: document.querySelector('.team-items'),
+  linkToDev: document.getElementById('openModalLink'),
+  closeModalBtn: document.getElementById('closeModalStBtn'),
+  closeModalBtnX: document.getElementById('closeModalStBtnX'),
+  renderModal: document.querySelector('.team-items'),
 };

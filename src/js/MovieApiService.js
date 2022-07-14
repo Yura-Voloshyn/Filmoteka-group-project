@@ -6,7 +6,7 @@ export default class MovieApiService {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
-    this.language = 'en';
+    this.language = '';
     this.allGenres = [];
     this.options = {
       key: 'b28dcafbfbdc99f3059a27aaeb93fed6',
@@ -27,17 +27,17 @@ export default class MovieApiService {
       .catch(error => console.log(error));
   }
   // pagination
-  async fetchArticles(page) {
+  async fetchArticles(page, lang) {
     const first = await axios.get(
-      `${BASE_URL}/trending/movie/day?api_key=${this.options.key}&page=${page}&language=${this.language}`
+      `${BASE_URL}/trending/movie/day?api_key=${this.options.key}&page=${page}&language=${lang}`
     );
     return first.data;
   }
 
-  async fetchArticlesSearch(page) {
+  async fetchArticlesSearch(page, lang) {
     const name = this.searchQuery;
     localStorage.setItem('name', name);
-    const url = `${BASE_URL}/search/movie?api_key=${this.options.key}&query=${name}&page=${page}&include_adult=false&language=${this.language}`;
+    const url = `${BASE_URL}/search/movie?api_key=${this.options.key}&query=${name}&page=${page}&include_adult=false&language=${lang}`;
     const first = await axios.get(url, this.options);
     return first.data;
   }
@@ -60,10 +60,10 @@ export default class MovieApiService {
       })
       .catch(error => console.log(error));
   }
-  getMovieById(movieId) {
+  getMovieById(movieId, lang) {
     return axios
       .get(
-        `${BASE_URL}/movie/${movieId}?api_key=${this.options.key}&language=${this.language}`
+        `${BASE_URL}/movie/${movieId}?api_key=${this.options.key}&language=${lang}`
       )
       .then(resp => {
         this.page += 1;
@@ -71,9 +71,9 @@ export default class MovieApiService {
       })
       .catch(error => console.log(error));
   }
-  getGenres() {
+  getGenres(lang) {
     return axios.get(
-      `${BASE_URL}/genre/movie/list?api_key=${this.options.key}&language=${this.language}`
+      `${BASE_URL}/genre/movie/list?api_key=${this.options.key}&language=${lang}`
     );
   }
 
