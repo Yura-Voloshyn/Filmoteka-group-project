@@ -36,7 +36,6 @@ const buttonToggle = () => {
 };
 
 //Translation
-console.log(document.querySelectorAll("input[data-lang='emailPlaceholder']"));
 
 switch (window.location.hash) {
   case ('#en' || ''):
