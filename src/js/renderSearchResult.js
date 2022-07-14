@@ -21,28 +21,29 @@ export async function onFormSubmit(e) {
     Notify.failure('input field cannot be empty.');
     return;
   }
-  console.log("input", input)
+
   movieApiService.query = input;
   const searchData = await movieApiService.fetchArticlesSearch(1);
-  if (searchData.total_pages === 0) { 
-    Notify.failure('Sorry, there are no movies matching your search query. Please try again.');
+  if (searchData.total_pages === 0) {
+    Notify.failure(
+      'Sorry, there are no movies matching your search query. Please try again.'
+    );
     loadAnimationAction.classList.add('is-hiden');
     return;
   } else {
     clearMarkup();
     const searchMarkup = searchData.results
-    .map(item => itemMarkupBySearch(item))
-    .join('');
-  const max_page = searchData.total_pages;
- 
-    renderPaginationSearchBtn(max_page);
-  
-  loadAnimationAction.classList.add('is-hiden');
+      .map(item => itemMarkupBySearch(item))
+      .join('');
+    const max_page = searchData.total_pages;
 
-  refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
-  return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
+    renderPaginationSearchBtn(max_page);
+
+    loadAnimationAction.classList.add('is-hiden');
+
+    refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
+    return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
   }
-  
 }
 
 export function clearMarkup() {
@@ -108,9 +109,6 @@ export function itemMarkupBySearch({
 }
 
 refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
-
-
-
 
 // export async function onInputForm(e) {
 //   e.preventDefault();
