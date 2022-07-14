@@ -19,7 +19,6 @@ export function onLanguageChange(e) {
   refs.selectLang.value = lang;
 }
 
-// console.log(languageTranslate);
 switch (window.location.hash) {
   case '#en':
     refs.input.placeholder = languageTranslate.placeholder.en;
