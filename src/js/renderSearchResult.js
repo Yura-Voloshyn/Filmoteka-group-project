@@ -42,7 +42,6 @@ export async function onFormSubmit(e) {
   refs.paginationSearch.addEventListener('click', onPaginateSearchBtnClick);
   return refs.mainMarkup.insertAdjacentHTML('beforeend', searchMarkup);
   }
-  
 }
 
 export function clearMarkup() {
