@@ -148,7 +148,7 @@ function removeFromQueue(e) {
 
 function rerenderQueueOnBlur() {
   if (
-    refs.watchedBtn.classList.contains('selected') &&
+    refs.queueBtn.classList.contains('selected') &&
     !libWrapper.classList.contains('visually-hidden')
   ) {
     onQueueBtnClick();
