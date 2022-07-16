@@ -15,8 +15,8 @@ export function windowLoad() {
   let userTheme;
   if (window.matchMedia) {
     userTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'light'
-      : 'dark';
+      ? 'dark'
+      : 'light';
   }
   window
     .matchMedia('(prefers-color-scheme: dark)')
