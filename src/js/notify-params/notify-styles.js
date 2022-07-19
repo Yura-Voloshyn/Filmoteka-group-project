@@ -6,7 +6,7 @@ Notify.init({
   distance: '15px',
 
   width: '300px',
-  fontSize: '14px',
+  fontSize: '12px',
   cssAnimationStyle: 'from-top',
   cssAnimationDuration: 600,
 
