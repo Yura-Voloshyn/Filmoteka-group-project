@@ -31,23 +31,6 @@ switch (window.location.hash) {
     refs.studModalLink.href = '#uk';
     break;
 }
-// if (window.location.hash) {
-//   if (window.location.hash === '#en') {
-//     refs.homePageBtn.textContent = languageTranslate.home.en;
-//     refs.libraryBtn.textContent = languageTranslate.library.en;
-//     refs.loginBtn.textContent = languageTranslate.log.en;
-//     refs.input.placeholder = languageTranslate.placeholder.en;
-//     refs.watchedBtn.textContent = languageTranslate.watchedB.en;
-//     refs.queueBtn.textContent = languageTranslate.queueB.en;
-//   } else if (window.location.hash === '#uk') {
-//     refs.homePageBtn.textContent = languageTranslate.home.uk;
-//     refs.libraryBtn.textContent = languageTranslate.library.uk;
-//     refs.loginBtn.textContent = languageTranslate.log.uk;
-//     refs.input.placeholder = languageTranslate.placeholder.uk;
-//     refs.watchedBtn.textContent = languageTranslate.watchedB.uk;
-//     refs.queueBtn.textContent = languageTranslate.queueB.uk;
-//   }
-// }
 
 export function modalTranslate() {
   document.querySelectorAll('[data-lang]').forEach(el => {

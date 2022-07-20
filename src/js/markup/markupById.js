@@ -2,8 +2,15 @@ import MovieApiService from '../MovieApiService';
 import '../refs';
 
 const movieApiService = new MovieApiService();
+let arrGenresNames = [];
+// render //
+function genresToString(genres) {
+  genres.forEach(el => {
+    arrGenresNames.push(el.name);
+  });
+  return arrGenresNames;
+}
 
-// render for ID //
 export function formatArr(arr, maxLength) {
   let result;
   if (arr.length <= maxLength) {
@@ -23,8 +30,11 @@ export function idItemMarkup({
   release_date,
   vote_average,
 }) {
+  genresToString(genres);
   let genresForMkup =
-    genres.length !== 0 ? `${genresToString(genres)}` : 'Genres not found';
+    genres.length !== 0
+      ? `${formatArr(arrGenresNames, 2)}`
+      : 'Genres not found';
   let src =
     poster_path === null
       ? 'https://stringfixer.com/files/951711496.jpg'
@@ -54,12 +64,4 @@ export function idItemMarkup({
   </div>
 </li>
       `;
-}
-
-function genresToString(genres) {
-  let arr = [];
-  genres.slice(0, 2).forEach(el => {
-    arr.push(el.name);
-  });
-  return arr.join(', ');
 }
