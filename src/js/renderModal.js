@@ -30,7 +30,9 @@ const lang = refs.selectLang.value;
 export async function onMovieCardClick(e) {
   e.preventDefault();
   scroll.disableScroll();
-  const movieId = e.path.find(el => el.className === 'movie-card')?.id; //get movie ID
+  const movieId = e
+    .composedPath()
+    .find(el => el.className === 'movie-card')?.id; //get movie ID
   if (!movieId) {
     return;
   }
