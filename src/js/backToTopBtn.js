@@ -27,3 +27,4 @@ export const onScrollFunction = () => {
 document.onscroll = onScrollFunction;
 refs.backToTopBtn.addEventListener('click', goToTop);
 refs.paginationWatched.addEventListener('click', goToTop);
+refs.paginationQueue.addEventListener('click', goToTop);

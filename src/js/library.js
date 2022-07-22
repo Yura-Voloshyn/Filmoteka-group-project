@@ -47,6 +47,7 @@ export function showLibrary() {
   refs.librarySwitcher.classList.remove('visually-hidden');
   refs.watchedBtn.classList.add('selected');
   refs.mainMarkup.innerHTML = '';
+  refs.pagination.innerHTML = '';
 
   onWatchedBtnClick();
 }

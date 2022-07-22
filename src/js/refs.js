@@ -10,6 +10,7 @@ export const refs = {
   pagination: document.querySelector('.pagination-main'),
   paginationSearch: document.querySelector('.pagination-search'),
   paginationWatched: document.querySelector('.pagination-watched'),
+  paginationQueue: document.querySelector('.pagination-queue'),
   homeBtn: document.querySelector('.home__btn'),
   logoBtn: document.querySelector('.logo-link'),
   watchedBtn: document.querySelector('.watched'),
