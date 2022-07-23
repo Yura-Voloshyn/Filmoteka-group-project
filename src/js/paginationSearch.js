@@ -6,6 +6,7 @@ import { getGenres } from './renderTrendingPage';
 import { getGenreName } from './renderTrendingPage';
 import { languageTranslate } from './language/language-translate-static';
 import { modalTranslate } from './language/translateOnLangChange';
+import { logic } from './pagination';
 const movieApiService = new MovieApiService();
 
 if (window.location.hash === '#en') {
@@ -42,16 +43,31 @@ export function renderPaginationSearchBtn(e) {
   }
   logic();
   function logic() {
-    appendBtn(1);
-    if (per_page_max < 7) {
+    if (per_page_max === 1) { 
+      return;
+    }
+        appendBtn(1);
+        if (per_page_max === 2) {
+            appendBtn(2);
+            return;
+        }
+        if (per_page_max > 2 && per_page_max <= 3) {
+            appendBtn(2);
+            appendBtn(3);
+            return;
+        }
+        if (per_page_max > 3 && per_page_max < 7) {
+            for (let i = 2; i <= per_page_max; i += 1) {
+                appendBtn(i);
+            }
+            return;
+        }
+    if (per_page_max < 8) {
       for (let i = 2; i <= per_page_max; i++) {
         appendBtn(i);
       }
       return;
     }
-    // left
-    // left
-    // center
     if (current_page < 6) {
       appendBtn(2);
       appendBtn(3);
@@ -77,12 +93,10 @@ export function renderPaginationSearchBtn(e) {
       appendBtn(per_page_max - 2);
       appendBtn(per_page_max - 1);
     }
-    // center
-    // right
     appendBtn(per_page_max);
-    // right
-  }
+    }
 }
+
 
 export function onPaginateSearchBtnClick(e) {
   if (e.target.nodeName !== 'BUTTON') {

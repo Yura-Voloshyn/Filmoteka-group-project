@@ -37,6 +37,8 @@ async function renderMainPage() {
 
   refs.paginationSearch.innerHTML = '';
   refs.pagination.innerHTML = '';
+  refs.paginationWatched.innerHTML = '';
+  refs.paginationQueue.innerHTML = '';
   refs.mainMarkup.innerHTML = '';
   refs.input.value = '';
   loadAnimationAction.classList.remove('is-hiden');

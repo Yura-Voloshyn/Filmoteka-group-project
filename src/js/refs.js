@@ -9,9 +9,11 @@ export const refs = {
   // pagination
   pagination: document.querySelector('.pagination-main'),
   paginationSearch: document.querySelector('.pagination-search'),
+  paginationWatched: document.querySelector('.pagination-watched'),
+  paginationQueue: document.querySelector('.pagination-queue'),
   homeBtn: document.querySelector('.home__btn'),
   logoBtn: document.querySelector('.logo-link'),
-  watchedBtn: document.querySelector('.wached'),
+  watchedBtn: document.querySelector('.watched'),
   queueBtn: document.querySelector('.queue'),
   input: document.querySelector('.input-form'),
   placeholder: document.querySelector('.input-form').placeholder,
