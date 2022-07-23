@@ -10,7 +10,7 @@ refs.librarySwitcher = document.querySelector('.library__btn--wrapper');
 refs.headerContainer = document.querySelector('header > .container');
 refs.libraryBtn = document.querySelector('.nav-btn.library__btn');
 refs.homePageBtn = document.querySelector('.nav-btn.home__btn');
-refs.wachedBtn = document.querySelector('.wached');
+refs.watchedBtn = document.querySelector('.wached');
 refs.logoLink = document.querySelector('.logo-link');
 
 refs.libraryBtn.disabled = false;
@@ -45,7 +45,7 @@ export function showLibrary() {
   refs.header.classList.add('library__header');
 
   refs.librarySwitcher.classList.remove('visually-hidden');
-  refs.wachedBtn.classList.add('selected');
+  refs.watchedBtn.classList.add('selected');
   refs.mainMarkup.innerHTML = '';
 
   onWatchedBtnClick();

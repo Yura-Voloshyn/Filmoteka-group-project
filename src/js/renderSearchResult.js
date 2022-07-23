@@ -26,6 +26,7 @@ export async function onFormSubmit(e) {
   refs.homeBtn.disabled = false;
   
   refs.paginationSearch.innerHTML = '';
+  refs.paginationWatched.innerHTML = '';
 
   const input = e.currentTarget.elements[0].value;
   if (input === '') {

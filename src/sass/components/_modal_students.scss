@@ -49,7 +49,8 @@ overflow-y: scroll;
 
                 @include mob {
                     max-width: 320px;
-                    height: 958px;
+                    max-height: 958px;
+                    // height: 100%;
                 }
 
                 @include tab {
