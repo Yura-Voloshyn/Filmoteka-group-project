@@ -27,6 +27,8 @@ import './js/modal_students';
 // pagination
 import './js/paginationSearch';
 import './js/pagination';
+import './js/renderWatchedPaginationBtn';
+import './js/renderQueuePaginationBtn'
 // pagination
 import './js/clock-animation';
 

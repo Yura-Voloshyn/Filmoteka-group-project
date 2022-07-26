@@ -1,8 +1,9 @@
 import {refs} from './refs';
 
-export function renderPaginationWatchedBtn(e) {
+export function renderPaginationQueueBtn(e) {
     const per_page_max = e;
     let current_page = 1;
+
 
     function appendBtn(i, ellipsis) {
         const activeBtn = current_page === i;
@@ -11,7 +12,7 @@ export function renderPaginationWatchedBtn(e) {
         if (ellipsis === true) {
             button.innerHTML = '...';
             button.disabled = true;
-            refs.paginationWatched.append(button);
+            refs.paginationQueue.append(button);
             return false;
         }
         if (activeBtn) {
@@ -21,10 +22,10 @@ export function renderPaginationWatchedBtn(e) {
         button.innerHTML = i;
         button.addEventListener('click', () => {
             current_page = i;
-            refs.paginationWatched.innerHTML = '';
+            refs.paginationQueue.innerHTML = '';
             logic();
         });
-        refs.paginationWatched.append(button);
+        refs.paginationQueue.append(button);
     }
     logic();
     function logic() {
@@ -77,4 +78,6 @@ export function renderPaginationWatchedBtn(e) {
     }
     appendBtn(per_page_max);
     }
+    
 }
+
