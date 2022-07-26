@@ -41,13 +41,7 @@ export const studentsDataEn = [
       'https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team-photo/Hanna.jpg?raw=true',
     githab: 'https://github.com/HannaMyrhorod',
   },
-  {
-    name: 'Olha Truba',
-    possition: 'Developer',
-    photo_url:
-      'https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team-photo/Olya.jpg?raw=true',
-    githab: 'https://github.com/Lolichka-Olha',
-  },
+  
   // {
   //   "name": 'Vasylenko Myroslava',
   //   "possition": "Developer",
@@ -60,6 +54,14 @@ export const studentsDataEn = [
     photo_url:
       'https://raw.githubusercontent.com/Yura-Voloshyn/Filmoteka-group-project/1a42259e5af394e60dded1d6df3502a528cf336f/src/images/team-photo/Andrew.jpg',
     githab: 'https://github.com/andrewtimoshkin',
+  },
+
+  {
+    name: 'Olha Truba',
+    possition: 'Developer',
+    photo_url:
+      'https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team-photo/Olya.jpg?raw=true',
+    githab: 'https://github.com/Lolichka-Olha',
   },
 ];
 
@@ -106,13 +108,7 @@ export const studentsDataUk = [
       'https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team-photo/Hanna.jpg?raw=true',
     githab: 'https://github.com/HannaMyrhorod',
   },
-  {
-    name: 'Ольга Труба',
-    possition: 'Розробник',
-    photo_url:
-      'https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team-photo/Olya.jpg?raw=true',
-    githab: 'https://github.com/Lolichka-Olha',
-  },
+
   // {
   //   "name": 'Vasylenko Myroslava',
   //   "possition": "Розробник",
@@ -125,5 +121,12 @@ export const studentsDataUk = [
     photo_url:
       'https://raw.githubusercontent.com/Yura-Voloshyn/Filmoteka-group-project/1a42259e5af394e60dded1d6df3502a528cf336f/src/images/team-photo/Andrew.jpg',
     githab: 'https://github.com/andrewtimoshkin',
+  },
+    {
+    name: 'Ольга Труба',
+    possition: 'Розробник',
+    photo_url:
+      'https://github.com/Yura-Voloshyn/Filmoteka-group-project/blob/dev/src/images/team-photo/Olya.jpg?raw=true',
+    githab: 'https://github.com/Lolichka-Olha',
   },
 ];
